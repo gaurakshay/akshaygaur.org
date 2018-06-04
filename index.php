@@ -217,13 +217,45 @@
         understands what each entity can store and there is any relationship
         between the entities. <br>
 
-        Open up the models.py model in students.py folder and define the department
+        Open up the models.py model in students folder and define the department
         model:
 
         </p>
         <p class="terminal">
-
+        1&emsp;&emsp;Class Department(models.Model):<br>
+        2    &emsp;&emsp;&emsp;&emsp;"""<br>
+        3    &emsp;&emsp;&emsp;&emsp;This model will store the details about our department.<br>
+        4    &emsp;&emsp;&emsp;&emsp;Primary key for this model is department code.<br>
+        5    &emsp;&emsp;&emsp;&emsp;"""<br>
+        6    &emsp;&emsp;&emsp;&emsp;class Meta:<br>
+        7    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;db_table = "departments"<br>
+        8    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ordering = ['d_name']<br>
+        9    &emsp;&emsp;<br>
+        10    &emsp;&emsp;&emsp;&emsp;d_name = models.CharField(max_length=200)<br>
+        11    &emsp;&emsp;&emsp;&emsp;d_code = models.CharField(max_length=5, primary_key=True)<br>
+        12    &emsp;&emsp;&emsp;&emsp;d_chair = models.CharField(max_length=200)<br>
+        13    &emsp;&emsp;<br>
+        14    &emsp;&emsp;&emsp;&emsp;def __unicode__(self):<br>
+        15    &emsp;&emsp;&emsp;&emsp;"""<br>
+        16    &emsp;&emsp;&emsp;&emsp;String representation of the department.<br>
+        17    &emsp;&emsp;&emsp;&emsp;This will be used mainly when we print<br>
+        18    &emsp;&emsp;&emsp;&emsp;a department object.<br>
+        19    &emsp;&emsp;&emsp;&emsp;"""<br>
+        20    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return self.d_name<br>
         </p>
+        
+        <p> 
+        Now we will try to understand what we did in defining the model for the
+        department:<br>
+        Line 1: Declared the model name, and that it will inherit from the standard
+        django model as defined in models.Model. <br>
+        Lines 2-5: Comments. <br>
+        Lines 6-8: We defined some meta information about the model. Namely,
+        "db_table" tells django to store the model in a table named "departments".
+        If we didn't define this, the table name in our database would be some
+        thing that would not be fun to read. Then, we also defined what is the
+        default ordering of this model. Note that these commands will be translated
+        to corresponding db commands (SQL commands). <br>
 
     </body>
 </html>
