@@ -12,8 +12,16 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
+<div class="container">
         <!-- Testing.
         <?php echo ("THIS IS PHP BABY"); ?> -->
+        <div class="header">
+            <h1>Akshay's Blog</h1>
+        </div>
+        <div class="navbar">
+            <h2>NAVBAR</h2>
+        </div>
+        <div class="content">
         <h2> What is Django? </h2>
         <p>
         Django is a web framework that is built in Python and allows Rapid Application Development
@@ -256,6 +264,10 @@
         thing that would not be fun to read. Then, we also defined what is the
         default ordering of this model. Note that these commands will be translated
         to corresponding db commands (SQL commands). <br>
-
+</div>
+<div class="footer">
+    <h1>FOOTER</h1>
+</div>
+</div>
     </body>
 </html>
