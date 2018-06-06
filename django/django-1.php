@@ -22,8 +22,11 @@
                 </div>
                 <div class="navbar">
                     <!-- ><h4>Django</h4> -->
-                    Django<br>
-                    &emsp;<a href="#"> Setup </a>
+                    Django Tutorial<br>
+                    &emsp;<a href="django-1.php"> Setup </a><br>
+                    &emsp;<a href="django-2.php"> App and Models </a><br>
+                    &emsp;<a href="django-3.php"> Admin Module </a><br>
+                    &emsp;<a href="django-4.php"> Media Root </a><br>
                 </div>
                 <div class="content">
                     <h2> What is Django? </h2>
