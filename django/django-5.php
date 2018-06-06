@@ -120,7 +120,7 @@
                     <br>
                     urlpatterns = [<br>
                     &emsp;&emsp;&emsp;&emsp;path('admin/', admin.site.urls),<br>
-                    &emsp;&emsp;&emsp;&emsp;path('', students.views.Welcome.as_view(), name),<br>
+                    &emsp;&emsp;&emsp;&emsp;path('', views.Welcome.as_view(), name),<br>
                     ]<br>
                     </p>
                     <br>

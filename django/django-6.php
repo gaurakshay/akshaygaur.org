@@ -29,111 +29,52 @@
                     &emsp;<a href="django-4.php"> Media Root </a><br>
                 </div>
                 <div class="content">
-                    So far, we have worked on setting up our models and saved
-                    some instances of it in the database. So, we have mostly
-                    paid attention to the backend of our application.
-                    <br>
-                    Now, lets turn our attention to the frontend of our application!
-                    <br>
-                    First, let us make a basic page that we want to show as our
-                    homepage. To do that, let us first make a folder named 'templates'
-                    in our tutorial/students/ directory. Inside that directory, make
-                    a blank html page named 'welcome.html'. So, our folder structure
-                    should look like:<br>
-                    &emsp;&emsp; manage.py<br>
-                    &emsp;&emsp; tutorial/<br>
-                    &emsp;&emsp; &emsp;&emsp; __init__.py<br>
-                    &emsp;&emsp; &emsp;&emsp; settings.py<br>
-                    &emsp;&emsp; &emsp;&emsp; urls.py<br>
-                    &emsp;&emsp; &emsp;&emsp; wsgi.py<br>
-                    &emsp;&emsp; students/<br>
-                    &emsp;&emsp; &emsp;&emsp; templates/<br>
-                    &emsp;&emsp; &emsp;&emsp; &emsp;&emsp; welcome.html<br>
-                    &emsp;&emsp; &emsp;&emsp; admin.py<br>
-                    &emsp;&emsp; &emsp;&emsp; apps.py<br>
-                    &emsp;&emsp; &emsp;&emsp; __init__.py<br>
-                    &emsp;&emsp; &emsp;&emsp; migrations/<br>
-                    &emsp;&emsp; &emsp;&emsp; models.py<br>
-                    &emsp;&emsp; &emsp;&emsp; tests.py<br>
-                    &emsp;&emsp; &emsp;&emsp; views.py<br>
-                    <br>
-                    Now, in the Welcome.html file, write out a skeleton of html5
-                    page. Something like:<br>
-                    &emsp;&emsp;&lt;!DOCTYPE html&gt;<br>
-                    &emsp;&emsp;&lt;html lang="en"&gt;<br>
-                    &emsp;&emsp;&lt;head&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;&lt;meta charset="UTF-8"&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Hi&lt;/title&gt;<br>
-                    &emsp;&emsp;&lt;/head&gt;<br>
-                    &emsp;&emsp;&lt;body&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;Welcome!!!<br>
-                    &emsp;&emsp;&lt;/body&gt;<br>
-                    &emsp;&emsp;&lt;/html&gt;<br>
-                    <br>
-                    Now, that we have our basic webpage, we would like our
-                    application to serve it. The way a django application works
-                    is by defining views and then rendering those views when 
-                    requested. So, we will also define a view and then tell
-                    it to render this skeleton of a page that we just created.
-                    <br>
-                    To define a view, we must go to our students/views.py file.
-                    In this file, we will define our most basic view:
-                    <p class="terminal">
-                    from django.shortcuts import render<br>
-                    <br>
-                    # import the template view.<br>
-                    from django.views.generic import TemplateView<br>
-                    <br>
-                    <br>
-                    class WelcomeView(TemplateView):<br>
-                    &emsp;&emsp;&emsp;&emsp;template_name = 'welcome.html'<br>
-                    <br>
-
-                    </p>
-                    <br>
-                    As we will be serving web pages primarily, we want to define
-                    the urls that we will be serving our pages in. In the default
-                    setup that django framework provides us, which can be found in
-                    the tutorial/urls.py file, you will see that only one url is
-                    defined:
+                    First things first, since from now on we are going to be adding
+                    many more urls to our project, it would behoove us to do a little
+                    spend a little time on tidying things up.
+                    b
+                    If you remember, we imported our student app's view in our
+                    project's main url.py file. Consider this: you have 4-5 apps
+                    and all have 10-15 urls. Even this conservative estimates leaves
+                    us with anywhere from 40-75 urls in one file. So let us try
+                    to avoid this future mess.
+                    b
+                    Open up the base urls.py file where we put our first view and
+                    remove all that we added previously. Then, we will tell this file
+                    to include another urls.py file so that it looks like:
+                    b
                     <p class="terminal">
                     from django.contrib import admin<br>
                     from django.urls import path<br>
                     <br>
                     urlpatterns = [<br>
                     &emsp;&emsp;&emsp;&emsp;path('admin/', admin.site.urls),<br>
+                    &emsp;&emsp;&emsp;&emsp;path('', include('students.urls')),<br>
                     ]<br>
                     </p>
-                    urlpatterns is the place where we define all our urls that
-                    will be served in the project. Since we don't have any other
-                    url defined in the project, we see the default welcome page
-                    when we go to 127.0.0.1:8000. When we point
-                    our browser to 127.0.0.1:8000/admin/ we see the admin module
-                    which is what is defined in the urls.py file.
-                    <br>
-                    Lets see what we need to do to change that. Let us define
-                    a new urlpattern that points to the root path:
+                    b
+                    Now, lets create a urls.py file in our students app. This file
+                    should be located at students/urls.py.
+                    b
                     <p class="terminal">
-                    from django.contrib import admin<br>
-                    from django.urls import path<br>
+                    from django.urls import path, include<br>
                     from students import views<br>
                     <br>
                     urlpatterns = [<br>
-                    &emsp;&emsp;&emsp;&emsp;path('admin/', admin.site.urls),<br>
-                    &emsp;&emsp;&emsp;&emsp;path('', students.views.Welcome.as_view(), name),<br>
+                    &emsp;&emsp;&emsp;&emsp;path('', views.Welcome.as_view(), name),<br>
                     ]<br>
                     </p>
-                    <br>
-                    Now, making sure that our server is running, cross your fingers
-                    go to 127.0.0.1:8000/ in your favourite browser. If this is the
-                    page you see:
-                    <br>
-                    <img src="../assets/django-13-firstview.png" width="500">
-                    <br>
-                    Then you are doing amazing!!!
-                    <br>
-                    Let us now look at how to display the data that we have in the
-                    database next...
+                    b
+                    Now try going to 127.0.0.1:8000 again. If we did it right, you
+                    should see the same results!
+                    b
+                    So, one of the first views that we are going to try is details
+                    view. This view shows a model's instance one at a time. Some
+                    of the other views that we can utilize are list views, create
+                    views, delete views. All these views interact with the model
+                    in some way or the other and we will learn about them one by
+                    one.
+
                 </div>
                 <div class="footer">
                     <h4>Contact me at gaur{dot}akshay{at}gmail{dot}com if you found this
