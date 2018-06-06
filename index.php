@@ -27,6 +27,8 @@
                     &emsp;<a href="django/django-2.php"> App and Models </a><br>
                     &emsp;<a href="django/django-3.php"> Admin Module </a><br>
                     &emsp;<a href="django/django-4.php"> Media Root </a><br>
+                    &emsp;<a href="django/django-5.php"> Template View </a><br>
+                    &emsp;<a href="django/django-6.php"> List View </a><br>
                 </div>
                 <div class="content">
                         <div class="card django">
