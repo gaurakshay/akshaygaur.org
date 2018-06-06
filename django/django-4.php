@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
         <!-- ================================= STYLES ================================= -->
-        <link href="css/style.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
@@ -23,10 +23,9 @@
                 <div class="navbar">
                     <!-- ><h4>Django</h4> -->
                     Django<br>
-                    &emsp;<a href="django/django-1.php"> Setup </a><br>
-                    &emsp;<a href="django/django-2.php"> App and Models </a><br>
-                    &emsp;<a href="django/django-3.php"> Admin Module </a><br>
-                    &emsp;<a href="django/django-4.php"> Media Root </a><br>
+                    &emsp;<a href="django-1.php"> Setup </a><br>
+                    &emsp;<a href="django-2.php"> App and Models </a><br>
+                    &emsp;<a href="django-3.php"> Admin Module </a>
                 </div>
                 <div class="content">
 
@@ -168,11 +167,11 @@
                     </p>
 
                     <p> Your admin site should now look like this:<br>
-                    <img src="assets/django-10-admin-with-course-stud.png" width="500" alt="Admin site with Department, Course and Student objects listed."><br>
+                    <img src="../assets/django-10-admin-with-course-stud.png" width="500" alt="Admin site with Department, Course and Student objects listed."><br>
 
                     I went ahead and added an entry each for course and student:<br>
-                    <img src="assets/django-11-course-entry.png" width="500" alt="Sample course entry."><br>
-                    <img src="assets/django-12-student-entry.png" width="500" alt="Sample student entry."><br>
+                    <img src="../assets/django-11-course-entry.png" width="500" alt="Sample course entry."><br>
+                    <img src="../assets/django-12-student-entry.png" width="500" alt="Sample student entry."><br>
                     So now that we have saved our student with its pic, where is it? If you
                     remember, we defined the MEDIA_URL as tutorial/assets/media/. Now, when
                     we defined our model, we set the "upload_to" parameter in our students'
