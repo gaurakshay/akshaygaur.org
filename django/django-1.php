@@ -18,7 +18,7 @@
             <!-- Testing.
                 <?php echo ("THIS IS PHP BABY"); ?> -->
                 <div class="header">
-                    <h1>Akshay's Blog (under construction)</h1>
+                    <a href="http://www.akshaygaur.org"><h1>Akshay's Blog (under construction)</h1></a>
                 </div>
                 <div class="navbar">
                     Django Tutorial<br>
