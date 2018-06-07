@@ -29,135 +29,217 @@
                     &emsp;<a href="django-4.php"> Media Root </a><br>
                 </div>
                 <div class="content">
-                    To do that, lets first add a few new departments to our list
-                    of departments using the admin module:
+                    So far, we have looked at a very basic details view with a few
+                    text fields to display. But what if we wanted to show a little
+                    media along with text?
                     <br>
-                    <img src="../assets/django-15-more-depts.png" width="400">
+                    For that, we will use our student model where we stored 
+                    student's pic as a model attribute. To start, let us first make
+                    a list view to show the list of students in our system. So
+                    open up your views.py and add the following:
+                    <br>
+                    <p class="terminal">
+                    # Add student import
+                    from students.models import Department, Student
 
+                    # Create student list view
+                    class StudentListView(ListView):<br>
+                    &emsp;&emsp;&emsp;&emsp;"""<br>
+                    &emsp;&emsp;&emsp;&emsp;Return list of students in the system.<br>
+                    &emsp;&emsp;&emsp;&emsp;"""<br>
+                    &emsp;&emsp;&emsp;&emsp;template_name = 'stud-list.html'<br>
+                    &emsp;&emsp;&emsp;&emsp;model = Student<br>
+                    &emsp;&emsp;&emsp;&emsp;context_object_name = 'students'<br>
+                    </p>
                     <br>
-                    And let us reduce the amount of information that we are presenting
-                    in the details view, and add a new link to view the details
-                    of that particular department.
-                    <br>
+                    And, create the template named 'stud-list.html' in the templates
+                    folder:
                     <p class="terminal">
                     &lt;!DOCTYPE html&gt;<br>
                     &lt;html lang="en"&gt;<br>
                     &lt;head&gt;<br>
                     &emsp;&emsp;&emsp;&emsp;&lt;meta charset="UTF-8"&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Department List&lt;/title&gt;<br>
+                    &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Student List&lt;/title&gt;<br>
                     &lt;/head&gt;<br>
                     &lt;body&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;&lt;h2&gt;List of departments&lt;/h2&gt;<br>
+                    &emsp;&emsp;&emsp;&emsp;&lt;h2&gt;List of students&lt;/h2&gt;<br>
                     &emsp;&emsp;&emsp;&emsp;&lt;br&gt;&lt;br&gt;&lt;br&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;{% for dept in depts %}<br>
-                    &emsp;&emsp;&emsp;&emsp;Department Code: &lt;b&gt;{{ dept.d_code }}&lt;/b&gt;&lt;br&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;&lt;a href="{% url 'dept_details' pk=dept.pk %}"&gt;Details&lt;/a&gt;&lt;br&gt;<br>
+                    &emsp;&emsp;&emsp;&emsp;{% for student in students %}<br>
+                    &emsp;&emsp;&emsp;&emsp;Student ID: &lt;b&gt;{{ student.s_id }}&lt;/b&gt;&lt;br&gt;<br>
                     &emsp;&emsp;&emsp;&emsp;{% endfor %}<br>
                     &lt;/body&gt;<br>
                     &lt;/html&gt;<br>
                     </p>
                     <br>
-                    This is how the page should look like now:<br>
-                    <img src="../assets/django-16-dept-list.png" alt="List of departments will basic info" width="500"><br>
-                    Notice how we create the url to refer to the link. We are asking
-                    the framework to look for a url named 'dept_details' and pass
-                    the dept's primary key pk to it. Now, all we need to do is to 
-                    create a view named dept_details, and accept this pk as a 
-                    parameter. We will use DetailsView to render this view as we
-                    are providing details of one model's instance through this view
-                    and that is exactly what the django framework's DetailView is made
-                    for.
+                    Add the url in student/urs.py file like so:
                     <br>
-                    To create a detail view, first, open up the views.py file in
-                    students directory. And add the following lines:
-                    <p class="terminal">
-                    from django.shortcuts import render<br>
-                    <br>
-                    # import the template view.<br>
-                    from django.views.generic import TemplateView, ListView, DetailView<br>
-                    <br>
-                    # import department model<br>
-                    from students.models import Department<br>
-                    <br>
-                    <br>
-                    class WelcomeView(TemplateView):<br>
-                    &emsp;&emsp;&emsp;&emsp;"""<br>
-                    &emsp;&emsp;&emsp;&emsp;This is our welcome screen. Utilizes a<br>
-                    &emsp;&emsp;&emsp;&emsp;template view.<br>
-                    &emsp;&emsp;&emsp;&emsp;"""<br>
-                    &emsp;&emsp;&emsp;&emsp;template_name = 'welcome.html'<br>
-                    <br>
-                    <br>
-                    class DeptListView(ListView):<br>
-                    &emsp;&emsp;&emsp;&emsp;"""<br>
-                    &emsp;&emsp;&emsp;&emsp;This is the list view of the department model.<br>
-                    &emsp;&emsp;&emsp;&emsp;Uses the default ListView provided<br>
-                    &emsp;&emsp;&emsp;&emsp;by Django Framework.<br>
-                    &emsp;&emsp;&emsp;&emsp;"""<br>
-                    &emsp;&emsp;&emsp;&emsp;template_name = 'dept-list.html'<br>
-                    &emsp;&emsp;&emsp;&emsp;model = Department<br>
-                    &emsp;&emsp;&emsp;&emsp;context_object_name = 'depts'<br>
-                    <br>
-                    <br>
-                    class DeptDetailView(DetailView):<br>
-                    &emsp;&emsp;&emsp;&emsp;"""<br>
-                    &emsp;&emsp;&emsp;&emsp;This is the detail view of the department model.<br>
-                    &emsp;&emsp;&emsp;&emsp;Uses the default detail view provided<br>
-                    &emsp;&emsp;&emsp;&emsp;by Django Framework.<br>
-                    &emsp;&emsp;&emsp;&emsp;"""<br>
-                    &emsp;&emsp;&emsp;&emsp;template_name = 'dept-details.html'<br>
-                    &emsp;&emsp;&emsp;&emsp;model = Department<br>
-                    &emsp;&emsp;&emsp;&emsp;context_object_name = 'dept'<br>
-                    </p>
-                    <br>
-                    You must have noticed that the webpage that we defined for this
-                    page doesn't exist ('dept-details.html'). So lets fix this by
-                    make a html file named 'dept-details.html' in the --- you guessed
-                    right --- the templates folder.
-                    <br>
-                    Create a skeleton like we did before and put the following:
-                    <p class="terminal">
-                    &lt;!DOCTYPE html&gt;<br>
-                    &lt;html lang="en"&gt;<br>
-                    &lt;head&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;&lt;meta charset="UTF-8"&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Department details&lt;/title&gt;<br>
-                    &lt;/head&gt;<br>
-                    &lt;body&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;&lt;h2&gt;Department Detail Screen&lt;/h2&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;&lt;br&gt;&lt;br&gt;&lt;br&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;Department Name: &lt;h3&gt;{{ dept }}&lt;/h3&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;Department Code: &lt;h3&gt;{{ dept.d_code }}&lt;/h3&gt;<br>
-                    &emsp;&emsp;&emsp;&emsp;Department Chair: &lt;h3&gt;{{ dept.d_chair }}&lt;/h3&gt;<br>
-                    &lt;/body&gt;<br>
-                    &lt;/html&gt;<br>
-
-                    </p>
-                    <br>
-                    So at this point, what we have is a view named DeptDetailView
-                    that knows that it would render dept-details.html. The only that
-                    remains to be done is to tell the project when to call the view
-                    that we declared. We do that in students/urls.py file so that
-                    project knows what view to call when any url is requested.
-                    <br>
-                    To do that, lets edit the students/urls.py and append this to the
-                    urlpatterns list:
                     <p class="terminal">
                     from django.urls import path <br>
-                    from students import views<br>
+                    from students import views <br>
                     <br>
-                    urlpatterns = [<br>
-                    &emsp;&emsp;&emsp;&emsp;path('', views.WelcomeView.as_view(), name='welcome'),<br>
-                    &emsp;&emsp;&emsp;&emsp;path('depts/', views.DeptListView.as_view(), name='dept_list'),<br>
-                    &emsp;&emsp;&emsp;&emsp;path('depts/&lt;str:pk&gt;/', views.DeptDetailView.as_view(), name='dept_details'),<br>
-                    ]<br>
+                    urlpatterns = [ <br>
+                    &emsp;&emsp;&emsp;&emsp;path('', views.WelcomeView.as_view(), name='welcome'), <br>
+                    &emsp;&emsp;&emsp;&emsp;path('depts/', views.DeptListView.as_view(), name='dept_list'), <br>
+                    &emsp;&emsp;&emsp;&emsp;path('depts/&lt;str:pk&gt;/', views.DeptDetailView.as_view(), name='dept_details&emsp;&emsp;&emsp;&emsp;'),  <br>
+                    &emsp;&emsp;&emsp;&emsp;path('students/', views.StudentListView.as_view(), name='stud_list'), <br>
+                    ] <br>
                     </p>
                     <br>
-                    This should be enough to bring up the details view. So let us go
-                    to the dept list page and click on one of the "Details" link on
-                    that page. If everything goes according to our plan, we should
-                    see the details page like this:<br>
-                    <img src="../assets/django-17-dept-details.png" alt="Department Details" width="500">
+                    If we go to the url 127.0.0.1:8000/students/ we should see the
+                    following:
+                    <br>
+                    <img src="../assets/django-18-stud-list.png" alt="List of students" width=500">
+                    <br>
+                    Now, if you try to add a url to go to the student's detail right
+                    now (when we have neither defined a student's detail view nor
+                    its url) you will get an error.
+                    <br>
+                    So, let us create the student's detail view and corresponding
+                    template and the url. Then we will come back here and add the
+                    link to the student's details.
+                    <br>
+                    Let us first create the student's details view in
+                    students/views.py:
+                    <br>
+                    <p class="terminal">
+                    class StudentDetailView(DetailView): <br>
+                    &emsp;&emsp;&emsp;&emsp;""" <br>
+                    &emsp;&emsp;&emsp;&emsp;This class utilizes the default class <br>
+                    &emsp;&emsp;&emsp;&emsp;based view provided by Django framework to <br>
+                    &emsp;&emsp;&emsp;&emsp;display the details of a student in the system <br>
+                    &emsp;&emsp;&emsp;&emsp;""" <br>
+                    &emsp;&emsp;&emsp;&emsp;template_name = 'stud-details.html' <br>
+                    &emsp;&emsp;&emsp;&emsp;model = Student <br>
+                    &emsp;&emsp;&emsp;&emsp;context_object_name = 'student' <br>
+                    </p>
+                    <br>
+                    Now, add the stud-details.html in the templates folder and
+                    type in it the following basic html:
+                    <br>
+                    <p class="terminal">
+                    &lt;!DOCTYPE html&gt; <br>
+                    &lt;html lang="en"&gt; <br>
+                    &lt;head&gt; <br>
+                    &emsp;&emsp;&emsp;&emsp;&lt;meta charset="UTF-8"&gt; <br>
+                    &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Student details&lt;/title&gt; <br>
+                    &lt;/head&gt; <br>
+                    &lt;body&gt; <br>
+                    &emsp;&emsp;&emsp;&emsp;&lt;h2&gt;Student Detail Screen&lt;/h2&gt; <br>
+                    &emsp;&emsp;&emsp;&emsp;&lt;br&gt;&lt;br&gt;&lt;br&gt; <br>
+                    &emsp;&emsp;&emsp;&emsp;Student Name: &lt;h3&gt;{{ student }}&lt;/h3&gt; <br>
+                    &emsp;&emsp;&emsp;&emsp;Student ID: &lt;h3&gt;{{ student.s_id }}&lt;/h3&gt; <br>
+                    &emsp;&emsp;&emsp;&emsp;Student Pic: &lt;img src="{{ student.s_pic }}"&lt; <br>
+                    &lt;/body&gt; <br>
+                    &lt;/html&gt; <br>
+                    </p>
+                    <br>
+                    Notice how we used the student object's picture attribute to 
+                    define the source of the image in an &lt;img&gt; tag.
+                    <br>
+                    Finally, add the url to this view in the students/urls.py file:
+                    <br>
+                    <p class="terminal">
+                    from django.urls import path <br>
+                    from students import views <br>
+                    <br>
+                    urlpatterns = [ <br>
+                    &emsp;&emsp;&emsp;&emsp;path('', views.WelcomeView.as_view(), name='welcome'), <br>
+                    &emsp;&emsp;&emsp;&emsp;path('depts/', views.DeptListView.as_view(), name='dept_list'), <br>
+                    &emsp;&emsp;&emsp;&emsp;path('depts/<str:pk>/', views.DeptDetailView.as_view(), name='dept_details&emsp;&emsp;&emsp;&emsp;'), <br>
+                    &emsp;&emsp;&emsp;&emsp;path('students/', views.StudentListView.as_view(), name='stud_list'), <br>
+                    &emsp;&emsp;&emsp;&emsp;path('students/<str:pk>/', views.StudentDetailView.as_view(), name='stud_d&emsp;&emsp;&emsp;&emsp;etails'), <br>
+                    ]    <br>
+                    </p>
+                    <br>
+                    Now, coming back to the templates/stud-list.html, we can finally
+                    add to it the link to details of the student:
+                    <br>
+                    <p class="terminal">
+                    &lt;!DOCTYPE html&gt; <br>
+                    &lt;html lang="en"&gt; <br>
+                    &lt;head&gt; <br>
+                    &emsp;&emsp;&emsp;&emsp;&lt;meta charset="UTF-8"&gt; <br>
+                    &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Student List&lt;/title&gt; <br>
+                    &lt;/head&gt; <br>
+                    &lt;body&gt; <br>
+                    &lt;h2&gt;List of students&lt;/h2&gt; <br>
+                    &lt;br&gt;&lt;br&gt;&lt;br&gt; <br>
+                    {% for student in students %} <br>
+                    Student ID: &lt;b&gt;{{ student.s_id }}&lt;/b&gt;&lt;br&gt; <br>
+                    &lt;a href="{% url 'stud_details' pk=student.pk %}"&gt; Details &lt;/a&gt;&lt;br&gt; <br>
+                    {% endfor %} <br>
+                    &lt;/body&gt; <br>
+                    &lt;/html&gt; <br>
+                    </p>
+                    <br>
+                    If you go to 127.0.0.0:8000/students/ again, you should see the
+                    page displayed with the link to see the details of the student:
+                    <br>
+                    <img src="../assets/django-19-stud-list.png" alt="List of students with link to view details" width="300">
+                    <br>
+                    And upon clicking the link, you should see the details as:
+                    <br>
+                    <img src="../assets/django-20-stud-details.png" alt="Student details" width="300">
+                    <br>
+                    But wait... what????? Where is my picture???
+                    <br>
+                    That is because the image source that we defined is incomplete and
+                    the browser wasn't able to load the picture:
+                    <br>
+                    <img src="../assets/django-21-stud-detail-img-err.png" alt="Student image error analysis" width="700">
+                    <br>
+                    So, what do we do? Well, Django framework gives us a handy 'url'
+                    attribute to get the absolute url of the image using the MEDIA_ROOT
+                    attribute that we had declared previously in tutorial/settings.py
+                    file.
+                    <br>
+                    To fix this issue, replace
+                    <br>
+                    <p class="terminal">
+                    &lt;img src="{{ student.s_pic }}"&gt;
+                    </p>
+                    <br>
+                    with:
+                    <p class="terminal">
+                    &lt;img src="{{ student.s_pic.url }}"&gt;
+                    </p>
+                    <br>
+                    in students/template/stud-details.html and try to reload the page:
+                    <br>
+                    <img src="../assets/django-20-stud-details.png" alt="Student details" width="300">
+                    <br>
+                    Again?? Where the hell is my pic dude??
+                    <br>
+                    This is because we are in a development environment and need
+                    absolute path to the image in order to process them correctly.
+                    To do this, go to the tutorial/urls.py file and add the following
+                    lines of code:
+                    <p class="terminal">
+                    from django.contrib import admin <br>
+                    from django.urls import path, include <br>
+                    # IMPORT THIS <br>
+                    from django.conf import settings <br>
+                    from django.conf.urls.static import static <br>
+                    <br>
+                    urlpatterns = [ <br>
+                    &emsp;&emsp;&emsp;&emsp;path('admin/', admin.site.urls), <br>
+                    &emsp;&emsp;&emsp;&emsp;path('', include('students.urls')), <br>
+                    ] <br>
+                    <br>
+                    # ADD THIS <br>
+                    if settings.DEBUG: <br>
+                    &emsp;&emsp;&emsp;&emsp;urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROO&emsp;&emsp;&emsp;&emsp;T) <br>
+                    <br>
+                    </p>
+                    <br>
+                    Now try to load student details page again:
+                    <br>
+                    <img src="../assets/django-22-stud-details-with-pic.png" alt="Student's details with picture loaded successfully" width="500">
+                    <br>
+                    Voila!!!
+                    <br>
+                    Okay, lets move on to the next bit, Adding and Updating instances
+                    of models using Forms.
                 </div>
                 <div class="footer">
                     <h4>Contact me at gaur{dot}akshay{at}gmail{dot}com if you found this

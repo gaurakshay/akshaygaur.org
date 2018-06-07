@@ -29,11 +29,10 @@
                     &emsp;<a href="django-4.php"> Media Root </a><br>
                 </div>
                 <div class="content">
-                    To do that, lets first add a few new departments to our list
-                    of departments using the admin module:
+                    For our details view, lets first add a few new departments
+                    to our list of departments using the admin module:
                     <br>
                     <img src="../assets/django-15-more-depts.png" width="400">
-
                     <br>
                     And let us reduce the amount of information that we are presenting
                     in the details view, and add a new link to view the details

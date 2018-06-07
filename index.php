@@ -24,13 +24,14 @@
                 <div class="navbar">
                     <!-- ><h4>Django</h4> -->
                     Django Tutorial<br>
-                    &emsp;<a href="django/django-1.php"> Setup </a><br>
-                    &emsp;<a href="django/django-2.php"> App and Models </a><br>
-                    &emsp;<a href="django/django-3.php"> Admin Module </a><br>
-                    &emsp;<a href="django/django-4.php"> Media Root </a><br>
-                    &emsp;<a href="django/django-5.php"> Template View </a><br>
-                    &emsp;<a href="django/django-6.php"> List View </a><br>
-                    &emsp;<a href="django/django-7.php"> Details View </a><br>
+                    &emsp;&gt;<a href="django/django-1.php"> Setup </a><br>
+                    &emsp;&gt;<a href="django/django-2.php"> App and Models </a><br>
+                    &emsp;&gt;<a href="django/django-3.php"> Admin Module </a><br>
+                    &emsp;&gt;<a href="django/django-4.php"> Media Root </a><br>
+                    &emsp;&gt;<a href="django/django-5.php"> Template View </a><br>
+                    &emsp;&gt;<a href="django/django-6.php"> List View </a><br>
+                    &emsp;&gt;<a href="django/django-7.php"> Details View - 1 </a><br>
+                    &emsp;&gt;<a href="django/django-8.php"> Details View - 2 </a><br>
                 </div>
                 <div class="content">
                         <div class="card django">
