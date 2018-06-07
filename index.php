@@ -22,7 +22,6 @@
                     
                 </div>
                 <div class="navbar">
-                    <!-- ><h4>Django</h4> -->
                     Django Tutorial<br>
                     &emsp;&gt;<a href="django/django-1.php"> Setup </a><br>
                     &emsp;&gt;<a href="django/django-2.php"> App and Models </a><br>

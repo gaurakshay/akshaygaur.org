@@ -21,12 +21,15 @@
                     <h1>Akshay's Blog (under construction)</h1>
                 </div>
                 <div class="navbar">
-                    <!-- ><h4>Django</h4> -->
                     Django Tutorial<br>
-                    &emsp;<a href="django-1.php"> Setup </a><br>
-                    &emsp;<a href="django-2.php"> App and Models </a><br>
-                    &emsp;<a href="django-3.php"> Admin Module </a><br>
-                    &emsp;<a href="django-4.php"> Media Root </a><br>
+                    &emsp;&gt;<a href="django-1.php"> Setup </a><br>
+                    &emsp;&gt;<a href="django-2.php"> App and Models </a><br>
+                    &emsp;&gt;<a href="django-3.php"> Admin Module </a><br>
+                    &emsp;&gt;<a href="django-4.php"> Media Root </a><br>
+                    &emsp;&gt;<a href="django-5.php"> Template View </a><br>
+                    &emsp;&gt;<a href="django-6.php"> List View </a><br>
+                    &emsp;&gt;<a href="django-7.php"> Details View - 1 </a><br>
+                    &emsp;&gt;<a href="django-8.php"> Details View - 2 </a><br>
                 </div>
                 <div class="content">
                     First things first, since from now on we are going to be adding
