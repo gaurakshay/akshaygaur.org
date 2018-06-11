@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=devanagari,latin-ext" rel="stylesheet">
     <!-- ================================= CSS ================================= -->
     <link href="../css/style.css" rel="stylesheet">
-		<link href="../css/prism-tn.css" rel="stylesheet">
+		<link href="../css/prism-py-tn.css" rel="stylesheet">
 		<link href="../css/prism-treeview.css" rel="stylesheet">
 	</head>
 	<body>
@@ -53,22 +53,27 @@
 |   |-- migrations//
 |   |-- models.py
 |   |-- templates//
-|   |   `-- welcome.html       
+|   |   `-- welcome.html  # Create this file.       
 |   |-- tests.py
 |   `-- views.py
 `-- tutorial//</code></pre>
-			 Now, in the welcome.html file, write out a skeleton of html5
+			 Now, in the Welcome.html file, write out a skeleton of html5
 			 page. Something like:<br>
-			 <pre><code class="language-html">&lt;!doctype html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;Hi&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    Welcome!!!
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
+			 <pre><code class="language-html"><?php
+					$str = "<!DOCTYPE html>";
+					$echo htmlspecialchars($str);
+					?></code></pre>
+			 &emsp;&emsp;&lt;!DOCTYPE html&gt;<br>
+			 &emsp;&emsp;&lt;html lang="en"&gt;<br>
+			 &emsp;&emsp;&lt;head&gt;<br>
+			 &emsp;&emsp;&emsp;&emsp;&lt;meta charset="UTF-8"&gt;<br>
+			 &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Hi&lt;/title&gt;<br>
+			 &emsp;&emsp;&lt;/head&gt;<br>
+			 &emsp;&emsp;&lt;body&gt;<br>
+			 &emsp;&emsp;&emsp;&emsp;Welcome!!!<br>
+			 &emsp;&emsp;&lt;/body&gt;<br>
+			 &emsp;&emsp;&lt;/html&gt;<br>
+			 <br>
 			 Now, that we have our basic webpage, we would like our
 			 application to serve it. The way a django application works
 			 is by defining views and then rendering those views when 
@@ -77,26 +82,32 @@
 			 <br>
 			 To define a view, we must go to our students/views.py file.
 			 In this file, we will define our most basic view:
-			 <pre><code class="language-python">from django.views.generic import TemplateView
+			 <p class="terminal">
+			 from django.shortcuts import render<br>
+			 <br>
+			 # import the template view.<br>
+			 from django.views.generic import TemplateView<br>
+			 <br>
+			 <br>
+			 class WelcomeView(TemplateView):<br>
+			 &emsp;&emsp;&emsp;&emsp;template_name = 'welcome.html'<br>
+			 <br>
 
-class WelcomeView(TemplateView):
-    """
-    This is our welcome screen. Utilizes a
-    template view.
-    """
-		template_name = 'welcome.html'</code></pre>
+			 </p>
 			 <br>
 			 As we will be serving web pages primarily, we want to define
 			 the urls that we will be serving our pages in. In the default
 			 setup that django framework provides us, which can be found in
 			 the tutorial/urls.py file, you will see that only one url is
 			 defined:
-			 <pre><code class="language-python">from django.contrib import admin
-from django.urls import path, include
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-]</code></pre>
+			 <p class="terminal">
+			 from django.contrib import admin<br>
+			 from django.urls import path<br>
+			 <br>
+			 urlpatterns = [<br>
+			 &emsp;&emsp;&emsp;&emsp;path('admin/', admin.site.urls),<br>
+			 ]<br>
+			 </p>
 			 urlpatterns is the place where we define all our urls that
 			 will be served in the project. Since we don't have any other
 			 url defined in the project, we see the default welcome page
@@ -106,14 +117,16 @@ urlpatterns = [
 			 <br>
 			 Lets see what we need to do to change that. Let us define
 			 a new urlpattern that points to the root path:
-			 <pre><code class="language-python">from django.contrib import admin
-from django.urls import path, include
-from students import views
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.WelcomeView.as_view(), name='welcome'),
-]</code></pre>
+			 <p class="terminal">
+			 from django.contrib import admin<br>
+			 from django.urls import path<br>
+			 from students import views<br>
+			 <br>
+			 urlpatterns = [<br>
+			 &emsp;&emsp;&emsp;&emsp;path('admin/', admin.site.urls),<br>
+			 &emsp;&emsp;&emsp;&emsp;path('', views.Welcome.as_view(), name),<br>
+			 ]<br>
+			 </p>
 			 <br>
 			 Now, making sure that our server is running, cross your fingers
 			 go to 127.0.0.1:8000/ in your favourite browser. If this is the
@@ -132,7 +145,8 @@ urlpatterns = [
 		 </div>
 		</div>
 		<!-- ===============================JS ================================ -->
-		<script src="../js/prism-tn.js"></script>
+		<script src="../js/prism-py-tn.js"></script>
+		<script src="../js/prism-html-tn.js"></script>
 		<script src="../js/prism-treeview.js"></script>
 	</body>
 </html>

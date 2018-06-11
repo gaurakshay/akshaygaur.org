@@ -1,9 +1,8 @@
 :root {
-    --brand-color: #0050a5;
-}
-
-p {
-  color: var(--main-color);
+    --brand-bg-color: #0050a5;
+    --brand-font-color: #ffffff;
+    --body-bg-color: #ffffff;
+    --body-font-color: #111111;
 }
 
 * {
@@ -12,13 +11,13 @@ p {
 }
 
 body {
-    /* Dark background light font*/
-    /*background-color: #505050;*/
-    /*color: #f5f5f5;*/
-    /* Light background dark font*/
-    background-color: #ffffff;
-    color: #303030;
-    font-family: 'Noto Sans', sans-serif;
+    background-color: var(--body-bg-color);
+    color: var(--body-font-color);
+    font-family: 'Noto Sans', Sans-Serif;
+}
+
+ul, ol {
+	padding: 20px;
 }
 
 a {
@@ -27,19 +26,15 @@ a {
 }
 
 a:link {
-    color:white;
+    color: var(--body-font-color);
 }
 
 a:visited {
-    color: lightgreen;
+    color: #333333;
 }
 
-a:hover {
-    color: hotpink;
-}
-
-a:active {
-    color: lightblue;
+a:hover, a:active {
+    color: var(-brand-bg-color);
 }
 
 p.terminal {
@@ -51,27 +46,34 @@ p.terminal {
 .container {
     display: grid;
     grid-template-columns: 200px 1fr;
-    grid-template-rows: 100px 1fr 100px;
+    grid-template-rows: 75px 1fr 75px;
 }
 
+
+/*----HEADER----*/
 .header {
-    background-color: var(--brand-color);
-    padding: 0.5em 2em 0.5em 2em;
+    background-color: var(--brand-bg-color);
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 1;
-    box-shadow: 0px 5px 5px #101010;
-    z-index: 2;
+    display: table;
+    color: var(--brand-font-color);
 }
 
+div.header > a {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 0 0 1em;
+}
 
 div.header > a > h1 {
     font-weight: lighter;
 }
 
+/*------------NAVBAR------------*/
 .navbar {
-    background-color: #424242;
+    background-color: #EEEEEE;
     padding: 1em 1em 1em 1em;
     grid-column-start: 1;
     grid-column-end: 1;
@@ -79,6 +81,7 @@ div.header > a > h1 {
     grid-row-end: 2;
 }
 
+/*------------CONTENT-----------*/
 .content {
     padding: 1em 1em 1em 1em;
     grid-column-start: 2;
@@ -87,15 +90,28 @@ div.header > a > h1 {
     grid-row-end: 2;
 }
 
+
+/*-------------FOOTER-----------*/
 .footer {
-    background-color: var(--brand-color);
-    padding: 0.5em 2em 0.5em 2em;
+    background-color: var(--brand-bg-color);
+    display: table;
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 3;
     grid-row-end: 3;
 }
 
+div.footer > h4  {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 0 0 1em;
+    font-weight: lighter;
+    color: var(--brand-font-color);
+}
+
+a.plain:link, a.plain:visited, a.plain:hover, a.plain:active{
+    color: #f5f5f5;
+}
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -115,11 +131,11 @@ div.card.container > h3 {
     padding: 2px 16px;
 }
 
-a.plain:link, a.plain:visited, a.plain:hover, a.plain:active{
-    color: #f5f5f5;
+div.card > a:link, a:visited, a:hover, a:active {
+    color: var(--body-font-color);
 }
 
-div.card.django > a > img {
+div.card > a > img {
     background-color: #0C3C26;
     width: 100%;
 }

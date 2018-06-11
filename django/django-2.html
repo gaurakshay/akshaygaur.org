@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=devanagari,latin-ext" rel="stylesheet">
     <!-- ================================= CSS ================================= -->
     <link href="../css/style.css" rel="stylesheet">
-		<link href="../css/prism-tomorrow-night.css" rel="stylesheet">
+		<link href="../css/prism-tn.css" rel="stylesheet">
+		<link href="../css/prism-treeview.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="container">
@@ -34,27 +35,24 @@
 			 To start and application, fire up the terminal (make sure
 			 you are in the directory where manage.py resides) and type the following
 			 command:</p>
-			 <p class="terminal">
-			 $ python manage.py startapp students
-			 </p>
+			 <pre><code class="language-bash">(venv) $ python manage.py startapp students</code></pre>
 			 <p> If you look at the folder structure again, you will find that a new
 			 folder was added:<br>
-
-			 &emsp;&emsp; manage.py<br>
-			 &emsp;&emsp; tutorial/<br>
-			 &emsp;&emsp; &emsp;&emsp; __init__.py<br>
-			 &emsp;&emsp; &emsp;&emsp; settings.py<br>
-			 &emsp;&emsp; &emsp;&emsp; urls.py<br>
-			 &emsp;&emsp; &emsp;&emsp; wsgi.py<br>
-			 &emsp;&emsp; students/<br>
-			 &emsp;&emsp; &emsp;&emsp; admin.py<br>
-			 &emsp;&emsp; &emsp;&emsp; apps.py<br>
-			 &emsp;&emsp; &emsp;&emsp; __init__.py<br>
-			 &emsp;&emsp; &emsp;&emsp; migrations/<br>
-			 &emsp;&emsp; &emsp;&emsp; models.py<br>
-			 &emsp;&emsp; &emsp;&emsp; tests.py<br>
-			 &emsp;&emsp; &emsp;&emsp; views.py<br>
-
+<pre><code class="language-treeview">tutorial//
+|-- manage.py*
+|-- students//
+|   |-- admin.py
+|   |-- apps.py
+|   |-- __init__.py
+|   |-- migrations//
+|   |-- models.py
+|   |-- tests.py
+|   `-- views.py
+`-- tutorial//
+    |-- __init__.py
+    |-- settings.py
+    |-- urls.py
+    `-- wsgi.py</code></pre>
 			 Don't worry about the migrations folder, we will get to it in just a minute.
 			 <br>
 			 RECAP: We created a project named tutorial. Ran a server to see that the
@@ -63,8 +61,8 @@
 			 function. In this case, we will use the students app to manage the students
 			 in our system. <br>
 
-			 Now, lets create a model for our app.<br>
-			 <b>What is a model?</b><br>
+			 Now, lets create a model for our app.<br><br>
+			 <h4>What is a model?</h4><br>
 			 A model is a representation of an entity that we will store in a database.
 			 So, for instance, if we created a model for a car, we would want to store
 			 how many doors it has, what is engine capacity, horsepower that it generates,
@@ -115,36 +113,37 @@
 			 model:
 
 			 </p>
-			 <p class="terminal">
-			 1&emsp;&emsp;class Department(models.Model):<br>
-			 2    &emsp;&emsp;&emsp;&emsp;"""<br>
-			 3    &emsp;&emsp;&emsp;&emsp;This model will store the details about our department.<br>
-			 4    &emsp;&emsp;&emsp;&emsp;Primary key for this model is department code.<br>
-			 5    &emsp;&emsp;&emsp;&emsp;"""<br>
-			 6    &emsp;&emsp;&emsp;&emsp;class Meta:<br>
-			 7    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;db_table = "departments"<br>
-			 8    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ordering = ['d_name']<br>
-			 9    &emsp;&emsp;<br>
-			 10    &emsp;&emsp;&emsp;&emsp;d_name = models.CharField(max_length=200)<br>
-			 11    &emsp;&emsp;&emsp;&emsp;d_code = models.CharField(max_length=5, primary_key=True)<br>
-			 12    &emsp;&emsp;&emsp;&emsp;d_chair = models.CharField(max_length=200)<br>
-			 13    &emsp;&emsp;<br>
-			 14    &emsp;&emsp;&emsp;&emsp;def __str__(self):<br>
-			 15    &emsp;&emsp;&emsp;&emsp;"""<br>
-			 16    &emsp;&emsp;&emsp;&emsp;String representation of the department.<br>
-			 17    &emsp;&emsp;&emsp;&emsp;This will be used mainly when we print<br>
-			 18    &emsp;&emsp;&emsp;&emsp;a department object.<br>
-			 19    &emsp;&emsp;&emsp;&emsp;"""<br>
-			 20    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return self.d_name<br>
-			 </p>
+			 <pre class="line-numbers"><code class="language-python">from django.db import models
+
+
+class Department(models.Model):
+    """
+    This model will store the details about our department.
+    Primary key for this model is department code.
+    """
+    class Meta:
+        db_table = "departments"
+        ordering = ['d_name']
+
+    d_name = models.CharField(max_length=200)
+    d_code = models.CharField(max_length=5, primary_key=True)
+    d_chair = models.CharField(max_length=200)
+
+    def __str__(self):
+        """
+        String representation of the department.
+        This will be used mainly when we print
+        a department object.
+        """
+				return self.d_name</code></pre>
 
 			 <p> 
 			 Now we will try to understand what we did in defining the model for the
 			 department:<br>
-			 Line 1: Declared the model name, and that it will inherit from the standard
+			 <strong>Line 1:</strong> Declared the model name, and that it will inherit from the standard
 			 django model as defined in models.Model. <br>
-			 Lines 2-5: Comments. <br>
-			 Lines 6-8: We defined some meta information about the model. Namely,
+			 <strong>Lines 2-5:</strong> Comments. <br>
+			 <strong>Lines 6-8:</strong> We defined some meta information about the model. Namely,
 			 "db_table" tells django to store the model in a table named "departments".
 			 If we didn't define this, the table name in our database would be some
 			 thing that would not be fun to read. Then, we also defined what is the
@@ -168,67 +167,53 @@
 			 First, let us go to our settings.py file in our 'tutorial' folder and find 'DATABASES'
 			 entry. It would look something like this: <br>
 			 </p>
-			 <p class="terminal">
-			 DATABASES = {<br>
-			 &emsp;&emsp;'default': {<br>
-			 &emsp;&emsp;&emsp;&emsp;'ENGINE': 'django.db.backends.sqlite3',<br>
-			 &emsp;&emsp;&emsp;&emsp;'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),<br>
-			 &emsp;&emsp;}<br>
-			 }<br>
-			 </p>
+			 <pre class="line-numbers"><code class="language-python">DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}</code></pre>
 			 <p>
 			 What this means is that as default, django sets up a sqlite3 database
 			 in the base directory of the project and the name of the database is
 			 db.sqlite3. We are going to change it to postgres (or some other db,
 			 it is up to you).
 			 </p>
-
-			 <p class="terminal">
-			 DATABASES = {<br>
-			 &emsp;&emsp;'default': {<br>
-			 &emsp;&emsp;&emsp;&emsp;'ENGINE': 'django.db.backends.postgreql',<br>
-			 &emsp;&emsp;&emsp;&emsp;'NAME': 'tutorial_db',<br>
-			 &emsp;&emsp;&emsp;&emsp;'USER': '&lt;username&gt;', <br>
-			 &emsp;&emsp;&emsp;&emsp;'PASSWORD': '&lt;password&gt;',<br>
-			 &emsp;&emsp;&emsp;&emsp;'HOST': 'localhost', <br>
-			 &emsp;&emsp;&emsp;&emsp;'PORT': '5432', <br>
-			 &emsp;&emsp;}<br>
-			 }<br>
-			 </p>
+			 <pre class="line-numbers"><code class="language-python">DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tutorial_db',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}</code></pre>
 			 <p> We are mostly done here. We just need to tell the project about this
 			 new 'students' application of ours. In the settings file that we are in,
 			 find 'INSTALLED_APPS" and add our application name to the existing list:
 			 </p>
-
-
-			 <p class="terminal">
-			 INSTALLED_APPS = [<br>
-			 &emsp;&emsp;'django.contrib.admin',<br>
-			 &emsp;&emsp;'django.contrib.auth',<br>
-			 &emsp;&emsp;'django.contrib.contenttypes',<br>
-			 &emsp;&emsp;'django.contrib.sessions',<br>
-			 &emsp;&emsp;'django.contrib.messages',<br>
-			 &emsp;&emsp;'django.contrib.staticfiles',<br>
-			 &emsp;&emsp;'students', &lt;----- add your app name here.<br>
-			 ]
-			 </p>
-
+			 <pre class="line-numbers"><code class="language-python">INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'students',  # Add your app name here.
+]</code></pre>
 			 <p>
 			 Now we will ask manage.py to prepare the db queries that it needs
 			 to make in order to create the required tables in the db that
 			 we provided it the path to in "DATABASES" settings.<br>
 			 To do that, we run the following:
 			 </p>
-			 <p class="terminal">
-			 $ python manage.py makemigrations students
-			 </p>
+			 <pre><code class="language-bash">(venv) $ python manage.py makemigrations students</code></pre>
 			 <p>
 			 This will create all the necessary db queries to setup our db.
 			 Now we will execute those queries using:
 			 </p>
-			 <p class='terminal'>
-			 $ python manage.py migrate
-			 </p>
+			 <pre><code class="language-bash">(venv) $ python manage.py migrate</code></pre>
 			 <p>
 			 You should see messages where it applies all the migrations in
 			 the db successfully.<br>
@@ -240,6 +225,7 @@
 		 </div>
 		</div>
 		<!-- ===============================JS ================================ -->
-		<script src="../js/prism-tomorrow-night.js"></script>
+		<script src="../js/prism-tn.js"></script>
+		<script src="../js/prism-treeview.js"></script>
 	</body>
 </html>

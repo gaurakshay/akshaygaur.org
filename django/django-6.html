@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=devanagari,latin-ext" rel="stylesheet">
     <!-- ================================= CSS ================================= -->
     <link href="../css/style.css" rel="stylesheet">
-		<link href="../css/prism-tomorrow-night.css" rel="stylesheet">
+		<link href="../css/prism-tn.css" rel="stylesheet">
+		<link href="../css/prism-treeview.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="container">
@@ -44,31 +45,50 @@
 			 remove all that we added previously. Then, we will tell this file
 			 to include another urls.py file so that it looks like:
 			 <br>
-			 <p class="terminal">
-			 from django.contrib import admin<br>
-			 from django.urls import path<br>
-			 <br>
-			 urlpatterns = [<br>
-			 &emsp;&emsp;&emsp;&emsp;path('admin/', admin.site.urls),<br>
-			 &emsp;&emsp;&emsp;&emsp;path('', include('students.urls')),<br>
-			 ]<br>
-			 </p>
+			 <pre><code class="language-python">from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('students.urls')),
+]</code></pre>
 			 <br>
 			 Now, lets create a urls.py file in our students app. This file
 			 should be located at students/urls.py.
+			 <pre><code class="language-treeview">tutorial//
+|-- assets//
+|   `-- media//
+|       `-- student_pics//
+|           `-- akshay.jpg
+|-- manage.py*
+|-- students//
+|   |-- admin.py
+|   |-- apps.py
+|   |-- __init__.py
+|   |-- migrations//
+|   |-- models.py
+|   |-- templates//
+|   |   `-- welcome.html
+|   |-- tests.py
+|   |-- urls.py
+|   `-- views.py
+`-- tutorial//
+    |-- __init__.py
+    |-- settings.py
+    |-- urls.py
+		`-- wsgi.py</code></pre>
+			 To this file, add the following:
 			 <br>
-			 <p class="terminal">
-			 from django.urls import path, include<br>
-			 from students import views<br>
-			 <br>
-			 urlpatterns = [<br>
-			 &emsp;&emsp;&emsp;&emsp;path('', views.Welcome.as_view(), name),<br>
-			 ]<br>
-			 </p>
+			 <pre><code class="language-python">from django.urls import path
+from students import views
+
+urlpatterns = [
+    path('', views.WelcomeView.as_view(), name='welcome'),
+]</code></pre>
 			 <br>
 			 Now try going to 127.0.0.1:8000 again. If we did it right, you
 			 should see the same results!
-			 <br>
+			 <br><br>
 			 So, one of the first views that we are going to try is list
 			 view. This view shows all model's instances. Some
 			 of the other views that we can utilize are details views, create
@@ -77,34 +97,31 @@
 			 one.
 			 To create a list view, first, open up the views.py file in
 			 students directory. And add the following lines:
-			 <p class="terminal">
-			 from django.shortcuts import render<br>
-			 <br>
-			 # import the template view.<br>
-			 from django.views.generic import TemplateView, ListView<br>
-			 <br>
-			 # import department model<br>
-			 from students.models import Department<br>
-			 <br>
-			 <br>
-			 class WelcomeView(TemplateView):<br>
-			 &emsp;&emsp;&emsp;&emsp;"""<br>
-			 &emsp;&emsp;&emsp;&emsp;This is our welcome screen. Utilizes a<br>
-			 &emsp;&emsp;&emsp;&emsp;template view.<br>
-			 &emsp;&emsp;&emsp;&emsp;"""<br>
-			 &emsp;&emsp;&emsp;&emsp;template_name = 'welcome.html'<br>
-			 <br>
-			 <br>
-			 class DeptListView(ListView):<br>
-			 &emsp;&emsp;&emsp;&emsp;"""<br>
-			 &emsp;&emsp;&emsp;&emsp;This is the list view of the department model.<br>
-			 &emsp;&emsp;&emsp;&emsp;Uses the default ListView provided<br>
-			 &emsp;&emsp;&emsp;&emsp;by Django Framework.<br>
-			 &emsp;&emsp;&emsp;&emsp;"""<br>
-			 &emsp;&emsp;&emsp;&emsp;template_name = 'dept-list.html'<br>
-			 &emsp;&emsp;&emsp;&emsp;model = Department<br>
-			 &emsp;&emsp;&emsp;&emsp;context_object_name = 'depts'<br>
-			 </p>
+			 <pre><code class="language-python">from django.shortcuts import render
+
+# import the generic views.
+from django.views.generic import TemplateView, ListView
+
+# import models
+from students.models import Department
+
+
+class WelcomeView(TemplateView):
+    """
+    This is our welcome screen. Utilizes a
+    template view.
+    """
+    template_name = 'welcome.html'
+
+
+class DeptListView(ListView):
+    """
+    This class handles the list view for
+    department model. Utilizes the list view.
+    """
+    template_name = 'dept-list.html'
+    model = Department
+    context_object_name = 'depts'</code></pre>
 			 <br>
 			 You must have noticed that the webpage that we defined for this
 			 page doesn't exist ('dept-list.html'). So lets fix this by
@@ -112,24 +129,22 @@
 			 right --- the templates folder.
 			 <br>
 			 Create a skeleton like we did before and put the following:
-			 <p class="terminal">
-			 &lt;!DOCTYPE html&gt;<br>
-			 &lt;html lang="en"&gt;<br>
-			 &lt;head&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;meta charset="UTF-8"&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Department List&lt;/title&gt;<br>
-			 &lt;/head&gt;<br>
-			 &lt;body&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;h2&gt;List of departments&lt;/h2&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;br&gt;&lt;br&gt;&lt;br&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;{% for dept in depts %}<br>
-			 &emsp;&emsp;&emsp;&emsp;Department Name: &lt;b&gt;{{ dept }}&lt;/b&gt;&lt;br&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;Department Code: &lt;b&gt;{{ dept.d_code }}&lt;/b&gt;&lt;br&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;Department Chair: &lt;b&gt;{{ dept.d_chair }}&lt;/b&gt;&lt;br&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;{% endfor %}<br>
-			 &lt;/body&gt;<br>
-			 &lt;/html&gt;<br>
-			 </p>
+			 <pre><code class="language-django">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Department List&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;List of departments&lt;/h2&gt;
+    &lt;br&gt;&lt;br&gt;&lt;br&gt;
+    {% for dept in depts %}
+    Department Name: &lt;b&gt;{{ dept }}&lt;/b&gt;&lt;br&gt;
+    Department Code: &lt;b&gt;{{ dept.d_code }}&lt;/b&gt;&lt;br&gt;
+    Department Chair: &lt;b&gt;{{ dept.d_chair }}&lt;/b&gt;&lt;br&gt;
+    {% endfor %} 
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 			 <br>
 			 So at this point, what we have is a view named DeptListView
 			 that knows that it would render dept-list.html. The only that
@@ -140,9 +155,13 @@
 			 To do that, lets edit the students/urls.py and append this to the
 			 urlpatterns list:
 			 <br>
-			 <p class="terminal">
-			 &emsp;&emsp;&emsp;&emsp;path('depts/', views.DeptListView.as_view(), name='dept_list'),
-			 </p>
+			 <pre><code class="language-python">from django.urls import path
+from students import views
+
+urlpatterns = [
+    path('', views.WelcomeView.as_view(), name='welcome'),
+    path('depts/', views.DeptListView.as_view(), name='dept_list'),  # Add this...
+]</code></pre>
 			 <br>
 			 Now, try going to the url 127.0.0.1:8000/depts/ and confirm
 			 that you see all the departments that you entered in the admin
@@ -168,6 +187,7 @@
 		 </div>
 		</div>
 		<!-- ===============================JS ================================ -->
-		<script src="../js/prism-tomorrow-night.js"></script>
+		<script src="../js/prism-tn.js"></script>
+		<script src="../js/prism-treeview.js"></script>
 	</body>
 </html>

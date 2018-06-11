@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=devanagari,latin-ext" rel="stylesheet">
     <!-- ================================= CSS ================================= -->
     <link href="../css/style.css" rel="stylesheet">
-	<link href="../css/prism-okaidia.css" rel="stylesheet">
+	  <link href="../css/prism-tn.css" rel="stylesheet">
+	  <link href="../css/prism-treeview.css" rel="stylesheet">
   </head>
   <body>
     <div class="container">
@@ -44,24 +45,7 @@
        reasons but is not compulsory and can be ignored.
        <h3> Setting it up. </h3>
 
-			 <
-			 <pre><code class="language-python">from django.forms import ModelForm
-
-# Import models
-from students.models import Student
-
-
-class StudentForm(ModelForm):
-    """
-    This is the modelfrom for the student.
-    """
-    class Meta:
-        model = Student
-        fields = ['s_id', 's_first_name', 's_last_name', 's_pic', 'course']</code></pre>
-       <p class="terminal">
-       $ virtualenv --python=python3 venv
-       </p>
-			 <pre><code class="language-bash">virtualenv --python=python3 venv</code></pre>
+			 <pre><code class="language-bash">$ virtualenv --python=python3 venv</code></pre>
 
        <p>
        This will create a directory named venv in the present directory. All the
@@ -71,18 +55,13 @@ class StudentForm(ModelForm):
        Now, to start/activate the virtual environment, all you need to do is:
        </p>
 
-       <p class="terminal">
-       $ source ./venv/bin/activate
-       </p>
+			 <pre><code class="language-bash">$ source ./venv/bin/activate</code></pre>
 
        <p>
-
        You should see a modified control prompt which would look like this:
        </p>
 
-       <p class="terminal">
-       (venv) $ 
-       </p>
+			 <pre><code class="language-bash">(venv)$</code></pre>
 
        <p>
        This confirms that our virtual environment is good and ready to go.
@@ -90,63 +69,50 @@ class StudentForm(ModelForm):
        <br>
        First, we install django:
        </p>
-       <p class="terminal">
-       (venv) $ pip install django
-       </p>
-
+			 <pre><code class="language-bash">(venv)$ pip install django</code></pre>
        <p>
        This will install django for us. To test that, we can run django-admin
        --version. The result should be 2.0.6.
        </p>
 
-       <p class="terminal">
-       (venv) $ django-admin --version
-       <br>
-       2.0.6
-       </p>
-
+			 <pre><code class="language-bash">(venv)$ django-admin --version
+2.0.6</code></pre>
        <p>
        Now we are getting to the good stuff...
        <br>
        First, let us create a new project using django-admin command:
-       </p>
-       <p class="terminal">
-       $ django-admin startproject tutorial
-       </p>
+		 </p>
+		 <pre><code class="language-bash">$ django-admin startproject tutorial</code></pre>
+		 <p>
+		 This will create a folder structure that is something like this:<br>
+		 </p>
+		<pre><code class="language-treeview">tutorial//
+|-- manage.py*
+`-- tutorial//
+	|-- __init__.py
+	|-- settings.py
+	|-- urls.py
+	`-- wsgi.py</code></pre>
 
-       <p>
-       This will create a folder structure that is something like this:<br>
-       tutorial/<br>
-       &emsp;&emsp; manage.py<br>
-       &emsp;&emsp; tutorial/<br>
-       &emsp;&emsp; &emsp;&emsp; __init__.py<br>
-       &emsp;&emsp; &emsp;&emsp; settings.py<br>
-       &emsp;&emsp; &emsp;&emsp; urls.py<br>
-       &emsp;&emsp; &emsp;&emsp; wsgi.py<br>
-       </p>
+		 <p>
+		 At this point, the project is barebones. If you want to see how this
+		 barebones project looks like in the browser, you can run the following
+		 command at the terminal:
+		 </p>
+			 <pre><code class="language-bash">$ django-admin manage.py runserver<br>
+Performing system checks...
 
-       <p>
-       At this point, the project is barebones. If you want to see how this
-       barebones project looks like in the browser, you can run the following
-       command at the terminal:
-       </p>
-       <p class="terminal">
-       $ django-admin manage.py runserver<br>
-       Performing system checks...<br>
-       <br>
-       System check identified no issues (0 silenced).<br>
-       <br>
-       You have 14 unapplied migration(s). Your project may not work properly 
-       until you apply the migrations for app(s): admin, auth, 
-       contenttypes, sessions.<br>
-       Run 'python manage.py migrate' to apply them.<br>
-       <br>
-       June 04, 2018 - 18:12:08<br>
-       Django version 2.0.6, using settings 'tutorial.settings'<br>
-       Starting development server at http://127.0.0.1:8000/<br>
-       Quit the server with CONTROL-C.<br>
+System check identified no issues (0 silenced).
 
-       </p> 
+You have 14 unapplied migration(s). Your project may not work properly 
+until you apply the migrations for app(s): admin, auth, 
+contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+
+June 04, 2018 - 18:12:08
+Django version 2.0.6, using settings 'tutorial.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.</code></pre>
 
        <p> Don't worry about the warning about unapplied migrations. 
        We will deal with them later. For now open up a browser (Firefox or Chrome
@@ -164,6 +130,7 @@ class StudentForm(ModelForm):
      </div>
     </div>
 		<!-- ===============================JS ================================ -->
-		<script src="../js/prism-okaidia.js"></script>
+		<script src="../js/prism-tn.js"></script>
+		<script src="../js/prism-treeview.js"></script>
   </body>
 </html>

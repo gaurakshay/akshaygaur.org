@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=devanagari,latin-ext" rel="stylesheet">
     <!-- ================================= CSS ================================= -->
     <link href="../css/style.css" rel="stylesheet">
-		<link href="../css/prism-tomorrow-night.css" rel="stylesheet">
+		<link href="../css/prism-tn.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="container">
@@ -42,11 +42,7 @@
 			 project, we will create one. To do that, just type the following
 			 in the terminal:
 			 </p>
-			 <p class="terminal">
-			 $ python manage.py createsuperuser --username akshay --email 
-			 gaur.akshay@gmail.com&emsp;(Make sure you run this where
-			 you have the manage.py file).
-			 </p>
+			 <pre><code class="language-bash">(venv) $ python manage.py createsuperuser --username akshay --email gaur.akshay@gmail.com</code></pre>
 			 <p> You will be asked to provide the password for this admin account
 			 which will create the admin account.<br>
 			 Once you are done making the account, use the username and password
@@ -62,13 +58,11 @@
 			 To add our "Department" model so that we can access it in the admin
 			 model, we need to go to students/admin.py class and register it there.
 			 </p>
-			 <p class="terminal">
-			 from django.contrib import admin<br>
-			 <br>
-			 # Add this:<br>
-			 from students.models import Department<br>
-			 admin.site.register(Department)<br>
-			 </p>
+			 <pre><code class="language-python">from django.contrib import admin
+from students.models import Department  # Import our model.
+
+# Register the model.
+admin.site.register(Department)</code></pre>
 			 <p> And that's it! Now, if you go back to the admin screen, you should
 			 see you model!<br>
 			 <img src="../assets/django-5-admin-departments.png" width="400" alt="Admin Screen with Departments"><br>
@@ -81,11 +75,9 @@
 			 keyword "verbose_name" followed by the name that you would like to be
 			 displayed on the admin site like so:
 			 </p>
-			 <p class="terminal">
-			 d_name = models.CharField(max_length=200, verbose_name="Department Name")<br>
-			 d_code = models.CharField(max_length=5, primary_key=True, verbose_name="Department Code")<br>
-			 d_chair = models.CharField(max_length=200, verbose_name="Department Chair")<br>
-			 </p>
+			 <pre><code class="language-python">d_name = models.CharField(max_length=200, verbose_name="Department Name")
+d_code = models.CharField(max_length=5, primary_key=True, verbose_name="Department Code")
+d_chair = models.CharField(max_length=200, verbose_name="Department Chair")</code></pre>
 			 <p>
 			 After saving these changes, let us refresh the page that we were on before:<br>
 			 <img src="../assets/django-7-dept-name.png" width="400" alt="Fixed Department Names"><br>
@@ -106,6 +98,6 @@
 		 </div>
 		</div>
 		<!-- ===============================JS ================================ -->
-		<script src="../js/prism-tomorrow-night.js"></script>
+		<script src="../js/prism-tn.js"></script>
 	</body>
 </html>
