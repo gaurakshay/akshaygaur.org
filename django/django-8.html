@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=devanagari,latin-ext" rel="stylesheet">
     <!-- ================================= CSS ================================= -->
     <link href="../css/style.css" rel="stylesheet">
-		<link href="../css/prism-tomorrow-night.css" rel="stylesheet">
+		<link href="../css/prism-tn.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="container">
@@ -39,59 +39,53 @@
 			 a list view to show the list of students in our system. So
 			 open up your views.py and add the following:
 			 <br>
-			 <p class="terminal">
-			 # Add student import
-			 from students.models import Department, Student
+			 <pre><code class="language-python"># import models
+from students.models import Department, Student
 
-			 # Create student list view
-			 class StudentListView(ListView):<br>
-			 &emsp;&emsp;&emsp;&emsp;"""<br>
-			 &emsp;&emsp;&emsp;&emsp;Return list of students in the system.<br>
-			 &emsp;&emsp;&emsp;&emsp;"""<br>
-			 &emsp;&emsp;&emsp;&emsp;template_name = 'stud-list.html'<br>
-			 &emsp;&emsp;&emsp;&emsp;model = Student<br>
-			 &emsp;&emsp;&emsp;&emsp;context_object_name = 'students'<br>
-			 </p>
+
+class StudentListView(ListView):
+    """
+    Return list of students in the system.
+    """
+    template_name = 'stud-list.html'
+    model = Student
+    context_object_name = 'students'</code></pre>
 			 <br>
 			 And, create the template named 'stud-list.html' in the templates
 			 folder:
-			 <p class="terminal">
-			 &lt;!DOCTYPE html&gt;<br>
-			 &lt;html lang="en"&gt;<br>
-			 &lt;head&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;meta charset="UTF-8"&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Student List&lt;/title&gt;<br>
-			 &lt;/head&gt;<br>
-			 &lt;body&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;h2&gt;List of students&lt;/h2&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;br&gt;&lt;br&gt;&lt;br&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;{% for student in students %}<br>
-			 &emsp;&emsp;&emsp;&emsp;Student ID: &lt;b&gt;{{ student.s_id }}&lt;/b&gt;&lt;br&gt;<br>
-			 &emsp;&emsp;&emsp;&emsp;{% endfor %}<br>
-			 &lt;/body&gt;<br>
-			 &lt;/html&gt;<br>
-			 </p>
+			 <pre><code class="language-django">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Student List&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;List of students&lt;/h2&gt;
+    &lt;br&gt;&lt;br&gt;&lt;br&gt;
+    {% for student in students %}
+        Student ID: &lt;b&gt;{{ student.s_id }}&lt;/b&gt;&lt;br&gt;
+    {% endfor %}
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 			 <br>
-			 Add the url in student/urs.py file like so:
-			 <br>
-			 <p class="terminal">
-			 from django.urls import path <br>
-			 from students import views <br>
-			 <br>
-			 urlpatterns = [ <br>
-			 &emsp;&emsp;&emsp;&emsp;path('', views.WelcomeView.as_view(), name='welcome'), <br>
-			 &emsp;&emsp;&emsp;&emsp;path('depts/', views.DeptListView.as_view(), name='dept_list'), <br>
-			 &emsp;&emsp;&emsp;&emsp;path('depts/&lt;str:pk&gt;/', views.DeptDetailView.as_view(), name='dept_details&emsp;&emsp;&emsp;&emsp;'),  <br>
-			 &emsp;&emsp;&emsp;&emsp;path('students/', views.StudentListView.as_view(), name='stud_list'), <br>
-			 ] <br>
-			 </p>
+			 Add the url in student/urls.py file like so:
+			 <pre><code class="language-python">from django.urls import path
+from students import views
+
+urlpatterns = [
+    path('', views.WelcomeView.as_view(), name='welcome'),
+    path('depts/', views.DeptListView.as_view(), name='dept_list'),
+    path('depts/&lt;str:pk&gt;/details/', views.DeptDetailView.as_view(), name='dept_details'),
+    path('students/', views.StudentListView.as_view(), name='stud_list'),
+]</code></pre>
 			 <br>
 			 If we go to the url 127.0.0.1:8000/students/ we should see the
 			 following:
 			 <br>
 			 <img src="../assets/django-18-stud-list.png" alt="List of students" width=500">
 			 <br>
-			 Now, if you try to add a url to go to the student's detail right
+			 Now, if you try to add a link to go to the student's detail like we did 
+			 in the case of Department list view right
 			 now (when we have neither defined a student's detail view nor
 			 its url) you will get an error.
 			 <br>
@@ -102,76 +96,68 @@
 			 Let us first create the student's details view in
 			 students/views.py:
 			 <br>
-			 <p class="terminal">
-			 class StudentDetailView(DetailView): <br>
-			 &emsp;&emsp;&emsp;&emsp;""" <br>
-			 &emsp;&emsp;&emsp;&emsp;This class utilizes the default class <br>
-			 &emsp;&emsp;&emsp;&emsp;based view provided by Django framework to <br>
-			 &emsp;&emsp;&emsp;&emsp;display the details of a student in the system <br>
-			 &emsp;&emsp;&emsp;&emsp;""" <br>
-			 &emsp;&emsp;&emsp;&emsp;template_name = 'stud-details.html' <br>
-			 &emsp;&emsp;&emsp;&emsp;model = Student <br>
-			 &emsp;&emsp;&emsp;&emsp;context_object_name = 'student' <br>
-			 </p>
+<pre><code class="language-python">class StudentDetailView(DetailView):
+    """
+    This class utilizes the default class
+    based view provided by Django framework to
+    display the details of a student in the system
+    """
+    template_name = 'stud-details.html'
+    model = Student
+		context_object_name = 'student'</code></pre>
 			 <br>
 			 Now, add the stud-details.html in the templates folder and
 			 type in it the following basic html:
 			 <br>
-			 <p class="terminal">
-			 &lt;!DOCTYPE html&gt; <br>
-			 &lt;html lang="en"&gt; <br>
-			 &lt;head&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;meta charset="UTF-8"&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Student details&lt;/title&gt; <br>
-			 &lt;/head&gt; <br>
-			 &lt;body&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;h2&gt;Student Detail Screen&lt;/h2&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;br&gt;&lt;br&gt;&lt;br&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;Student Name: &lt;h3&gt;{{ student }}&lt;/h3&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;Student ID: &lt;h3&gt;{{ student.s_id }}&lt;/h3&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;Student Pic: &lt;img src="{{ student.s_pic }}"&lt; <br>
-			 &lt;/body&gt; <br>
-			 &lt;/html&gt; <br>
-			 </p>
+			 <pre><code class="language-django">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Student details&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Student Detail Screen&lt;/h2&gt;
+    &lt;br&gt;&lt;br&gt;&lt;br&gt;
+    Student Name: &lt;h3&gt;{{ student }}&lt;/h3&gt;
+    Student ID: &lt;h3&gt;{{ student.s_id }}&lt;/h3&gt;
+    Student Pic: &lt;img src="{{ student.s_pic }}"&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 			 <br>
 			 Notice how we used the student object's picture attribute to 
 			 define the source of the image in an &lt;img&gt; tag.
 			 <br>
 			 Finally, add the url to this view in the students/urls.py file:
 			 <br>
-			 <p class="terminal">
-			 from django.urls import path <br>
-			 from students import views <br>
-			 <br>
-			 urlpatterns = [ <br>
-			 &emsp;&emsp;&emsp;&emsp;path('', views.WelcomeView.as_view(), name='welcome'), <br>
-			 &emsp;&emsp;&emsp;&emsp;path('depts/', views.DeptListView.as_view(), name='dept_list'), <br>
-			 &emsp;&emsp;&emsp;&emsp;path('depts/<str:pk>/', views.DeptDetailView.as_view(), name='dept_details&emsp;&emsp;&emsp;&emsp;'), <br>
-			 &emsp;&emsp;&emsp;&emsp;path('students/', views.StudentListView.as_view(), name='stud_list'), <br>
-			 &emsp;&emsp;&emsp;&emsp;path('students/<str:pk>/', views.StudentDetailView.as_view(), name='stud_d&emsp;&emsp;&emsp;&emsp;etails'), <br>
-			 ]    <br>
-			 </p>
+			 <pre><code class="language-python">from django.urls import path
+from students import views
+
+urlpatterns = [
+    path('', views.WelcomeView.as_view(), name='welcome'),
+    path('depts/', views.DeptListView.as_view(), name='dept_list'),
+    path('depts/&lt;str:pk&gt;/details/', views.DeptDetailView.as_view(), name='dept_details'),
+    path('students/', views.StudentListView.as_view(), name='stud_list'),
+    path('students/&lt;int:pk&gt;/details/', views.StudentDetailView.as_view(), name='stud_details'),
+]</code></pre>
 			 <br>
 			 Now, coming back to the templates/stud-list.html, we can finally
 			 add to it the link to details of the student:
 			 <br>
-			 <p class="terminal">
-			 &lt;!DOCTYPE html&gt; <br>
-			 &lt;html lang="en"&gt; <br>
-			 &lt;head&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;meta charset="UTF-8"&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Student List&lt;/title&gt; <br>
-			 &lt;/head&gt; <br>
-			 &lt;body&gt; <br>
-			 &lt;h2&gt;List of students&lt;/h2&gt; <br>
-			 &lt;br&gt;&lt;br&gt;&lt;br&gt; <br>
-			 {% for student in students %} <br>
-			 Student ID: &lt;b&gt;{{ student.s_id }}&lt;/b&gt;&lt;br&gt; <br>
-			 &lt;a href="{% url 'stud_details' pk=student.pk %}"&gt; Details &lt;/a&gt;&lt;br&gt; <br>
-			 {% endfor %} <br>
-			 &lt;/body&gt; <br>
-			 &lt;/html&gt; <br>
-			 </p>
+			 <pre><code class="language-django">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Student List&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;List of students&lt;/h2&gt;
+    &lt;br&gt;&lt;br&gt;&lt;br&gt;
+    {% for student in students %}
+        Student ID: &lt;b&gt;{{ student.s_id }}&lt;/b&gt;&lt;br&gt;
+        &lt;a href="{% url 'stud_details' pk=student.pk %}"&gt; Details &lt;/a&gt;&lt;br&gt;
+    {% endfor %}
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 			 <br>
 			 If you go to 127.0.0.0:8000/students/ again, you should see the
 			 page displayed with the link to see the details of the student:
@@ -196,14 +182,10 @@
 			 <br>
 			 To fix this issue, replace
 			 <br>
-			 <p class="terminal">
-			 &lt;img src="{{ student.s_pic }}"&gt;
-			 </p>
+			 <pre><code class="language-django">&lt;img src="{{ student.s_pic }}"&gt;</code></pre>
 			 <br>
 			 with:
-			 <p class="terminal">
-			 &lt;img src="{{ student.s_pic.url }}"&gt;
-			 </p>
+			 <pre><code class="language-django">&lt;img src="{{ student.s_pic.url }}"&gt;</code></pre>
 			 <br>
 			 in students/template/stud-details.html and try to reload the page:
 			 <br>
@@ -215,23 +197,20 @@
 			 absolute path to the image in order to process them correctly.
 			 To do this, go to the tutorial/urls.py file and add the following
 			 lines of code:
-			 <p class="terminal">
-			 from django.contrib import admin <br>
-			 from django.urls import path, include <br>
-			 # IMPORT THIS <br>
-			 from django.conf import settings <br>
-			 from django.conf.urls.static import static <br>
-			 <br>
-			 urlpatterns = [ <br>
-			 &emsp;&emsp;&emsp;&emsp;path('admin/', admin.site.urls), <br>
-			 &emsp;&emsp;&emsp;&emsp;path('', include('students.urls')), <br>
-			 ] <br>
-			 <br>
-			 # ADD THIS <br>
-			 if settings.DEBUG: <br>
-			 &emsp;&emsp;&emsp;&emsp;urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROO&emsp;&emsp;&emsp;&emsp;T) <br>
-			 <br>
-			 </p>
+			 <pre><code class="language-python">from django.contrib import admin
+from django.urls import path, include
+# IMPORT THIS
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('students.urls')),
+]
+
+# ADD THIS
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)</code></pre>
 			 <br>
 			 Now try to load student details page again:
 			 <br>
@@ -248,6 +227,6 @@
 		 </div>
 		</div>
 		<!-- ===============================JS ================================ -->
-		<script src="../js/prism-tomorrow-night.js"></script>
+		<script src="../js/prism-tn.js"></script>
 	</body>
 </html>

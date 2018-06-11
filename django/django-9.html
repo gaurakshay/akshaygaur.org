@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=devanagari,latin-ext" rel="stylesheet">
     <!-- ================================= CSS ================================= -->
     <link href="../css/style.css" rel="stylesheet">
-		<link href="../css/prism-tomorrow-night.css" rel="stylesheet">
+		<link href="../css/prism-tn.css" rel="stylesheet">
+		<link href="../css/prism-treeview.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="container">
@@ -48,41 +49,49 @@
 			 <h4> 1. Setting up the form </h4>
 			 For this, we need to create a python file in the students directory named 'forms.py'. The directory after creating this file should
 			 look like:
-			 <br>
-			 &emsp;&emsp; manage.py<br>
-			 &emsp;&emsp; tutorial/<br>
-			 &emsp;&emsp; &emsp;&emsp; __init__.py<br>
-			 &emsp;&emsp; &emsp;&emsp; settings.py<br>
-			 &emsp;&emsp; &emsp;&emsp; urls.py<br>
-			 &emsp;&emsp; &emsp;&emsp; wsgi.py<br>
-			 &emsp;&emsp; students/<br>
-			 &emsp;&emsp; &emsp;&emsp; templates/<br>
-			 &emsp;&emsp; &emsp;&emsp; admin.py<br>
-			 &emsp;&emsp; &emsp;&emsp; apps.py<br>
-			 &emsp;&emsp; &emsp;&emsp; __init__.py<br>
-			 &emsp;&emsp; &emsp;&emsp; forms.py<br>
-			 &emsp;&emsp; &emsp;&emsp; migrations/<br>
-			 &emsp;&emsp; &emsp;&emsp; models.py<br>
-			 &emsp;&emsp; &emsp;&emsp; tests.py<br>
-			 &emsp;&emsp; &emsp;&emsp; views.py<br>
+			 <pre><code class="language-treeview">tutorial//
+|-- assets//
+|   `-- media//
+|       `-- student_pics//
+|           `-- akshay.jpg
+|-- manage.py*
+|-- students//
+|   |-- admin.py
+|   |-- apps.py
+|   |-- forms.py &lt;------------------THIS ONE RIGHT HERE
+|   |-- __init__.py
+|   |-- migrations//
+|   |-- models.py
+|   |-- templates//
+|   |   |-- dept-details.html
+|   |   |-- dept-list.html
+|   |   |-- stud-details.html
+|   |   |-- stud-list.html
+|   |   `-- welcome.html
+|   |-- tests.py
+|   |-- urls.py
+|   `-- views.py
+`-- tutorial//
+    |-- __init__.py
+    |-- settings.py
+    |-- urls.py
+		`-- wsgi.py</code></pre>
 			 <br>
 			 Inside this file, add the following:
 			 <br>
-			 <p class="terminal">
-			 from django.forms import ModelForm <br>
-			 <br>
-			 # Import models <br>
-			 from students.models import Student <br>
-			 <br>
-			 <br>
-			 class StudentForm(ModelForm): <br>
-			 &emsp;&emsp;&emsp;&emsp;""" <br>
-			 &emsp;&emsp;&emsp;&emsp;This is the modelfrom for the student. <br>
-			 &emsp;&emsp;&emsp;&emsp;""" <br>
-			 &emsp;&emsp;&emsp;&emsp;class Meta: <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;model = Student <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;fields = ['s_id', 's_first_name', 's_last_name', 's_pic', 'course'] <br>
-			 </p>
+			 <pre><code class="language-python">from django.forms import ModelForm
+
+# Import models
+from students.models import Student
+
+
+class StudentForm(ModelForm):
+    """
+    This is the modelfrom for the student.
+    """
+    class Meta:
+        model = Student
+        fields = ['s_id', 's_first_name', 's_last_name', 's_pic', 'course']</code></pre>
 			 So, we have essentially told the framework that the student form is the default form type
 			 in django (ModelForm) and that does all the heavylifting for us. We still need to tell
 			 what model we will be using so that it knows where it will refer for the fields that we
@@ -96,46 +105,41 @@
 			 To set up the url, we will go to the students/urls.py file and
 			 add the following:
 			 <br>
-			 <p class="terminal">
-			 from django.urls import path  <br>
-			 from students import views <br>
-			 <br>
-			 urlpatterns = [ <br>
-			 &emsp;&emsp;&emsp;&emsp;path('', views.WelcomeView.as_view(), name='welcome'), <br>
-			 &emsp;&emsp;&emsp;&emsp;path('depts/', views.DeptListView.as_view(), name='dept_list'), <br>
-			 &emsp;&emsp;&emsp;&emsp;path('depts/&lt;str:pk&gt;/details/', views.DeptDetailView.as_view(), name='dept_details'), <br>
-			 &emsp;&emsp;&emsp;&emsp;path('students/', views.StudentListView.as_view(), name='stud_list') <br>
-			 &emsp;&emsp;&emsp;&emsp;path('students/&lt;int:pk&gt;/details/', views.StudentDetailView.as_view(), name='stud_details'), <br>
-			 &emsp;&emsp;&emsp;&emsp;path('students/edit/', views.StudentAddView.as_view(), name='stud_edit'), <br>
-			 ] <br>
-			 </p>
+			 <pre><code class="language-python">from django.urls import path
+from students import views
+
+urlpatterns = [
+    path('', views.WelcomeView.as_view(), name='welcome'),
+    path('depts/', views.DeptListView.as_view(), name='dept_list'),
+    path('depts/&lt;str:pk&gt;/details/', views.DeptDetailView.as_view(), name='dept_details'),
+    path('students/', views.StudentListView.as_view(), name='stud_list'),
+    path('students/&lt;int:pk&gt;/details/', views.StudentDetailView.as_view(), name='stud_details'),
+    path('students/edit/', views.StudentAddView.as_view(), name='stud_edit'),
+]</code></pre>
 			 <br>
 			 <b>3. Declaring the view </b>
 			 Go to students/views.py and add the following to declare the view
 			 for this view:
 			 <br>
-			 <p class="terminal">
-			 # Required imports: <br>
-			 <br>
-			 # import the template view. <br>
-			 from django.views.generic import CreateView <br>
-			 <br>
-			 # import department model <br>
-			 from students.models import Student <br>
-			 <br>
-			 # import forms <br>
-			 from students.forms import StudentForm <br>
-			 <br>
-			 class StudentAddView(CreateView): <br>
-			 &emsp;&emsp;&emsp;&emsp;""" <br>
-			 &emsp;&emsp;&emsp;&emsp;This class utilizes the default class based <br>
-			 &emsp;&emsp;&emsp;&emsp;view provided by Django framework to add submitted <br>
-			 &emsp;&emsp;&emsp;&emsp;data to backend database. <br>
-			 &emsp;&emsp;&emsp;&emsp;""" <br>
-			 &emsp;&emsp;&emsp;&emsp;template_name = 'stud-edit.html' <br>
-			 &emsp;&emsp;&emsp;&emsp;model = Student <br>
-			 &emsp;&emsp;&emsp;&emsp;form_class = StudentForm <br>
-			 </p>
+			 <pre><code class="language-python"># import the generic views.
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
+
+# import models
+from students.models import Department, Student
+
+# import forms
+from students.forms import StudentForm
+
+
+class StudentAddView(CreateView):
+    """
+    This class utilizes the default class based
+    view provided by Django framework to add submitted
+    data to backend database.
+    """
+    template_name = 'stud-edit.html'
+    model = Student
+    form_class = StudentForm</code></pre>
 			 <br>
 			 <b> 4. Designing the form </b>
 			 <br>
@@ -144,23 +148,21 @@
 			 <br>
 			 Create a file named 'stud-edit.html' in students/templates folder. Once created, add the following
 			 to the file:
-			 <p class="terminal">
-			 &lt;!DOCTYPE html&gt; <br>
-			 &lt;html lang="en"&gt; <br>
-			 &lt;head&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;meta charset="UTF-8"&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Student details&lt;/title&gt; <br>
-			 &lt;/head&gt; <br>
-			 &lt;body&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;h2&gt;Student Add Screen&lt;/h2&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;br&gt;&lt;br&gt;&lt;br&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;form method="POST" enctype='multipart/form-data'&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{ form.as_p }} <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;button type="submit"&gt; Save &lt;/button&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;/form&gt; <br>
-			 &lt;/body&gt; <br>
-			 &lt;/html&gt; <br>
-			 </p>
+			 <pre><code class="language-django">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Student details&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Student Add Screen&lt;/h2&gt;
+    &lt;br&gt;&lt;br&gt;&lt;br&gt;
+	&lt;form method="POST" enctype="multipart/form-data"&gt;
+		{{ form.as_p }}
+		&lt;button type="submit"&gt; Save &lt;/button&gt;
+	&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 			 <br>
 			 *************** IMPORTANT ***************
 			 <br>
@@ -197,25 +199,23 @@
 			 <br>
 			 To make sure that our site complies with Django's standards, we need to add {% csrf_token %} just
 			 after our &lt;form&gt; tag.
-			 <p class="terminal">
-			 &lt;!DOCTYPE html&gt; <br>
-			 &lt;html lang="en"&gt; <br>
-			 &lt;head&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;meta charset="UTF-8"&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Student details&lt;/title&gt; <br>
-			 &lt;/head&gt; <br>
-			 &lt;body&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;h2&gt;Student Add Screen&lt;/h2&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;br&gt;&lt;br&gt;&lt;br&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;form method="POST"&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;!--ADD THIS --&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{% csrf_token %} <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{ form.as_p }} <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;button type="submit"&gt; Save &lt;/button&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;/form&gt; <br>
-			 &lt;/body&gt; <br>
-			 &lt;/html&gt; <br>
-			 </p>
+			 <pre><code class="language-django">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Student details&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Student Add Screen&lt;/h2&gt;
+    &lt;br&gt;&lt;br&gt;&lt;br&gt;
+	&lt;form method="POST" enctype="multipart/form-data"&gt;
+		&lt;!-- Add this here --&gt;
+		{% csrf_token %}
+		{{ form.as_p }}
+		&lt;button type="submit"&gt; Save &lt;/button&gt;
+	&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 			 <br>
 			 Now that we fixed that, let us enter some data in the form and try submitting again. Does the
 			 form submit the data correctly?
@@ -254,22 +254,22 @@
 				 <li> Defining the success url in our view.
 					 <br>
 					 In our views.py, add the following to our existing code:
-					 <p class="terminal">
-					 # import this: <br>
-					 from django.urls import reverse_lazy <br>
-					 class StudentAddView(CreateView): <br>
-					 &emsp;&emsp;&emsp;&emsp;""" <br>
-					 &emsp;&emsp;&emsp;&emsp;This class utilizes the default class based <br>
-					 &emsp;&emsp;&emsp;&emsp;view provided by Django framework to add submitted <br>
-					 &emsp;&emsp;&emsp;&emsp;data to backend database. <br>
-					 &emsp;&emsp;&emsp;&emsp;""" <br>
-					 &emsp;&emsp;&emsp;&emsp;template_name = 'stud-edit.html' <br>
-					 &emsp;&emsp;&emsp;&emsp;model = Student <br>
-					 &emsp;&emsp;&emsp;&emsp;form_class = StudentForm <br>
-					 &emsp;&emsp;&emsp;&emsp;# Use reverse lazy to create the url for our list view <br>
-					 &emsp;&emsp;&emsp;&emsp;# the parameter is the named url in our urls.py file. <br>
-					 &emsp;&emsp;&emsp;&emsp;success_url = reverse_lazy('stud_list') <br>
-					 </p>
+					 <pre><code class="language-python">#import reverse lazy
+from django.urls import reverse_lazy
+
+
+class StudentAddView(CreateView):
+    """
+    This class utilizes the default class based
+    view provided by Django framework to add submitted
+    data to backend database.
+    """
+    template_name = 'stud-edit.html'
+    model = Student
+    form_class = StudentForm
+    # Use reverse lazy to create the url for our list view
+    # the parameter is the named url in our urls.py file.
+    success_url = reverse_lazy('stud_list')</code></pre>
 					 <br>
 					 If you remember in our urls.py file, we defined the /students/ url with a 
 					 name='stud_list', we pass this to our success_url variable in our view. After 
@@ -293,40 +293,38 @@
 					 <br>
 					 Change the Student model in models.py file as below:
 					 <br>
-					 <p class="terminal">
-					 # import reverse_lazy <br>
-					 from django.urls import reverse_lazy <br>
-					 <br>
-					 <br>
-					 class Student(models.Model): <br>
-					 &emsp;&emsp;&emsp;&emsp;""" <br>
-					 &emsp;&emsp;&emsp;&emsp;This model will store students' details. <br>
-					 &emsp;&emsp;&emsp;&emsp;Primary key will be the students' id. <br>
-					 &emsp;&emsp;&emsp;&emsp;""" <br>
-					 <br>
-					 &emsp;&emsp;&emsp;&emsp;class Meta: <br>
-					 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;db_table = 'students' <br>
-					 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ordering = ['s_id'] <br>
-					 <br>
-					 &emsp;&emsp;&emsp;&emsp;s_id = models.IntegerField(primary_key=True, verbose_name="Student ID") <br>
-					 &emsp;&emsp;&emsp;&emsp;s_first_name = models.CharField(max_length=200, verbose_name="First Name") <br>
-					 &emsp;&emsp;&emsp;&emsp;s_last_name = models.CharField(max_length=200, verbose_name="Last Name") <br>
-					 &emsp;&emsp;&emsp;&emsp;s_pic = models.ImageField(upload_to='student_pics', blank=True, verbose_name="Student's pic") <br>
-					 &emsp;&emsp;&emsp;&emsp;course = models.ManyToManyField(Course, blank=True, verbose_name="Courses") <br>
-					 <br>
-					 &emsp;&emsp;&emsp;&emsp;def __str__(self): <br>
-					 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;""" <br>
-					 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;String representation of the student object. <br>
-					 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;""" <br>
-					 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return "{0} {1}".format(self.s_first_name, self.s_last_name) <br>
-					 <br>
-					 &emsp;&emsp;&emsp;&emsp;def get_absolute_url(self): <br>
-					 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;""" <br>
-					 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Returns the url to details for this object. <br>
-					 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:return: URL to display object details. <br>
-					 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;""" <br>
-					 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return reverse_lazy('stud_details', kwargs={'pk': self.pk}) <br>
-					 </p>
+					 <pre><code class="language-python"># Import reverse_lazy for get_absolute_url
+from django.urls import reverse_lazy
+
+
+class Student(models.Model):
+    """
+    This model will store students' details.
+    Primary key will be the students' id.
+    """
+
+    class Meta:
+        db_table = 'students'
+        ordering = ['s_id']
+
+    s_id = models.IntegerField(primary_key=True, verbose_name="Student ID")
+    s_first_name = models.CharField(max_length=200, verbose_name="First Name")
+    s_last_name = models.CharField(max_length=200, verbose_name="Last Name")
+    s_pic = models.ImageField(upload_to='student_pics', blank=True, verbose_name="Student's pic")
+    course = models.ManyToManyField(Course, blank=True, verbose_name="Courses")
+
+    def __str__(self):
+        """
+        String representation of the student object.
+        """
+        return "{0} {1}".format(self.s_first_name, self.s_last_name)
+
+    def get_absolute_url(self):
+        """
+        Returns the url to details for this object.
+        :return: URL to display object details.
+        """
+				return reverse_lazy('stud_details', kwargs={'pk': self.pk})</code></pre>
 					 <br>
 					 Now, assuming that success_url is not defined, when you again enter a student's
 					 details in the form and submit, you will see:
@@ -344,28 +342,26 @@
 			 <b> 2. Handling the case when there is no image for the student </b>
 			 <br>
 			 Here we can implement some basic validation in the template of ours like so:
-			 <p class="terminal">		   
-			 &lt;!DOCTYPE html&gt; <br>
-			 &lt;html lang="en"&gt; <br>
-			 &lt;head&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;meta charset="UTF-8"&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;title&gt;Student details&lt;/title&gt; <br>
-			 &lt;/head&gt; <br>
-			 &lt;body&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;h2&gt;Student Detail Screen&lt;/h2&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&lt;br&gt;&lt;br&gt;&lt;br&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;Student Name: &lt;h3&gt;{{ student }}&lt;/h3&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;Student ID: &lt;h3&gt;{{ student.s_id }}&lt;/h3&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;Student Pic:  <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;!-- Basic validation in templates --&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{% if student.s_pic %} <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;img src="{{ student.s_pic.url }}"&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{% else %} <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&lt;i&gt; No picture uploaded. &lt;/i&gt; <br>
-			 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{% endif %} <br>
-			 &lt;/body&gt; <br>
-			 &lt;/html&gt; <br>
-			 </p>
+			 <pre><code class="language-django">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Student details&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Student Detail Screen&lt;/h2&gt;
+    &lt;br&gt;&lt;br&gt;&lt;br&gt;
+    Student Name: &lt;h3&gt;{{ student }}&lt;/h3&gt;
+    Student ID: &lt;h3&gt;{{ student.s_id }}&lt;/h3&gt;
+    Student Pic: 
+	&lt;!-- Basic validation in templates --&gt;
+	{% if student.s_pic %}
+	&lt;img src="{{ student.s_pic.url }}"&gt;
+	{% else %}
+	&lt;i&gt; No picture uploaded. &lt;/i&gt;
+	{% endif %}
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 			 <br>
 			 Now try and see the details of any student that doesn't have a picture:
 			 <br>
@@ -378,6 +374,7 @@
 		 </div>
 		</div>
 		<!-- ===============================JS ================================ -->
-		<script src="../js/prism-tomorrow-night.js"></script>
+		<script src="../js/prism-tn.js"></script>
+		<script src="../js/prism-treeview.js"></script>
 	</body>
 </html>
