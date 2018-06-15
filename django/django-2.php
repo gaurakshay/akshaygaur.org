@@ -11,75 +11,20 @@
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=devanagari,latin-ext" rel="stylesheet">
   <!-- ================================= CSS ================================= -->
   <link href="../css/style.css" rel="stylesheet">
+  <link href="../css/header-footer.css" rel="stylesheet">
   <link href="../css/prism-tn.css" rel="stylesheet">
   <link href="../css/prism-treeview.css" rel="stylesheet">
 </head>
 
 <body>
   <!-- Header -->
-  <header class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-    <div class="container" style="margin: 0;">
-
-      <a class="navbar-brand" href="#">
-        <h3>Akshay's Blog (under construction)</h3>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent"
-        aria-expanded="true" aria-lable="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarContent">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="./django-1.html">Django Tutorial
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-          </li> -->
-        </ul>
-      </div>
-    </div>
-  </header>
+  <?php include('../header.html');?>
 
   <!-- mid section -->
-  <main class="container-fluid">
+  <main class="container-fluid" id="content">
     <div class="row">
-      <!-- navigation -->
-      <nav class="col-sm-2">
-        <div class="container-fluid" style="margin: 0px; padding: 0px;">
-          <ul class="nav flex-column nav-pills">
-            <li class="nav-item">
-              <a class="nav-link" href="./django-1.html">Setup</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="./django-2.html">App and Models</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./django-3.html">Admin Module</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./django-4.html">Media Root</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./django-5.html">Template View</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./django-6.html">List View</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./django-7.html">Detail View 1</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./django-8.html">Detail View 2</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./django-9.html">Create View</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <!-- Navigation -->
+      <?php include('./sidebar.html');?>
       <!-- content -->
       <div class="col-sm-9">
         <div class="container-fluid">
@@ -253,22 +198,23 @@
             <br>
         </div>
       </div>
-    <div class="col-sm-1"></div>
+      <div class="col-sm-1"></div>
     </div>
   </main>
-  <footer class="navbar navbar-expand navbar-dark bg-primary" style:"margin-top: 100px;">
-    <div class="navbar-nav">
-      <div class="nav-link mt-0 active">
-        <h5>Contact me at gaur{dot}akshay{at}gmail{dot}com if you found this helpful or if you would like to suggest improvements.</h5>
-      </div>
-    </div>
-  </footer>
+  <!-- footer -->
+  <?php include('../footer.html');?>
   <!-- ===============================JS ================================ -->
   <script src="../js/prism-tn.js"></script>
   <script src="../js/prism-treeview.js"></script>
   <script src="../js/jquery-3.3.1.min.js"></script>
   <script src="../js/popper.min.js"></script>
   <script src="../dist/js/bootstrap.min.js"></script>
+  <script>
+      $(document).ready(function () {
+          $('a[href="\\.\\/django-1.php"]').attr("class", "nav-link");
+          $('a[href="\\.\\/django-2.php"]').attr("class", "nav-link active");
+      })
+  </script>
 </body>
 
 </html>
