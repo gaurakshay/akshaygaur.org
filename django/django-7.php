@@ -33,21 +33,20 @@
           view the details of that particular department.
           <br>
           <pre><code class="language-django">&lt;!doctype html&gt;
-      &lt;html lang="en"&gt;
-      &lt;head&gt;
-        &lt;meta charset="UTF-8"&gt;
-        &lt;title&gt;Department List&lt;/title&gt;
-      &lt;/head&gt;
-      &lt;body&gt;
-        &lt;h2&gt;List of departments&lt;/h2&gt;
-        &lt;br&gt;&lt;br&gt;&lt;br&gt;
-        {% for dept in depts %}
-        Department Code: &lt;b&gt;{{ dept.d_code }}&lt;/b&gt;&lt;br&gt;
-        &lt;a href="{% url 'dept_details' pk=dept.pk %}"&gt; Details &lt;/a&gt;&lt;br&gt;
-        {% endfor %} 
-      &lt;/body&gt;
-      &lt;/html&gt;
-         </code></pre>
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Department List&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;List of departments&lt;/h2&gt;
+  &lt;br&gt;&lt;br&gt;&lt;br&gt;
+  {% for dept in depts %}
+  Department Code: &lt;b&gt;{{ dept.d_code }}&lt;/b&gt;&lt;br&gt;
+  &lt;a href="{% url 'dept_details' pk=dept.pk %}"&gt; Details &lt;/a&gt;&lt;br&gt;
+  {% endfor %} 
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
           <br> This is how the page should look like now:
           <br>
           <img src="../img/django-16-dept-list.png" alt="List of departments will basic info" width="500">
@@ -58,69 +57,69 @@
           <br> To create a detail view, first, open up the views.py file in students directory. And add the following lines:
           <pre><code class="language-python">from django.shortcuts import render
       
-      # import the generic views.
-      from django.views.generic import TemplateView, ListView, DetailView
-      
-      # import models
-      from students.models import Department
-      
-      
-      class WelcomeView(TemplateView):
-        """
-        This is our welcome screen. Utilizes a
-        template view.
-        """
-        template_name = 'welcome.html'
-      
-      
-      class DeptListView(ListView):
-        """
-        This class handles the list view for
-        department model. Utilizes the list view
-        """
-        template_name = 'dept-list.html'
-        model = Department
-        context_object_name = 'depts'
-      
-      
-      class DeptDetailView(DetailView):
-        """
-        This is the detail view of the class.
-        Uses the default detail view provided
-        by Django Framework.
-        """
-        template_name = 'dept-details.html'
-        model = Department
-        context_object_name = 'dept'</code></pre>
+# import the generic views.
+from django.views.generic import TemplateView, ListView, DetailView
+
+# import models
+from students.models import Department
+
+
+class WelcomeView(TemplateView):
+    """
+    This is our welcome screen. Utilizes a
+    template view.
+    """
+    template_name = 'welcome.html'
+
+
+class DeptListView(ListView):
+    """
+    This class handles the list view for
+    department model. Utilizes the list view
+    """
+    template_name = 'dept-list.html'
+    model = Department
+    context_object_name = 'depts'
+
+
+class DeptDetailView(DetailView):
+    """
+    This is the detail view of the class.
+    Uses the default detail view provided
+    by Django Framework.
+    """
+    template_name = 'dept-details.html'
+    model = Department
+    context_object_name = 'dept'</code></pre>
           <br> You must have noticed that the webpage that we defined for this page doesn't exist ('dept-details.html'). So lets
           fix this by make a html file named 'dept-details.html' in the --- you guessed right --- the templates folder.
           <br> Create a skeleton like we did before and put the following:
           <pre><code class="language-django">&lt;!doctype html&gt;
-      &lt;html lang="en"&gt;
-      &lt;head&gt;
-        &lt;meta charset="UTF-8"&gt;
-        &lt;title&gt;Department details&lt;/title&gt;
-      &lt;/head&gt;
-      &lt;body&gt;
-        &lt;h2&gt;Department Detail Screen&lt;/h2&gt;
-        &lt;br&gt;&lt;br&gt;&lt;br&gt;
-        Department Name: &lt;h3&gt;{{ dept }}&lt;/h3&gt;
-        Department Code: &lt;h3&gt;{{ dept.d_code }}&lt;/h3&gt;
-        Department Chair: &lt;h3&gt;{{ dept.d_chair }}&lt;/h3&gt;
-      &lt;/body&gt;
-      &lt;/html&gt;</code></pre>
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Department details&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Department Detail Screen&lt;/h2&gt;
+  &lt;br&gt;&lt;br&gt;&lt;br&gt;
+  Department Name: &lt;h3&gt;{{ dept }}&lt;/h3&gt;
+  Department Code: &lt;h3&gt;{{ dept.d_code }}&lt;/h3&gt;
+  Department Chair: &lt;h3&gt;{{ dept.d_chair }}&lt;/h3&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
           <br> So at this point, what we have is a view named DeptDetailView that knows that it would render dept-details.html.
           The only that remains to be done is to tell the project when to call the view that we declared. We do that in students/urls.py
           file so that project knows what view to call when any url is requested.
           <br> To do that, lets edit the students/urls.py and append this to the urlpatterns list:
           <pre><code class="language-python">from django.urls import path
-      from students import views
-      
-      urlpatterns = [
-        path('', views.WelcomeView.as_view(), name='welcome'),
-        path('depts/', views.DeptListView.as_view(), name='dept_list'),
-        path('depts/&lt;str:pk&gt;/details/', views.DeptDetailView.as_view(), name='dept_details'),
-      ]</code></pre>
+from students import views
+
+urlpatterns = [
+    path('', views.WelcomeView.as_view(), name='welcome'),
+    path('depts/', views.DeptListView.as_view(), name='dept_list'),
+    path('depts/&lt;str:pk&gt;/details/', views.DeptDetailView.as_view(), name='dept_details'),
+]</code></pre>
           <br> This should be enough to bring up the details view. So let us go to the dept list page and click on one of the
           "Details" link on that page. If everything goes according to our plan, we should see the details page like this:
           <br>

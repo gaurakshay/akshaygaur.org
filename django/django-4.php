@@ -33,51 +33,51 @@
 
           </p>
           <pre class="line-numbers"><code class="language-python">class Course(models.Model):
-            """
-            This model will store the details about courses
-            present in the sytem.
-            Primary key for this model is a combination of
-            course code and department code (compound key)
-            """
-            class Meta:
-                db_table = 'courses'
-                # Compound key is defined by the keyword 'unique_together'
-                unique_together = (('department', 'c_code'), )
-        
-            department = models.ForeignKey(Department, on_delete=models.CASCADE, verbose_name="Department Name")
-            c_code = models.IntegerField(verbose_name="Course Code")
-            c_name = models.CharField(max_length=200, verbose_name="Course Name")
-            c_seats = models.IntegerField(verbose_name="Number of Seats")
-            c_desc = models.TextField(blank=True, verbose_name="Course Description")
-        
-            def __str__(self):
-                """
-                String representation of the object.
-                """
-                return self.c_name
-        
-        
-        class Student(models.Model):
-            """
-            This model will store students' details.
-            Primary key will be the students' id.
-            """
-        
-            class Meta:
-                db_table = 'students'
-                ordering = ['s_id']
-        
-            s_id = models.IntegerField(primary_key=True, verbose_name="Student ID")
-            s_first_name = models.CharField(max_length=200, verbose_name="First Name")
-            s_last_name = models.CharField(max_length=200, verbose_name="Last Name")
-            s_pic = models.ImageField(upload_to='student_pics', blank=True, verbose_name="Student's pic")
-            course = models.ManyToManyField(Course, blank=True, verbose_name="Courses")
-        
-            def __str__(self):
-                """
-                String representation of the student object.
-                """
-                return "{0} {1}".format(self.s_first_name, self.s_last_name)</code></pre>
+    """
+    This model will store the details about courses
+    present in the sytem.
+    Primary key for this model is a combination of
+    course code and department code (compound key)
+    """
+    class Meta:
+        db_table = 'courses'
+        # Compound key is defined by the keyword 'unique_together'
+        unique_together = (('department', 'c_code'), )
+
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, verbose_name="Department Name")
+    c_code = models.IntegerField(verbose_name="Course Code")
+    c_name = models.CharField(max_length=200, verbose_name="Course Name")
+    c_seats = models.IntegerField(verbose_name="Number of Seats")
+    c_desc = models.TextField(blank=True, verbose_name="Course Description")
+
+    def __str__(self):
+        """
+        String representation of the object.
+        """
+        return self.c_name
+
+
+class Student(models.Model):
+    """
+    This model will store students' details.
+    Primary key will be the students' id.
+    """
+
+    class Meta:
+        db_table = 'students'
+        ordering = ['s_id']
+
+    s_id = models.IntegerField(primary_key=True, verbose_name="Student ID")
+    s_first_name = models.CharField(max_length=200, verbose_name="First Name")
+    s_last_name = models.CharField(max_length=200, verbose_name="Last Name")
+    s_pic = models.ImageField(upload_to='student_pics', blank=True, verbose_name="Student's pic")
+    course = models.ManyToManyField(Course, blank=True, verbose_name="Courses")
+
+    def __str__(self):
+        """
+        String representation of the student object.
+        """
+        return "{0} {1}".format(self.s_first_name, self.s_last_name)</code></pre>
           <p>
             There are a few thing to unpack here. Lets go through them one by one:
             <br>
@@ -98,61 +98,61 @@
             <br> To define this, go to the end of your settings.py file and add the following:
           </p>
           <pre><code class="language-python">MEDIA_URL = '/assets/'
-        MEDIA_ROOT = os.path.join(BASE_DIR, '&lt;any&gt;', '&lt;path&gt;', '&lt;you&gt;', '&lt;want&gt;')</code></pre>
+MEDIA_ROOT = os.path.join(BASE_DIR, '&lt;any&gt;', '&lt;path&gt;', '&lt;you&gt;', '&lt;want&gt;')</code></pre>
           <p>
             BASE_DIR will be defined in the beginning of your settings.py file and corresponds to:
             <br>
             <pre><code class="language-treeview">tutorial/  &lt;----------------- This is the BASE_DIR.
-        |-- manage.py*
-        |-- students/
-        |   |-- admin.py
-        |   |-- apps.py
-        |   |-- __init__.py
-        |   |-- migrations//
-        |   |-- models.py
-        |   |-- tests.py
-        |   `-- views.py
-        `-- tutorial/
-            |-- __init__.py
-            |-- settings.py
-            |-- urls.py
-            `-- wsgi.py</code></pre> I will set it as :
+|-- manage.py*
+|-- students/
+|   |-- admin.py
+|   |-- apps.py
+|   |-- __init__.py
+|   |-- migrations//
+|   |-- models.py
+|   |-- tests.py
+|   `-- views.py
+`-- tutorial/
+    |-- __init__.py
+    |-- settings.py
+    |-- urls.py
+    `-- wsgi.py</code></pre> I will set it as :
             <br>
             <pre><code class="language-python">MEDIA_ROOT = os.path.join(BASE_DIR, 'assets', 'media')</code></pre> This way, I can store all my assets such as images, javascript files, css files(will deal with js and css later)
             in one place. Now, at this point, the folders will not be created but when they are (we don't need to worry about
             creating folders, Django will take make them when required), the folder structure will look like:
             <br>
             <pre><code class="language-treeview">tutorial//
-        |-- assets//
-        |   `-- media//
-        |-- manage.py*
-        |-- students//
-        |   |-- admin.py
-        |   |-- apps.py
-        |   |-- __init__.py
-        |   |-- migrations//
-        |   |-- models.py
-        |   |-- tests.py
-        |   `-- views.py
-        `-- tutorial//
-            |-- __init__.py
-            |-- settings.py
-            |-- urls.py
-            `-- wsgi.py</code></pre> At this point, because we added two new models, we need to prepare our migrations and execute them:
+|-- assets//
+|   `-- media//
+|-- manage.py*
+|-- students//
+|   |-- admin.py
+|   |-- apps.py
+|   |-- __init__.py
+|   |-- migrations//
+|   |-- models.py
+|   |-- tests.py
+|   `-- views.py
+`-- tutorial//
+    |-- __init__.py
+    |-- settings.py
+    |-- urls.py
+    `-- wsgi.py</code></pre> At this point, because we added two new models, we need to prepare our migrations and execute them:
           </p>
           <pre><code class="language-bash">(venv) $ python manage.py makemigrations students
-        (venv) $ python manage.py migrage</code></pre>
+(venv) $ python manage.py migrage</code></pre>
           <p>
             We also need to register our models so that we can see them in the admin interface, so we will add them in our students/admin.py
             file:
           </p>
           <pre><code class="language-python">from django.contrib import adminfrom django.contrib import admin
-        from students.models import Department, Course, Student  # Import our models.
-        
-        # Register them.
-        admin.site.register(Department)
-        admin.site.register(Course)
-        admin.site.register(Student)</code></pre>
+from students.models import Department, Course, Student  # Import our models.
+
+# Register them.
+admin.site.register(Department)
+admin.site.register(Course)
+admin.site.register(Student)</code></pre>
           <p> Your admin site should now look like this:
             <br>
             <img src="../img/django-10-admin-with-course-stud.png" width="500" alt="Admin site with Department, Course and Student objects listed.">
@@ -167,24 +167,24 @@
             a moment and check if the picture was uploaded to the correct folder.
             <br> My folder structure looks like this after creating a student with a pic:
             <pre><code class="language-treeview">tutorial//
-        |-- assets//
-        |   `-- media//
-        |       `-- student_pics//
-        |           `-- akshay.jpg
-        |-- manage.py*
-        |-- students//
-        |   |-- admin.py
-        |   |-- apps.py
-        |   |-- __init__.py
-        |   |-- migrations//
-        |   |-- models.py
-        |   |-- tests.py
-        |   `-- views.py
-        `-- tutorial//
-            |-- __init__.py
-            |-- settings.py
-            |-- urls.py
-            `-- wsgi.py</code></pre>
+|-- assets//
+|   `-- media//
+|       `-- student_pics//
+|           `-- akshay.jpg
+|-- manage.py*
+|-- students//
+|   |-- admin.py
+|   |-- apps.py
+|   |-- __init__.py
+|   |-- migrations//
+|   |-- models.py
+|   |-- tests.py
+|   `-- views.py
+`-- tutorial//
+    |-- __init__.py
+    |-- settings.py
+    |-- urls.py
+    `-- wsgi.py</code></pre>
         </div>
       </div>
       <div class="col-sm-1">

@@ -35,62 +35,62 @@
           So, our folder structure should look like:
           <br>
           <pre><code class="language-treeview">tutorial//
-      |-- assets//
-      |-- manage.py*
-      |-- students//
-      |   |-- admin.py
-      |   |-- apps.py
-      |   |-- forms.py
-      |   |-- __init__.py
-      |   |-- migrations//
-      |   |-- models.py
-      |   |-- templates//
-      |   |   `-- welcome.html       
-      |   |-- tests.py
-      |   `-- views.py
-      `-- tutorial//</code></pre> Now, in the welcome.html file, write out a skeleton of html5 page. Something like:
+|-- assets//
+|-- manage.py*
+|-- students//
+|   |-- admin.py
+|   |-- apps.py
+|   |-- forms.py
+|   |-- __init__.py
+|   |-- migrations//
+|   |-- models.py
+|   |-- templates//
+|   |   `-- welcome.html       
+|   |-- tests.py
+|   `-- views.py
+`-- tutorial//</code></pre> Now, in the welcome.html file, write out a skeleton of html5 page. Something like:
           <br>
           <pre><code class="language-html">&lt;!doctype html&gt;
-      &lt;html lang="en"&gt;
-      &lt;head&gt;
-          &lt;meta charset="UTF-8"&gt;
-          &lt;title&gt;Hi&lt;/title&gt;
-      &lt;/head&gt;
-      &lt;body&gt;
-          Welcome!!!
-      &lt;/body&gt;
-      &lt;/html&gt;</code></pre> Now, that we have our basic webpage, we would like our application to serve it. The way a django application works
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Hi&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    Welcome!!!
+&lt;/body&gt;
+&lt;/html&gt;</code></pre> Now, that we have our basic webpage, we would like our application to serve it. The way a django application works
           is by defining views and then rendering those views when requested. So, we will also define a view and then tell
           it to render this skeleton of a page that we just created.
           <br> To define a view, we must go to our students/views.py file. In this file, we will define our most basic view:
           <pre><code class="language-python">from django.views.generic import TemplateView
       
-      class WelcomeView(TemplateView):
-          """
-          This is our welcome screen. Utilizes a
-          template view.
-          """
-          template_name = 'welcome.html'</code></pre>
+class WelcomeView(TemplateView):
+    """
+    This is our welcome screen. Utilizes a
+    template view.
+    """
+    template_name = 'welcome.html'</code></pre>
           <br> As we will be serving web pages primarily, we want to define the urls that we will be serving our pages in. In
           the default setup that django framework provides us, which can be found in the tutorial/urls.py file, you will
           see that only one url is defined:
           <pre><code class="language-python">from django.contrib import admin
-      from django.urls import path, include
-      
-      urlpatterns = [
-          path('admin/', admin.site.urls),
-      ]</code></pre> urlpatterns is the place where we define all our urls that will be served in the project. Since we don't have
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]</code></pre> urlpatterns is the place where we define all our urls that will be served in the project. Since we don't have
           any other url defined in the project, we see the default welcome page when we go to 127.0.0.1:8000. When we point
           our browser to 127.0.0.1:8000/admin/ we see the admin module which is what is defined in the urls.py file.
           <br> Lets see what we need to do to change that. Let us define a new urlpattern that points to the root path:
           <pre><code class="language-python">from django.contrib import admin
-      from django.urls import path, include
-      from students import views
-      
-      urlpatterns = [
-          path('admin/', admin.site.urls),
-          path('', views.WelcomeView.as_view(), name='welcome'),
-      ]</code></pre>
+from django.urls import path, include
+from students import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.WelcomeView.as_view(), name='welcome'),
+]</code></pre>
           <br> Now, making sure that our server is running, cross your fingers go to 127.0.0.1:8000/ in your favourite browser.
           If this is the page you see:
           <br>

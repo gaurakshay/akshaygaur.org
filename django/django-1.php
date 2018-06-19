@@ -68,7 +68,7 @@
           </p>
 
           <pre><code class="language-bash">(venv)$ django-admin --version
-     2.0.6</code></pre>
+2.0.6</code></pre>
           <p>
             Now we are getting to the good stuff...
             <br> First, let us create a new project using django-admin command:
@@ -79,31 +79,31 @@
             <br>
           </p>
           <pre><code class="language-treeview">tutorial//
-     |-- manage.py*
-     `-- tutorial//
-       |-- __init__.py
-       |-- settings.py
-       |-- urls.py
-       `-- wsgi.py</code></pre>
+|-- manage.py*
+`-- tutorial//
+  |-- __init__.py
+  |-- settings.py
+  |-- urls.py
+  `-- wsgi.py</code></pre>
 
           <p>
             At this point, the project is barebones. If you want to see how this barebones project looks like in the browser, you can
             run the following command at the terminal:
           </p>
           <pre><code class="language-bash">$ django-admin manage.py runserver<br>
-     Performing system checks...
-     
-     System check identified no issues (0 silenced).
-     
-     You have 14 unapplied migration(s). Your project may not work properly 
-     until you apply the migrations for app(s): admin, auth, 
-     contenttypes, sessions.
-     Run 'python manage.py migrate' to apply them.
-     
-     June 04, 2018 - 18:12:08
-     Django version 2.0.6, using settings 'tutorial.settings'
-     Starting development server at http://127.0.0.1:8000/
-     Quit the server with CONTROL-C.</code></pre>
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 14 unapplied migration(s). Your project may not work properly 
+until you apply the migrations for app(s): admin, auth, 
+contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+
+June 04, 2018 - 18:12:08
+Django version 2.0.6, using settings 'tutorial.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.</code></pre>
 
           <p> Don't worry about the warning about unapplied migrations. We will deal with them later. For now open up a browser
             (Firefox or Chrome is preferred) and go to the address as listed in the output from our command earlier: http://127.0.0.1:8000/.

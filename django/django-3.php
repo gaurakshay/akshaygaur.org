@@ -52,10 +52,10 @@
             class and register it there.
           </p>
           <pre><code class="language-python">from django.contrib import admin
-        from students.models import Department  # Import our model.
-        
-        # Register the model.
-        admin.site.register(Department)</code></pre>
+from students.models import Department  # Import our model.
+
+# Register the model.
+admin.site.register(Department)</code></pre>
           <p> And that's it! Now, if you go back to the admin screen, you should see you model!
             <br>
             <img src="../img/django-5-admin-departments.png" width="400" alt="Admin Screen with Departments">
@@ -67,8 +67,8 @@
             followed by the name that you would like to be displayed on the admin site like so:
           </p>
           <pre><code class="language-python">d_name = models.CharField(max_length=200, verbose_name="Department Name")
-        d_code = models.CharField(max_length=5, primary_key=True, verbose_name="Department Code")
-        d_chair = models.CharField(max_length=200, verbose_name="Department Chair")</code></pre>
+d_code = models.CharField(max_length=5, primary_key=True, verbose_name="Department Code")
+d_chair = models.CharField(max_length=200, verbose_name="Department Chair")</code></pre>
           <p>
             After saving these changes, let us refresh the page that we were on before:
             <br>

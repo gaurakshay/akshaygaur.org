@@ -36,20 +36,20 @@
           <p> If you look at the folder structure again, you will find that a new folder was added:
             <br>
             <pre><code class="language-treeview">tutorial//
-        |-- manage.py*
-        |-- students//
-        |   |-- admin.py
-        |   |-- apps.py
-        |   |-- __init__.py
-        |   |-- migrations//
-        |   |-- models.py
-        |   |-- tests.py
-        |   `-- views.py
-        `-- tutorial//
-          |-- __init__.py
-          |-- settings.py
-          |-- urls.py
-          `-- wsgi.py</code></pre> Don't worry about the migrations folder, we will get to it in just a minute.
+|-- manage.py*
+|-- students//
+|   |-- admin.py
+|   |-- apps.py
+|   |-- __init__.py
+|   |-- migrations//
+|   |-- models.py
+|   |-- tests.py
+|   `-- views.py
+`-- tutorial//
+  |-- __init__.py
+  |-- settings.py
+  |-- urls.py
+  `-- wsgi.py</code></pre> Don't worry about the migrations folder, we will get to it in just a minute.
             <br> RECAP: We created a project named tutorial. Ran a server to see that the project is serving the pages. Then,
             we created an application which is the logical equivalent of a subset of your web application with a specific
             function. In this case, we will use the students app to manage the students in our system.
@@ -102,26 +102,26 @@
           <pre class="line-numbers"><code class="language-python">from django.db import models
         
         
-        class Department(models.Model):
-          """
-          This model will store the details about our department.
-          Primary key for this model is department code.
-          """
-          class Meta:
-            db_table = "departments"
-            ordering = ['d_name']
-        
-          d_name = models.CharField(max_length=200)
-          d_code = models.CharField(max_length=5, primary_key=True)
-          d_chair = models.CharField(max_length=200)
-        
-          def __str__(self):
-            """
-            String representation of the department.
-            This will be used mainly when we print
-            a department object.
-            """
-                return self.d_name</code></pre>
+class Department(models.Model):
+    """
+    This model will store the details about our department.
+    Primary key for this model is department code.
+    """
+    class Meta:
+      db_table = "departments"
+      ordering = ['d_name']
+
+    d_name = models.CharField(max_length=200)
+    d_code = models.CharField(max_length=5, primary_key=True)
+    d_chair = models.CharField(max_length=200)
+
+    def __str__(self):
+      """
+      String representation of the department.
+      This will be used mainly when we print
+      a department object.
+      """
+        return self.d_name</code></pre>
 
           <p>
             Now we will try to understand what we did in defining the model for the department:
@@ -162,27 +162,27 @@
             the database is db.sqlite3. We are going to change it to postgres (or some other db, it is up to you).
           </p>
           <pre class="line-numbers"><code class="language-python">DATABASES = {
-          'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'tutorial_db',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            'HOST': 'localhost',
-            'PORT': '5432',
-          }
-        }</code></pre>
+    'default': {
+      'ENGINE': 'django.db.backends.postgresql',
+      'NAME': 'tutorial_db',
+      'USER': 'postgres',
+      'PASSWORD': 'postgres',
+      'HOST': 'localhost',
+      'PORT': '5432',
+    }
+}</code></pre>
           <p> We are mostly done here. We just need to tell the project about this new 'students' application of ours. In the
             settings file that we are in, find 'INSTALLED_APPS" and add our application name to the existing list:
           </p>
           <pre class="line-numbers"><code class="language-python">INSTALLED_APPS = [
-          'django.contrib.admin',
-          'django.contrib.auth',
-          'django.contrib.contenttypes',
-          'django.contrib.sessions',
-          'django.contrib.messages',
-          'django.contrib.staticfiles',
-          'students',  # Add your app name here.
-        ]</code></pre>
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'students',  # Add your app name here.
+]</code></pre>
           <p>
             Now we will ask manage.py to prepare the db queries that it needs to make in order to create the required tables in the db
             that we provided it the path to in "DATABASES" settings.
