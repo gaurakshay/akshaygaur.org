@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title> Akshay Gaur </title>
   <link rel="icon" href="icon.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- ===============================FONTS================================== -->
   <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=devanagari,latin-ext" rel="stylesheet">
