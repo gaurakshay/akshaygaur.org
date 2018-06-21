@@ -1,10 +1,8 @@
-<?php include './django-boilerplate.php';?>
+<?php include './django-boilerplate-top.php';?>
+            <h3>Update View</h3>
+            <p>
             Now that we have seen various views, lets take a break and talk about templates for a bit.
-            <br>
-            <br>
-            <a class="plain" href="https://docs.djangoproject.com/en/2.0/topics/templates/">
-              <h3> Templates </h3>
-            </a>
+            </p>
             <p>
             Templates are Django framework's solution to generating
             html dynamically. A Django template essentially is a way
@@ -85,7 +83,7 @@
     |-- settings.py
     |-- urls.py
     `-- wsgi.py</code></pre>
-            <br>
+            </p> <p>
             And put the following in it:
             <pre class="line-numbers"><code class="language-django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
@@ -152,10 +150,10 @@
 {% block content %}
     &lt;h1&gt;Welcome!!!&lt;/h1&gt;
 {% endblock content %}</code></pre>
-            <br>
+            </p> <p>
             Now go back to 127.0.0.1:8000 in your browser and if we are lucky and everything
             went well, you should see the following:
-            <br>
+            </p> <p>
             <img src="../img/django-32-template-inheritance.png" alt="Template inheritance" width="500">
             </p>
             <p>
@@ -183,4 +181,7 @@
             </p>
             <p>After this short detour, let us continue with our Class Based Views (CBDs).</p>
 
-  <?php include './django-boilerplate.1.php';?>
+<?php 
+    $boilerplate = file_get_contents('./django-boilerplate-bottom.php');
+    echo str_replace("???", "11", $boilerplate);
+?>

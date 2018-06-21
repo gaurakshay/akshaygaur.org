@@ -25,4 +25,4 @@
       <?php include './sidebar.html';?>
       <!-- Content -->
       <div class="col-sm-9">
-        <div class="container-fluid">
+        <div class="container-fluid content">

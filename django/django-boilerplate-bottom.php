@@ -14,7 +14,7 @@
   <script src="../js/bootstrap.min.js"></script>
   <script>
       $(document).ready(function () {
-          $('a[href="\\.\\/django-10.php"]').attr("class", "nav-link active");
+          $('a[href="\\.\\/django-???.php"]').attr("class", "nav-link active");
       })
   </script>
 </body>

@@ -1,33 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title> Akshay Gaur </title>
-  <link rel="icon" href="icon.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- ===============================FONTS================================== -->
-  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=devanagari,latin-ext" rel="stylesheet">
-  <!-- ================================= CSS ================================= -->
-  <link href="../css/style.css" rel="stylesheet">
-  <link href="../css/header-footer.css" rel="stylesheet">
-  <link href="../css/prism-tn.css" rel="stylesheet">
-  <link href="../css/prism-treeview.css" rel="stylesheet">
-</head>
-
-<body>
-  <!-- Header -->
-  <?php include('../header.html');?>
-
-  <!-- mid section -->
-  <main class="container-fluid" id="content">
-    <div class="row">
-      <!-- Navigation -->
-      <?php include('./sidebar.html');?>
-      <!-- content -->
-      <div class="col-sm-9">
-        <div class="container-fluid">
+<?php include './django-boilerplate-top.php';?>
           <h2> What is Django? </h2>
           <p>
             Django is a web framework that is built in Python and allows Rapid Application Development (RAD). A lot of the heavyweight
@@ -60,7 +31,7 @@
           <p>
             This confirms that our virtual environment is good and ready to go. Now, we can start installing the stuff that we need for
             our django project.
-            <br> First, we install django:
+            </p> <p> First, we install django:
           </p>
           <pre><code class="language-bash">(venv)$ pip install django</code></pre>
           <p>
@@ -71,12 +42,12 @@
 2.0.6</code></pre>
           <p>
             Now we are getting to the good stuff...
-            <br> First, let us create a new project using django-admin command:
+            </p> <p> First, let us create a new project using django-admin command:
           </p>
           <pre><code class="language-bash">$ django-admin startproject tutorial</code></pre>
           <p>
             This will create a folder structure that is something like this:
-            <br>
+            </p> <p>
           </p>
           <pre><code class="language-treeview">tutorial//
 |-- manage.py*
@@ -90,7 +61,7 @@
             At this point, the project is barebones. If you want to see how this barebones project looks like in the browser, you can
             run the following command at the terminal:
           </p>
-          <pre><code class="language-bash">$ django-admin manage.py runserver<br>
+          <pre><code class="language-bash">$ django-admin manage.py runserver</p> <p>
 Performing system checks...
 
 System check identified no issues (0 silenced).
@@ -108,32 +79,13 @@ Quit the server with CONTROL-C.</code></pre>
           <p> Don't worry about the warning about unapplied migrations. We will deal with them later. For now open up a browser
             (Firefox or Chrome is preferred) and go to the address as listed in the output from our command earlier: http://127.0.0.1:8000/.
             You should see a default welcome page:
-            <br>
+            </p> <p>
             <img src="../img/django-1-initial.png" width="1000" alt="Default welcome screen">
-            <br>
+            </p>
 
             <p> Now that we have got our basic project up and running, we can start with an application.
             </p>
-        </div>
-      </div>
-      <div class="col-sm-1">
-
-      </div>
-    </div>
-  </main>
-  <!-- footer -->
-  <?php include('../footer.html');?>
-  <!-- ===============================JS ================================ -->
-  <script src="../js/prism-tn.js"></script>
-  <script src="../js/prism-treeview.js"></script>
-  <script src="../js/jquery-3.3.1.min.js"></script>
-  <script src="../js/popper.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script>
-      $(document).ready(function () {
-          $('a[href="\\.\\/django-1.php"]').attr("class", "nav-link active");
-      })
-  </script>
-</body>
-
-</html>
+<?php 
+    $boilerplate = file_get_contents('./django-boilerplate-bottom.php');
+    echo str_replace("???", "1", $boilerplate);
+?>
