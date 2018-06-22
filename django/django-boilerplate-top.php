@@ -17,7 +17,10 @@
 </head>
 <body>
   <!-- Header -->
-  <?php include '../header.html';?>
+  <?php 
+    $header = file_get_contents('../header.html');
+    echo str_replace("django/", "", $header);
+  ?>
 <!-- Main Body -->
 <main class="container-fluid" id="content">
     <div class="row">
