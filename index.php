@@ -3,16 +3,16 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="icon" type="image/x-icon" href="./img/favicon-48.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Testing bootstrap customization with sass">
   <meta name="author" content="Akshay Gaur">
-  <link rel="icon" href="favicon.ico">
 
   <title>Akshay Gaur</title>
 
   <!-- Custom Bootstrap -->
+  <link href="./css/base.css" rel="stylesheet">
   <link href="./css/style.css" rel="stylesheet">
-  <link href="./css/header-footer.css" rel="stylesheet">
 </head>
 
 <body style="padding-top: 100px;">
