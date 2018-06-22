@@ -16,8 +16,8 @@
           <pre><code class="language-treeview">tutorial//
 |-- assets//
 |   `-- media//
-|   `-- student_pics//
-|   `-- akshay.jpg
+|       `-- student_pics//
+|           `-- akshay.jpg
 |-- manage.py*
 |-- students//
 |   |-- admin.py
@@ -295,6 +295,8 @@ class Student(models.Model):
           </p> <p>
           Now that we have seen various views, lets take a break and talk about templates for a bit.
 <?php 
-    $boilerplate = file_get_contents('./django-boilerplate-bottom.php');
-    echo str_replace("???", "9", $boilerplate);
+ob_start();
+include "./django-boilerplate-bottom.php";
+$boilerplate = ob_get_clean();
+echo str_replace("???", "9", $boilerplate);
 ?>

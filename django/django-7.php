@@ -98,6 +98,8 @@ urlpatterns = [
           </p> <p>
           <img src="../img/django-17-dept-details.png" alt="Department Details" width="500">
 <?php 
-    $boilerplate = file_get_contents('./django-boilerplate-bottom.php');
-    echo str_replace("???", "7", $boilerplate);
+ob_start();
+include "./django-boilerplate-bottom.php";
+$boilerplate = ob_get_clean();
+echo str_replace("???", "7", $boilerplate);
 ?>

@@ -182,6 +182,8 @@
             <p>After this short detour, let us continue with our Class Based Views (CBDs).</p>
 
 <?php 
-    $boilerplate = file_get_contents('./django-boilerplate-bottom.php');
-    echo str_replace("???", "11", $boilerplate);
+ob_start();
+include "./django-boilerplate-bottom.php";
+$boilerplate = ob_get_clean();
+echo str_replace("???", "11", $boilerplate);
 ?>

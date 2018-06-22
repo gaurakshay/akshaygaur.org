@@ -24,8 +24,9 @@
 <!-- Main Body -->
 <main class="container-fluid" id="content">
     <div class="row">
-      <!-- Navigation -->
+      <!-- Navigation Start -->
       <?php include './sidebar.html';?>
+      <!-- Navigation End -->
       <!-- Content -->
       <div class="col-sm-9">
         <div class="container-fluid content">

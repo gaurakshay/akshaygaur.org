@@ -148,6 +148,8 @@ if settings.DEBUG:
           </p> <p> Voila!!!
           </p> <p> Okay, lets move on to the next bit, Adding and Updating instances of models using Forms. </p>
 <?php 
-    $boilerplate = file_get_contents('./django-boilerplate-bottom.php');
-    echo str_replace("???", "8", $boilerplate);
+ob_start();
+include "./django-boilerplate-bottom.php";
+$boilerplate = ob_get_clean();
+echo str_replace("???", "8", $boilerplate);
 ?>

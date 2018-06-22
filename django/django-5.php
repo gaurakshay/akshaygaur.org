@@ -70,6 +70,8 @@ urlpatterns = [
           </p> <p> Then you are doing amazing!!!
           </p> <p> Let us now look at how to display the data that we have in the database next... </p>
 <?php 
-    $boilerplate = file_get_contents('./django-boilerplate-bottom.php');
-    echo str_replace("???", "5", $boilerplate);
+ob_start();
+include "./django-boilerplate-bottom.php";
+$boilerplate = ob_get_clean();
+echo str_replace("???", "5", $boilerplate);
 ?>

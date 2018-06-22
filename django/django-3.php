@@ -60,7 +60,9 @@ d_chair = models.CharField(max_length=200, verbose_name="Department Chair")</cod
             </p> <p>
             <img src="../img/django-9-dept-details.png" width="400" alt="Department's details.">
             </p> <p>
-<?php 
-    $boilerplate = file_get_contents('./django-boilerplate-bottom.php');
-    echo str_replace("???", "3", $boilerplate);
+            <?php 
+ob_start();
+include "./django-boilerplate-bottom.php";
+$boilerplate = ob_get_clean();
+echo str_replace("???", "3", $boilerplate);
 ?>

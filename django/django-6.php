@@ -18,8 +18,8 @@ urlpatterns = [
           <pre><code class="language-treeview">tutorial//
 |-- assets//
 |   `-- media//
-|   `-- student_pics//
-|   `-- akshay.jpg
+|       `-- student_pics//
+|           `-- akshay.jpg
 |-- manage.py*
 |-- students//
 |   |-- admin.py
@@ -117,6 +117,8 @@ urlpatterns = [
           their details as well. We will look at it next in the details view implementation.
           </p> <p>
 <?php 
-    $boilerplate = file_get_contents('./django-boilerplate-bottom.php');
-    echo str_replace("???", "6", $boilerplate);
+ob_start();
+include "./django-boilerplate-bottom.php";
+$boilerplate = ob_get_clean();
+echo str_replace("???", "6", $boilerplate);
 ?>

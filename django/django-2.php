@@ -167,6 +167,8 @@ class Department(models.Model):
             You should see messages where it applies all the migrations in the db successfully.
             </p>
 <?php 
-    $boilerplate = file_get_contents('./django-boilerplate-bottom.php');
-    echo str_replace("???", "2", $boilerplate);
+ob_start();
+include "./django-boilerplate-bottom.php";
+$boilerplate = ob_get_clean();
+echo str_replace("???", "2", $boilerplate);
 ?>

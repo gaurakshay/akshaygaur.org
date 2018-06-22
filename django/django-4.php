@@ -158,6 +158,8 @@ admin.site.register(Student)</code></pre>
     |-- urls.py
     `-- wsgi.py</code></pre>
 <?php 
-    $boilerplate = file_get_contents('./django-boilerplate-bottom.php');
-    echo str_replace("???", "4", $boilerplate);
+ob_start();
+include "./django-boilerplate-bottom.php";
+$boilerplate = ob_get_clean();
+echo str_replace("???", "4", $boilerplate);
 ?>

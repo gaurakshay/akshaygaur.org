@@ -86,6 +86,8 @@ Quit the server with CONTROL-C.</code></pre>
             <p> Now that we have got our basic project up and running, we can start with an application.
             </p>
 <?php 
-    $boilerplate = file_get_contents('./django-boilerplate-bottom.php');
-    echo str_replace("???", "1", $boilerplate);
+ob_start();
+include "./django-boilerplate-bottom.php";
+$boilerplate = ob_get_clean();
+echo str_replace("???", "1", $boilerplate);
 ?>
