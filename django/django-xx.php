@@ -57,7 +57,7 @@
             <li>
                 <a href="./django-11.php">Update View</a>
             </li>
-            <li>
+            <li class="active">
                 <a href="./django-xx.php">Test CSS</a>
             </li>
         </ul>
@@ -67,10 +67,11 @@
       <!-- Content -->
       <div>
         <div style="padding-top: 70px;">
-            <h3>Update View</h3>
+            <h3>Update view using live.js View</h3>
             <i>WIP</i>
         </div>
       </div>
+      <script src="../js/live.js"></script>
 </body>
 
 </html>
