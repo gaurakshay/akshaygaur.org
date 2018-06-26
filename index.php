@@ -1,42 +1,38 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <title> Akshay Gaur </title>
   <link rel="icon" type="image/x-icon" href="./img/favicon-48.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Testing bootstrap customization with sass">
-  <meta name="author" content="Akshay Gaur">
-
-  <title>Akshay Gaur</title>
-
-  <!-- Custom Bootstrap -->
-  <link href="./css/base.css" rel="stylesheet">
-  <link href="./css/style.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ===============================FONTS================================== -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=devanagari,latin-ext" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rajdhani:400&amp;subset=devanagari&text=Akshay%20Gaur" rel="stylesheet">
+  <!-- ================================= CSS ================================= -->
+  <link href="./css/test.css" rel="stylesheet">
 </head>
-
-<body style="padding-top: 100px;">
+<body>
+    <!-- Header Start-->
+    <header class="header">
+        <input type="checkbox" class="nav-toggle" id="nav-toggle"/>
+        <label for="nav-toggle" class="nav-ham">
+            <svg fill="white" viewBox="0 0 448 512"><path d="M442 114H6a6 6 0 0 1-6-6V84a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6z"></path></svg>
+        </label>   
+        <a href="http://www.akshaygaur.org"><h1>Akshay Gaur</h1></a>
+    <!-- Header End-->
+      <!-- Navigation Start -->
+      <?php include('./sidebar.html') ?>
+      <!-- Navigation End -->
+    </header>
   <!-- Header -->
   <?php include('./header.html'); ?>
-  <main class="container-fluid" style="padding-left: 5em;">
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="./img/django-logo-negative.png" alt="Django logo">
-          <div class="card-body">
-            <h5 class="card-title">Django Tutorial</h5>
-            <p class="card-text">Learn Django using Class Based Views (CBV)!.</p>
-            <a href="./django/django-1.php" class="btn btn-primary">Start</a>
-          </div>
-        </div>
-      </div>
+  <main class="no-sidebar">
+    <div class="card-simple">
+      <a href="./django/"> Start Django CBV (Class Based Views) Tutorial here! </a>
     </div>
   </main>
   <!-- Footer -->
   <?php include('./footer.html'); ?>
-  <script src="./js/jquery-3.3.1.min.js"></script>
-  <script src="./js/popper.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
 </body>
 
 </html>

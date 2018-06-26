@@ -1,5 +1,11 @@
-<?php include './django-boilerplate-top.php';?>
-            <h3> Templates </h3>
+<?php 
+ob_start();
+include "./django-boilerplate-top.php";
+$boilerplate = ob_get_clean();
+echo str_replace("???", "Templates", $boilerplate);
+?>
+    <main>
+    <h3> Templates </h3>
             <p>
             Templates are Django framework's solution to generating
             html dynamically. A <a class="plain" href="https://docs.djangoproject.com/en/2.0/topics/templates/">
@@ -9,12 +15,13 @@
             </p>
             <p>
             There are three important parts to the template system in django
-            framework:
+            framework:</p>
             <ol type="1">
               <li>Variables</li>
               <li>Tags</li>
               <li>Template Inheritence</li>
             </ol>
+            <p>
             We will discuss these components in brief one by one but I recommend going
             over the official documentation for a detailed read.
             </p>
@@ -33,11 +40,13 @@
             </p>
             <p>
             An example usage of variables and tag in a typical django template would be:
+</p>
             <pre><code class="language-django">&lt;ul&gt;
 {% for athlete in athlete_list %}
     &lt;li&gt;{{ athlete.name }}&lt;/li&gt;
 {% endfor %}
 &lt;/ul&gt;</code></pre>
+<p>
             We have already seen some of this in our journey so far and therefore I think
             you must be familiar enough to understand what is going on.
             </p>
@@ -50,6 +59,7 @@
             <p>
             Let us try to understand how template inheritance works using our tutorial projec
             that we set up. First, let us make a 'base.html' file in our templates folder:
+</p>
             <pre><code class="language-treeview">tutorial//
 |-- assets//
 |   `-- media//
@@ -81,8 +91,9 @@
     |-- settings.py
     |-- urls.py
     `-- wsgi.py</code></pre>
-            </p> <p>
+             <p>
             And put the following in it:
+</p>
             <pre class="line-numbers"><code class="language-django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
@@ -138,7 +149,6 @@
             </ul>
             To override these blocks defined in base.html file, we will first edit the welcome.html
             file that we created earlier.
-            </p>
             <p>
             In the file welcome.html in our templates folder, remove everything we had and 
             put the following:
@@ -148,7 +158,7 @@
 {% block content %}
     &lt;h1&gt;Welcome!!!&lt;/h1&gt;
 {% endblock content %}</code></pre>
-            </p> <p>
+             <p>
             Now go back to 127.0.0.1:8000 in your browser and if we are lucky and everything
             went well, you should see the following:
             </p> <p>
@@ -178,6 +188,7 @@
             we trimmed up a lot of code. This helps making the code cleaner so much!
             </p>
             <p>After this short detour, let us continue with our Class Based Views (CBDs).</p>
+    </main>
 <?php 
 ob_start();
 include "./django-boilerplate-bottom.php";
