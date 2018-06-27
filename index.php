@@ -13,26 +13,17 @@
 </head>
 <body>
     <!-- Header Start-->
-    <header class="header">
-        <input type="checkbox" class="nav-toggle" id="nav-toggle"/>
-        <label for="nav-toggle" class="nav-ham">
-            <svg fill="white" viewBox="0 0 448 512"><path d="M442 114H6a6 6 0 0 1-6-6V84a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6z"></path></svg>
-        </label>   
-        <a href="http://www.akshaygaur.org"><h1>Akshay Gaur</h1></a>
-    <!-- Header End-->
-      <!-- Navigation Start -->
-      <?php include('./sidebar.html') ?>
-      <!-- Navigation End -->
-    </header>
-  <!-- Header -->
-  <?php include('./header.html'); ?>
+    <?php include('./header.html'); ?>
+  <!-- Header End -->
   <main class="no-sidebar">
+    <a href="./django/">
     <div class="card-simple">
-      <a href="./django/"> Start Django CBV (Class Based Views) Tutorial here! </a>
+        <img src="../img/django-logo-negative.png" alt="Django logo">
+        <div> Django CBV Tutorial </div>
     </div>
+    </a>
   </main>
   <!-- Footer -->
   <?php include('./footer.html'); ?>
 </body>
-
 </html>

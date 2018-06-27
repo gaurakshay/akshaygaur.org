@@ -40,7 +40,7 @@ nav ul {
 
 nav li {
     text-decoration: none;
-    padding: 0.5em 1em 0.5em 1em;
+    width: 100%;
 }
 
 nav li.active {
@@ -53,10 +53,16 @@ header a {
     color: white;
 }
 
+nav a {
+    display: block;
+    padding-left: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
 nav {
     position: absolute;
     background: #222;
-    /* top: 100%; */
     height: 80vh;
     overflow-y: auto;
 }
@@ -86,22 +92,42 @@ svg.page-next {
     fill: #777777;
 }
 
-div.card-simple {
+/* div.card-simple {
     width: 100%;
     height: 5em;
     box-shadow: 0 0 2px gray;
-}
+} */
 
-main.no-sidebar {
-    padding-left: 6em;
-    padding-right: 6em;;
-    /* display: flex; */
-    /* justify-content: center; */
-}
 
-div.card-simple a{
+
+main.no-sidebar a {
+    position: relative;
     text-decoration: none;
-    color: #222;
+    color: #444444;
+}
+
+div.card-simple {
+    width: 100%;
+    height: 5em;
+    display: flex;
+    box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.3);
+}
+
+div.card-simple img {
+    height: 100%;
+    width: auto;
+    border: none;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
+}
+
+div.card-simple div{
+    display: flex;
+    align-items: center;
+    margin-left: 1em;
+    margin-right: 1em;
+    width: 70%;
+    height: 100%;
+    font-size: 26px;
 }
 
 /* For mobile screens */
@@ -187,6 +213,12 @@ div.card-simple a{
         width: 2em;
         height: 2em;
         fill: #777777;
+    }
+
+    main.no-sidebar {
+        padding-left: 6em;
+        padding-right: 6em;
+        padding-bottom: 0;
     }
     
 }
