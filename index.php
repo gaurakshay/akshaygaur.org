@@ -18,8 +18,9 @@
   <main class="no-sidebar">
     <a href="./django/">
     <div class="card-simple">
-        <img src="../img/django-logo-negative.png" alt="Django logo">
-        <div> Django CBV Tutorial </div>
+        <div class="thumb"></div>
+        <!-- <img src="../img/django-logo-negative.png" alt="Django logo"> -->
+        <div class="caption"> Django CBV Tutorial </div>
     </div>
     </a>
   </main>
