@@ -100,7 +100,7 @@ main.no-sidebar a {
 
 /* For mobile screens */
 @media screen and (max-width: 690px){
-
+    
     .nav-ham {
         position: absolute;
         top:0;
@@ -110,35 +110,35 @@ main.no-sidebar a {
         align-items: center;
         padding-left: 1em;
     }
-
+    
     .nav-ham svg {
         /* font-size: 5em; */
         fill:white;
         width: 1.5em;
         height: 1.5em;
     }
-
+    
     .nav-toggle:checked ~ nav {
-
+        
         transform: scale(1, 1);
     }
-
+    
     nav {
         width: 40%;
         transform: scale(0, 1);
         transform-origin: left;
         transition: transform 200ms ease-in-out;
     }
-
+    
     main {
         padding-left: 3em;
         padding-right: 3em;
     }
-
+    
     img {
         width: 100%;
     }
-
+    
     svg.page-prev {
         position: fixed;
         padding: 0;
@@ -149,13 +149,13 @@ main.no-sidebar a {
         height: 2em;
         fill: #777777;
     }
-
+    
     div.card-simple {
         width: 100%;
         height: 12em;
         box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.3);
     }
-
+    
     div.card-simple div.thumb {
         background: url("../img/django-logo-negative.png");
         background-size: cover;
@@ -174,24 +174,24 @@ main.no-sidebar a {
 
 /* For larger screens (tables, laptops and desktops) */
 @media screen and (min-width: 691px){
-
+    
     .nav-ham {
         display: none;
     }
-
+    
     nav {
         width: 15em;
     }
-
+    
     main {
         padding-left: 18em;
         padding-right: 10%;
     }
-
+    
     img {
         width: 60%;
     }
-
+    
     svg.page-prev {
         position: fixed;
         padding: 0;
@@ -202,13 +202,13 @@ main.no-sidebar a {
         height: 2em;
         fill: #777777;
     }
-
+    
     main.no-sidebar {
         padding-left: 6em;
         padding-right: 6em;
         padding-bottom: 0;
     }
-
+    
     div.card-simple {
         width: 100%;
         height: 6em;
@@ -231,5 +231,4 @@ main.no-sidebar a {
         display: flex;
         align-items: center;
     }
-    
 }

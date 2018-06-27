@@ -3,8 +3,8 @@
 
     </main>
 <?php 
-ob_start();
-include "./django-boilerplate-bottom.php";
-$boilerplate = ob_get_clean();
-echo str_replace("???", "xx", $boilerplate);
+    ob_start();
+    include "./django-boilerplate-bottom.php";
+    $boilerplate = ob_get_clean();
+    echo ($boilerplate);
 ?>
