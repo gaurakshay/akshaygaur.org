@@ -30,7 +30,7 @@ if ($_SERVER['HTTPS'] != "on") {
             <div class="card-simple">
                 <div class="thumb"></div>
                 <!-- <img src="../img/django-logo-negative.png" alt="Django logo"> -->
-                <div class="caption"> Django CBV README </div>
+                <div class="caption"> Django CBV Tutorial </div>
             </div>
         </a>
     </main>

@@ -77,4 +77,50 @@ urlpatterns = [
         the page title stays the same (which we set as "Add Student") and so does our heading for the page (which
         says "Student Add Screen"). So, to make it look better, we change our page to the following:
     </p>
+    <pre><code class="language-django">{% extends 'base.html' %}
+
+{% block title %}
+    {%  if object %}
+        Update Student
+    {%  else %}
+        Add Student
+    {% endif %}
+{% endblock title %}
+{% block content %}
+    &lt;h2&gt;
+        {%  if object %}
+            Student Update Screen
+        {%  else %}
+            Student Add Screen
+        {% endif %}
+    &lt;/h2&gt;
+    &lt;br&gt;&lt;br&gt;&lt;br&gt;
+	&lt;form method="POST" enctype="multipart/form-data"&gt;
+		&lt;!-- Add this here --&gt;
+		{% csrf_token %}
+		{{ form.as_p }}
+		&lt;button type="submit"&gt; Save &lt;/button&gt;
+	&lt;/form&gt;
+{% endblock content %}</code></pre>
+        <p>
+            Here, we are taking advantage of the fact that if we have a student object to edit (and therefore an UpdateView),
+            there will be an object that will be available for us to use in our form.
+        </p>
+        <p>
+            So, if we find that this object is available to us (which we check using the if condition) then we assume that this
+            will be an update page and render the titles and heading as such.
+        </p>
+        <p>
+            If the object is not available to us, we will assume that the page is for adding a student and therefore, render
+            tht title and the heading accordingly.
+        </p>
+        <p>
+            Using what we have, now, we can see the difference between the titles and headings if we want to add a student vs
+            if we want to update a student:
+            <img src="../img/django-35-student-add-correct-title.png" alt="Student add with correct title and headings.">
+            <img src="../img/django-34-student-update-correct-title.png" alt="Student update with correct title and headings.">
+        </p>
+        <p>
+            Next, we will take a look at the delete view.
+        </p>
 </main>
