@@ -18,6 +18,8 @@ if ($_SERVER['HTTPS'] != "on") {
     <link href="https://fonts.googleapis.com/css?family=Rajdhani:400&amp;subset=devanagari&text=Akshay%20Gaur" rel="stylesheet">
     <!-- ================================= CSS ================================= -->
     <link href="./css/test.css" rel="stylesheet">
+    
+    <!-- <script src="./js/live.js"></script> -->
 </head>
 <body>
     <!-- Header Start-->
@@ -28,7 +30,7 @@ if ($_SERVER['HTTPS'] != "on") {
             <div class="card-simple">
                 <div class="thumb"></div>
                 <!-- <img src="../img/django-logo-negative.png" alt="Django logo"> -->
-                <div class="caption"> Django CBV Tutorial </div>
+                <div class="caption"> Django CBV README </div>
             </div>
         </a>
     </main>

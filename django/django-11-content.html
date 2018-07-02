@@ -2,6 +2,79 @@
     <h2>Update View</h2>
     <p>
         This view is very similar to the CreateView that we discussed previously
-        <a href="./django-07.php">here</a>.
+        <a href="./django-09.php">here</a>.
+    </p>
+    </p>
+        Essentially, what we want to do is first create a view where we will have
+        the form preloaded with the values from the our current instance so that we may edit it.
+    </p>
+    <p>
+        To do that, we open our views.py file in our project and add the following to it:
+    </p>
+    <pre><code class="language-python"># import the generic views.
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
+
+
+class StudentUpdateView(UpdateView):
+    """
+    This class will pre-populate the student's details
+    in a form which can then be modified to change
+    the student's details.
+    Utilizes Django's inbuilt UpdateView Class.
+    """
+    template_name = 'stud-edit.html'
+    model = Student
+    form_class = StudentForm</code></pre>
+
+    <p>
+        Now, we need to define the url that will render this view for us and we will update
+        our urls.py file for that:
+    </p>
+    <pre><code class="language-python">from django.urls import path
+from students import views
+
+urlpatterns = [
+    path('', views.WelcomeView.as_view(), name='welcome'),
+    path('depts/', views.DeptListView.as_view(), name='dept_list'),
+    path('depts/&lt;str:pk&gt;/details/', views.DeptDetailView.as_view(), name='dept_details'),
+    path('students/', views.StudentListView.as_view(), name='stud_list'),
+    path('students/&lt;int:pk&gt;/details/', views.StudentDetailView.as_view(), name='stud_details'),
+    path('students/add/', views.StudentAddView.as_view(), name='stud_add'),
+    path('students/&lt;int:pk&gt;/edit/', views.StudentUpdateView.as_view(), name='stud_update'),
+]</code></pre>
+    <p>
+        So now, if you want to edit a student, you just need to go to the link 'http://127.0.0.1:8001/students/&lt;id&gt;/edit/'.
+        As an example, when we go to http://127.0.0.1:8001/students/1/edit/ we should see the following:
+    </p>
+    <p>
+        <img src="../img/django-33-student-edit-form.png" alt="Editable form for student id 1">
+    </p>
+    <p>
+        If you notice our update view form, you will see that it has the header and footer that we had 
+        defined in our previous article. Our 'stud-edit.html' in our 'templates' folder was updated to look
+        like this:
+    </p>
+    <pre><code class="language-django">{% extends 'base.html' %}
+
+{% block title %} Add Student {% endblock title %}
+{% block content %}
+    &lt;h2&gt;Student Add Screen&lt;/h2&gt;
+    &lt;br&gt;&lt;br&gt;&lt;br&gt;
+	&lt;form method="POST" enctype="multipart/form-data"&gt;
+		&lt;!-- Add this here --&gt;
+		{% csrf_token %}
+		{{ form.as_p }}
+		&lt;button type="submit"&gt; Save &lt;/button&gt;
+	&lt;/form&gt;
+{% endblock content %}</code></pre>
+    <p>
+        Notice how much simpler our page declaration has become with the use of templates. Now we don't need to
+        worry about any boiler plate in our html files.
+    </p>
+    <p>
+        But there is a problem here that we haven't delt with so far. If you look at the page's setup, the title
+        you will find that whether we go to "127.0.0.1:8000/students/add/" or "127.0.0.1:8000/students/1/edit/",
+        the page title stays the same (which we set as "Add Student") and so does our heading for the page (which
+        says "Student Add Screen"). So, to make it look better, we change our page to the following:
     </p>
 </main>

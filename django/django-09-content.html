@@ -89,7 +89,7 @@ urlpatterns = [
     path('depts/&lt;str:pk&gt;/details/', views.DeptDetailView.as_view(), name='dept_details'),
     path('students/', views.StudentListView.as_view(), name='stud_list'),
     path('students/&lt;int:pk&gt;/details/', views.StudentDetailView.as_view(), name='stud_details'),
-    path('students/edit/', views.StudentAddView.as_view(), name='stud_edit'),
+    path('students/add/', views.StudentAddView.as_view(), name='stud_add'),
 ]</code></pre>
                
     <p>
@@ -155,7 +155,7 @@ class StudentAddView(CreateView):
         So, now try going to the address '127.0.0.1:8000/students/edit/' and what do you see?
     </p> 
     <p>
-        <img src="../img/django-22-stud-details-with-pic.png" alt="Student form">
+        <img src="../img/django-23-stud-form.png" alt="Student form">
     </p> 
     <p> 
         What is interesting here is that Django implements basic checks for you automatically. Such as checking all the
@@ -190,7 +190,7 @@ class StudentAddView(CreateView):
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;Student details&lt;/title&gt;
+    &lt;title&gt;Add Student&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
     &lt;h2&gt;Student Add Screen&lt;/h2&gt;
