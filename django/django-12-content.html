@@ -1,0 +1,142 @@
+<main>
+    <h2>Delete View</h2>
+    <p>
+        As you might have guessed, this view is used to delete instances of models in the database.
+    </p>
+    <p>
+        The way that this view is different from other views is that this view requires a confirmation
+        of deletion from the user before actually deleting the model. 
+        So, before deleting any instance, Django frameworks checks if the request to delete a model comes
+        via a POST request or not. If the request is not POST, the deletion would fail.
+    </p>
+    <p>
+        Since deletion is model instance specific, we will add the option to delete an instance when displaying
+        the details of that instance. There could be other ways to do this as well such as deleting multiple
+        instances when in the list view but we will leave this for some other day. 
+    </p>
+    <p>
+        But first, we need to define the view that will handle our deletion logic:
+    </p>
+    <pre><code class="language-python"># import the generic views.
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+
+
+class StudentDeleteView(DeleteView):
+    """
+    This will delete the student model instance from the
+    database. Utilizes Django's inbuilt DeleteView class.
+    """
+    template_name = 'stud-details.html'
+    model = Student
+    success_url = reverse_lazy('stud_list')</code></pre>
+
+    <p>
+        In the above code, please note that the template for the delete view is defined as the "stud-delete.html" which 
+        will hold the form that we will submit as POST to delete that model instance.
+        Also, note that we have defined a success url that will take us to the page where we want to go when our deletion 
+        is successful. This makes sense here because after deletion, the details page of the instance that we delete 
+        will cease to exist and therefore, we need to be routed to another page.
+        This could very well have been a different page altogether - a page that displays a success message upon successful 
+        delete.
+    </p>
+    <p>
+        Now, we will register this view in our urls.py file: 
+    </p>
+<pre><code class="language-python">from django.urls import path
+from students import views
+
+urlpatterns = [
+    path('', views.WelcomeView.as_view(), name='welcome'),
+    path('depts/', views.DeptListView.as_view(), name='dept_list'),
+    path('depts/&lt;str:pk&gt;/details/', views.DeptDetailView.as_view(), name='dept_details'),
+    path('students/', views.StudentListView.as_view(), name='stud_list'),
+    path('students/&lt;int:pk&gt;/details/', views.StudentDetailView.as_view(), name='stud_details'),
+    path('students/add/', views.StudentAddView.as_view(), name='stud_add'),
+    path('students/&lt;int:pk&gt;/edit/', views.StudentUpdateView.as_view(), name='stud_update'),
+    path('students/&lt;int:pk&gt;/delete/', views.StudentDeleteView.as_view(), name='stud_delete'),
+]</code></pre>
+    <p>
+        Next, we need to add the ability to delete the model instance in the details page of the instance:
+    </p>
+    <pre><code class="language-django">{% extends 'base.html' %}
+
+{% block title %}
+    Student Details
+{% endblock title %}
+{% block content %}
+    &lt;h2&gt;Student Detail Screen&lt;/h2&gt;
+    &lt;p&gt;&lt;/p&gt;
+    &lt;p&gt;Student Name: &lt;b style="font-size: x-large"&gt;{{ student }}&lt;/b&gt;&lt;/p&gt;
+    &lt;p&gt;Student ID: &lt;b style="font-size: x-large"&gt;{{ student.s_id }}&lt;/b&gt;&lt;/p&gt;
+    &lt;p&gt; Student Pic: &lt;/p&gt;
+    {# Basic validation in templates #}
+    {% if student.s_pic %}
+    &lt;img src="{{ student.s_pic.url }}"&gt;
+    {% else %}
+    &lt;i&gt; No picture uploaded. &lt;/i&gt;
+    {% endif %}
+
+    {# Link to delete this model instance. This will #}
+    {# take us to the page where we will ask for #}
+    {# confirmation of the deletion of the model. #}
+    &lt;a href="{% url 'stud_delete' pk=student.pk %}"&gt; Delete &lt;/a&gt;
+{% endblock content %}</code></pre>
+
+<p>
+    Finally, we need to write up our confirmation page for deletion of the model instance.
+    For this, create a file named stud-delete.html in the templates folder:
+</p>
+<pre><code class="language-treeview">tutorial/
+|-- assets/
+|   `-- media/
+|       `-- student_pics/
+|-- students/
+|   |-- migrations/
+|   `-- templates/
+|       |-- base.html
+|       |-- dept-details.html
+|       |-- dept-list.html
+|       |-- stud-delete.html &lt;-------This one.
+|       |-- stud-details.html
+|       |-- stud-edit.html
+|       |-- stud-list.html
+|       `-- welcome.html
+`-- tutorial/</code></pre>
+    <p>
+        In stud-delete.html, let us create a basic form that will show a message for the user to confirm before
+        deleting the model instance where we will use Django Template Language to make life easy for us:
+    </p>
+    <pre><code class="language-django">{% extends 'base.html' %}
+
+{% block title %}
+    Student Delete
+{% endblock title %}
+{% block content %}
+    &lt;form method="post"&gt;{% csrf_token %}
+    &lt;p&gt;Are you sure you want to delete "{{ object }}"?&lt;/p&gt;
+    &lt;input type="submit" value="Delete" /&gt;
+    &lt;/form&gt;
+{% endblock content %}</code></pre>
+    <p>
+        So now, if you want to delete a student instance, we need to follow the deletion link from the details 
+        page of that instance which will in turn ask us for a confirmation.
+        Once, we confirm that we want to delete the instance, we will be taken to the "success_url" page
+        which we defined in our StudentDeleteView as the named url entity "stud-delete" in our urls.py.
+    </p>
+    <h4>1. The details page which provides the link to delete the student instance:</h4>
+    <p>
+        <img src="../img/django-36-delete-stud-details.png" alt="Delete link for student instance.">
+    </p>
+    <h4>
+        2. The delete confirmation page:
+    </h4>
+    <p>
+        <img src="../img/django-37-delete-confirmation.png" alt="Delete confirmation.">
+    </p>
+    <h4>
+        3. The success url brings us to the student list page:
+    </h4>
+    <p>
+        <img src="../img/django-38-delete-success-url.png" alt="Success url.">
+    </p>
+</main>

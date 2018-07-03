@@ -7,7 +7,7 @@
 body {
     font-family: 'Noto Sans', sans-serif;
     font-size: 16px;
-    line-height: 2em;
+    line-height: 1.5em;
     color: #333333;
 }
 
@@ -103,6 +103,10 @@ main.no-sidebar a {
     position: relative;
     text-decoration: none;
     color: #444444;
+}
+
+p {
+    padding-top: 1em;
 }
 
 /* For mobile screens */

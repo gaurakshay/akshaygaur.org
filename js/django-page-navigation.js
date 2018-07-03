@@ -19,14 +19,13 @@ if(isNaN(pageNumber)){
 } else if (pageNumber == 2) {
     nextLink =  '<a href="./django-' + (pageNumber + 1).toString().padStart(2, '0') + '.php">' + chevronRight + '</a>';
     prevLink =  '<a href="./index.php">' + chevronLeft + '</a>';
-} else if (pageNumber < 11) {
+} else if (pageNumber < 12) {
     nextLink =  '<a href="./django-' + (pageNumber + 1).toString().padStart(2, '0') + '.php">' + chevronRight + '</a>';
     prevLink =  '<a href="./django-' + (pageNumber - 1).toString().padStart(2, '0') + '.php">' + chevronLeft + '</a>';
     
-} else if (pageNumber == 11) {
+} else if (pageNumber == 12) {
     prevLink =  '<a href="./django-' + (pageNumber - 1).toString().padStart(2, '0') + '.php">' + chevronLeft + '</a>';
 }
-;
 
 let range = document.createRange();
 range.selectNode(document.getElementsByTagName("main").item(0));

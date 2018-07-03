@@ -1,7 +1,7 @@
 // Set scroll position to where we were the last time:
 let scrollPos = parseInt(localStorage.getItem('scrollPos'));
 console.log('Scrolling to - ' + scrollPos);
-window.scrollTo(0, scrollPos+1000);
+window.scrollTo(0, scrollPos);
 
 // FIles to monitor: php and html file.
 // TODO Add a way to monitor everything in the directory.
