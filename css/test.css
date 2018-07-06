@@ -75,7 +75,7 @@ nav {
 }
 
 main {
-    padding-top: 6em;
+    padding-top: 4em;
     padding-bottom: 6em;
     position: relative;
 }
@@ -106,6 +106,14 @@ main.no-sidebar a {
 }
 
 p {
+    padding-top: 0.75em;
+}
+
+h2 {
+    padding-top: 1.5em;
+}
+
+h3 {
     padding-top: 1em;
 }
 
@@ -163,24 +171,50 @@ p {
     
     div.card-simple {
         width: 100%;
-        height: 12em;
+        /* height: 8em; */
         box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.3);
+        margin-top: 2em;
         margin-bottom: 3em;
+        
+    }
+
+    div.card-simple h2 {
+        padding-top: 0;
     }
     
-    div.card-simple div.thumb {
+    /* div.card-simple div.thumb.django {
         background: url("../img/django-logo-negative.png");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         height: 50%;
-    }
+    } */
+    /* div.card-simple div.thumb.dj {
+        background: url("../img/dj.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 50%;
+        width: 50%;
+    } */
+    /* div.card-simple div.thumb.bt {
+        background: #563d7c;
+        color: white;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        font-size: 3em;
+        /* width: 50%; */
+        /* height: 50%; */
+    /* }  */
     
     div.card-simple div.caption{
         width: 100%;
         padding-top: 1.5em;
+        padding-bottom: 1.5em;
         text-align: center;
         font-size: 20px;
+        line-height: 2em;
     }
 }
 
@@ -223,25 +257,46 @@ p {
     
     div.card-simple {
         width: 80%;
-        height: 6em;
-        display: flex;
         box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.3);
         margin-bottom: 3em;
+        margin-top: 2em;
+    }
+
+    div.card-simple h2 {
+        padding-top: 0;
     }
     
-    div.card-simple div.thumb {
+    /* div.card-simple div.thumb.django {
         background: url("../img/django-logo-negative.png") center;
         background-repeat: no-repeat;
         background-size: cover;
         width: 30%;
         height: 100%;
+    } */
+
+    /* div.card-simple div.thumb.dj {
+        background: url("../img/django-logo-negative.png") center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 20%;
+        height: 100%;
     }
+    div.card-simple div.thumb.bt {
+        background: url("../img/bt2.png") center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 10%;
+        height: 100%;
+    } */
     
     div.card-simple div.caption{
         width: 70%;
+        padding-top: 1em;
+        padding-bottom: 1em;
         padding-left: 1.5em;
         font-size: 26px;
-        display: flex;
-        align-items: center;
+        line-height: 2em;
+        /* display: flex; */
+        /* align-items: center; */
     }
 }

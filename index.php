@@ -26,14 +26,12 @@ if ($_SERVER['HTTPS'] != "on") {
     <main class="no-sidebar">
         <a href="./django-cbv/" class="card">
             <div class="card-simple">
-                <div class="thumb"></div>
-                <div class="caption"> Django Class Based View Tutorial </div>
+                <div class="caption"> <h2>Django Class Based View Tutorial</h2> </div>
             </div>
         </a>
         <a href="./django-bootstrap/" class="card">
             <div class="card-simple">
-                <div class="thumb"></div>
-                <div class="caption"> Bootstrapping with Django </div>
+                <div class="caption"> <h2>Bootstrapping with Django</h2> </div>
             </div>
         </a>
     </main>
