@@ -8,6 +8,7 @@ let prevLink = '';
 let a = '';
 
 if(isNaN(pageNumber)){
+    currFile = 'index.php'
     a = document.querySelector('a[href*="index.php"]');
 } else {
     a = document.querySelector('a[href*="'+pageNumber+'.php"]');

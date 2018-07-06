@@ -18,23 +18,27 @@ if ($_SERVER['HTTPS'] != "on") {
     <link href="https://fonts.googleapis.com/css?family=Rajdhani:400&amp;subset=devanagari&text=Akshay%20Gaur" rel="stylesheet">
     <!-- ================================= CSS ================================= -->
     <link href="./css/test.css" rel="stylesheet">
-    
-    <!-- <script src="./js/live.js"></script> -->
 </head>
 <body>
     <!-- Header Start-->
     <?php include './header.html';?>
     <!-- Header End -->
     <main class="no-sidebar">
-        <a href="./django/">
+        <a href="./django-cbv/" class="card">
             <div class="card-simple">
                 <div class="thumb"></div>
-                <!-- <img src="../img/django-logo-negative.png" alt="Django logo"> -->
-                <div class="caption"> Django CBV Tutorial </div>
+                <div class="caption"> Django Class Based View Tutorial </div>
+            </div>
+        </a>
+        <a href="./django-bootstrap/" class="card">
+            <div class="card-simple">
+                <div class="thumb"></div>
+                <div class="caption"> Bootstrapping with Django </div>
             </div>
         </a>
     </main>
     <!-- Footer -->
     <?php include './footer.html';?>
+    <script src="./js/livereload.js"></script>
 </body>
 </html>
