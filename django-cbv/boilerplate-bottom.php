@@ -15,7 +15,7 @@
     <!-- ===============================JS ================================ -->
     <script src="../js/prism-tn.js"></script>
     <script src="../js/prism-treeview.js"></script>
-    <script src="../js/django-page-navigation.js"></script>
+    <script src="../js/page-navigation.js"></script>
     <script src="../js/livereload.js"></script>
 </body>
 </html>
