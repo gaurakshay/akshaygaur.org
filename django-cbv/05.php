@@ -3,7 +3,7 @@
                     HEADER
     =========================================*/
     ob_start();
-    include_once("./django-boilerplate-top.php");
+    include_once("./pageTop.php");
     $boilerplate = ob_get_clean();
     echo str_replace("???", "TemplateView", $boilerplate);
 ?>
@@ -11,14 +11,14 @@
     /* ========================================
                     CONTENT
     =========================================*/
-    include_once("./django-05-content.html");
+    include_once("./05-content.html");
 ?>
 <?php 
     /* ========================================
                     FOOTER
     =========================================*/
     ob_start();
-    include_once("./django-boilerplate-bottom.php");
+    include_once("./pageBottom.php");
     $boilerplate = ob_get_clean();
     echo str_replace("???", "05", $boilerplate);
 ?>

@@ -3,7 +3,7 @@
                     HEADER
     =========================================*/
     ob_start();
-    include_once("./django-boilerplate-top.php");
+    include_once("./pageTop.php");
     $boilerplate = ob_get_clean();
     echo str_replace("???", "ListView", $boilerplate);
 ?>
@@ -11,14 +11,14 @@
     /* ========================================
                     CONTENT
     =========================================*/
-    include_once("./django-06-content.html");
+    include_once("./06-content.html");
 ?>
 <?php 
     /* ========================================
                     FOOTER
     =========================================*/
     ob_start();
-    include_once("./django-boilerplate-bottom.php");
+    include_once("./pageBottom.php");
     $boilerplate = ob_get_clean();
     echo str_replace("???", "06", $boilerplate);
 ?>

@@ -3,7 +3,7 @@
                     HEADER
     =========================================*/
     ob_start();
-    include_once("./django-boilerplate-top.php");
+    include_once("./pageTop.php");
     $boilerplate = ob_get_clean();
     echo str_replace("???", "DeleteView", $boilerplate);
 ?>
@@ -11,14 +11,14 @@
     /* ========================================
                     CONTENT
     =========================================*/
-    include_once("./django-12-content.html");
+    include_once("./12-content.html");
 ?>
 <?php 
     /* ========================================
                     FOOTER
     =========================================*/
     ob_start();
-    include_once("./django-boilerplate-bottom.php");
+    include_once("./pageBottom.php");
     $boilerplate = ob_get_clean();
     echo str_replace("???", "12", $boilerplate);
 ?>

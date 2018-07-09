@@ -1,10 +1,10 @@
-<?php include './django-boilerplate-top.php';?>
+<?php include './pageTop.php';?>
     <main>
 
     </main>
 <?php 
     ob_start();
-    include "./django-boilerplate-bottom.php";
+    include "./pageBottom.php";
     $boilerplate = ob_get_clean();
     echo ($boilerplate);
 ?>

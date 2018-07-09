@@ -1,96 +1,106 @@
 <main>
-    <h2> What is Django? </h2>
+    <h2> What is Bootstrap?</h2>
     <p>
-        Django is a web framework that is built in Python and allows Rapid Application Development (RAD). A lot of the heavyweight
-        stuff that a developer would have to handle if the website were being developed from scratch is taken care of
-        by Django. This lets the developer focus on application building instead of worrying about other stuff such as
-        making the website secure. You can find more details at
-        <a href="https://www.djangoproject.com/"> the official website </a>.
+        <a href="https://getbootstrap.com/">Bootstrap</a> is a widely used front-end framework that is used for designing websites.
     </p>
-    <h2> Getting started. </h2>
+    <h2> Why do you want to use Bootstrap?</h2>
     <p>
-        It is recommended that virtual environment be used for the following tutorial for a lot of reasons but is not compulsory
-        and can be ignored.
+        Bootstrap is a very well designed and mature framework. You would want to use it
+        if you don't want to spend a lot of time designing the layout of all the different
+        components that are going to be a part of your website.
     </p>
-    <h3> Setting it up. </h3>
-
-    <pre><code class="language-bash">$ virtualenv --python=python3 venv</code></pre>
-
     <p>
-        This will create a directory named venv in the present directory. All the necessary files required for the virtual environment
-        will be listed in that directory. Also, we made sure that we use python 3.5+. Now, to start/activate the virtual
-        environment, all you need to do is:
+        Moreover, Bootstrap is designed to be responsive and so, you don't have to worry
+        about writing <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries">media queries</a>
+        in CSS to make sure that your website looks good on different screen sizes.
     </p>
-
-    <pre><code class="language-bash">$ source ./venv/bin/activate</code></pre>
-
     <p>
-        You should see a modified control prompt which would look like this:
+        Essentially, Bootstrap takes away a lot of pain that somebody would usually have to go through
+        to get a decent looking website up and running.
     </p>
-
-    <pre><code class="language-bash">(venv)$</code></pre>
-
+    <h2>Setting it up</h2>
     <p>
-        This confirms that our virtual environment is good and ready to go. Now, we can start installing the stuff that we need for
-        our django project.
+        To get bootstrap in your project, we need to include three main components:
+        <ol>
+            <li>Bootstrap CSS</li>
+            <li>Bootstrap JS</li>
+            <li>jQuery</li>
+            <li>Popper.js</li>
+        </ol>
     </p>
-    <p> 
-        First, we install django:
-    </p>
-    <pre><code class="language-bash">(venv)$ pip install django</code></pre>
+    <h3>Bootstrap CSS</h3>
     <p>
-        This will install django for us. To test that, we can run django-admin --version. The result should be 2.0.6.
+        This is the CSS that has various classes that we will be using in our html tags to make our website
+        look good.
     </p>
-
-    <pre><code class="language-bash">(venv)$ django-admin --version
-2.0.6</code></pre>
+    <h3>Bootstrap JS, jQuery, Popper.js</h3>
     <p>
-        Now we are getting to the good stuff...
+        These are javascript libraries that enable some cool stuff such as animations, tooltips etc.
     </p>
-    <p> 
-        First, let us create a new project using django-admin command:
-    </p>
-    <pre><code class="language-bash">$ django-admin startproject tutorial</code></pre>
+    <h3>Adding them to your website</h3>
     <p>
-        This will create a folder structure that is something like this:
+        To add these resources to your website, we simply need to add the following tags in your page:
     </p>
-    <pre><code class="language-treeview">tutorial//
-|-- manage.py*
-`-- tutorial//
-|-- __init__.py
-|-- settings.py
-|-- urls.py
-`-- wsgi.py</code></pre>
-
+    <pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Content goes here --&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
     <p>
-        At this point, the project is barebones. If you want to see how this barebones project looks like in the browser, you can
-        run the following command at the terminal:
+        So, in case you are coming from the <a href="../django-cbv/">Django Class Based View Tutorial</a>, our base.html in our templates
+        folder will look like this:
     </p>
-    <pre><code class="language-bash">$ django-admin manage.py runserver
-Performing system checks...
+    <pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;{% block title %}Base HTML{% endblock title %}&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial;
+            margin: 0 0 60px;
+        }
 
-System check identified no issues (0 silenced).
+        .header{
+            padding: 10px 16px;
+            background: #555;
+            color: #f1f1f1;
+        }
+    &lt;/style&gt;
+    &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header class="header" id="myHeader"&gt;
+        &lt;h1&gt;Django Tutorial&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;div style="margin-left: 10%;"&gt;
+    {% block content %}
+        {# Your content goes here #}
+    {% endblock content %}
+    &lt;/div&gt;
 
-You have 14 unapplied migration(s). Your project may not work properly 
-until you apply the migrations for app(s): admin, auth, 
-contenttypes, sessions.
-Run 'python manage.py migrate' to apply them.
-
-June 04, 2018 - 18:12:08
-Django version 2.0.6, using settings 'tutorial.settings'
-Starting development server at http://127.0.0.1:8000/
-Quit the server with CONTROL-C.</code></pre>
-
-    <p> 
-        Don't worry about the warning about unapplied migrations. We will deal with them later. For now open up a browser
-        (Firefox or Chrome is preferred) and go to the address as listed in the output from our command earlier: http://127.0.0.1:8000/.
-        You should see a default welcome page:
-    </p> 
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
     <p>
-        <img src="../img/django-1-initial.png" width="1000" alt="Default welcome screen">
+        Important thing to note here is this:
+        <ul>
+            <li>The stylesheets will go in the head tag segment of the page.</li>
+            <li>The javascript files will be loaded at the bottom of the body tag.</li>
+        </ul>
     </p>
-
-    <p> 
-        Now that we have got our basic project up and running, we can start with an application.
+    <p>
+        Next, we will make a simple header for our site which will appear in all our pages!
     </p>
 </main>
