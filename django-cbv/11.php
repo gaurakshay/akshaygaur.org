@@ -1,4 +1,6 @@
 <?php 
+    // What is this file's name?
+    $filename = basename(__FILE__, '.php');
     /* ========================================
                     HEADER
     =========================================*/
@@ -6,19 +8,17 @@
     include_once("./pageTop.php");
     $boilerplate = ob_get_clean();
     echo str_replace("???", "UpdateView", $boilerplate);
-?>
-<?php 
+
     /* ========================================
                     CONTENT
     =========================================*/
-    include_once("./11-content.html");
-?>
-<?php 
+    include_once("./$filename-content.html");
+
     /* ========================================
                     FOOTER
     =========================================*/
     ob_start();
     include_once("./pageBottom.php");
     $boilerplate = ob_get_clean();
-    echo str_replace("???", "11", $boilerplate);
+    echo str_replace("???", "$filename", $boilerplate);
 ?>

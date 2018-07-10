@@ -7,7 +7,7 @@
     ob_start();
     include_once("./pageTop.php");
     $boilerplate = ob_get_clean();
-    echo str_replace("???", "CreateView", $boilerplate);
+    echo str_replace("???", "Footer and Jumbotron", $boilerplate);
 
     /* ========================================
                     CONTENT

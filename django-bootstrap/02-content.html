@@ -1,0 +1,68 @@
+<main>
+    <h2>A simple Bootstrap header</h2>
+    <p>
+        In this article, we will try to create a simple Bootstrap header
+        in a Django Template.
+    </p>
+    <p>
+        Assuming that your django template page is structured like this:
+    </p>
+    <pre><code class="language-django">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;{% block title %}Base HTML{% endblock title %}&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    {% block content %}
+        {# Your content goes here #}
+    {% endblock content %}
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <p>
+        we can modify it to display a header like so:
+    </p>
+    <pre><code class="language-django">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"&gt;
+    &lt;title&gt;{% block title %}Base HTML{% endblock title %}&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;nav class="navbar navbar-expand-sm navbar-dark bg-dark"&gt;
+    &lt;div class="container"&gt;
+        &lt;a class="navbar-brand" href="#"&gt;Django Tutorial&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+&lt;div class="container"&gt;
+    {% block content %}
+        {# Your content goes here #}
+    {% endblock content %}
+&lt;/div&gt;
+
+
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <p>
+        So, where our page used to look like:
+    </p>
+    <img src="../img/django-32-template-inheritance.png" alt="Original page">
+    <p>
+        Now, it looks like this!
+    </p>
+    <img src="../img/dj-b-01.png" alt="New page look">
+    <p>
+        If you want to look at some more example, I invite to you to take a look at the official example page
+        <a href="https://getbootstrap.com/docs/4.1/examples/navbars/">here</a>.
+        Next, we are going to look at footers.
+    </p>
+</main>

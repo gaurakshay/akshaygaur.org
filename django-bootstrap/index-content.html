@@ -56,38 +56,20 @@
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
     <p>
-        So, in case you are coming from the <a href="../django-cbv/">Django Class Based View Tutorial</a>, our base.html in our templates
-        folder will look like this:
+        So, in case you are coming from the <a href="../django-cbv/">Django Class Based View Tutorial</a>, change our base.html in our templates
+        folder to look like this:
     </p>
-    <pre><code class="language-html">&lt;!doctype html&gt;
+    <pre><code class="language-django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;title&gt;{% block title %}Base HTML{% endblock title %}&lt;/title&gt;
-    &lt;style&gt;
-        body {
-            font-family: Arial;
-            margin: 0 0 60px;
-        }
-
-        .header{
-            padding: 10px 16px;
-            background: #555;
-            color: #f1f1f1;
-        }
-    &lt;/style&gt;
     &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;header class="header" id="myHeader"&gt;
-        &lt;h1&gt;Django Tutorial&lt;/h1&gt;
-    &lt;/header&gt;
-    &lt;div style="margin-left: 10%;"&gt;
     {% block content %}
         {# Your content goes here #}
     {% endblock content %}
-    &lt;/div&gt;
-
     &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"&gt;&lt;/script&gt;
@@ -98,6 +80,7 @@
         <ul>
             <li>The stylesheets will go in the head tag segment of the page.</li>
             <li>The javascript files will be loaded at the bottom of the body tag.</li>
+            <li>The order of the javascript libraries to be loaded is 1. jQuery, 2. PopperJS, 3. BootstrapJS</li>
         </ul>
     </p>
     <p>

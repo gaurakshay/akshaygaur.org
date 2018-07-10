@@ -17,7 +17,7 @@ if ($_SERVER['HTTPS'] != "on") {
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=devanagari,latin-ext" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rajdhani:400&amp;subset=devanagari&text=Akshay%20Gaur" rel="stylesheet">
     <!-- ================================= CSS ================================= -->
-    <link href="../css/test.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/prism-tn.css" rel="stylesheet">
     <link href="../css/prism-treeview-dark.css" rel="stylesheet">
 </head>

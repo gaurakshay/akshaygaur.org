@@ -1,0 +1,136 @@
+<main>
+    <h2>A simple Bootstrap footer</h2>
+    <p>
+        Continuing on from making a simple header, we will now create a simple footer using Bootstrap.
+        Our Django template file "base.html" looks like this:
+    </p>
+    <pre><code class="language-django">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"&gt;
+    &lt;title&gt;{% block title %}Base HTML{% endblock title %}&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;nav class="navbar navbar-expand-sm navbar-dark bg-dark"&gt;
+    &lt;div class="container"&gt;
+        &lt;a class="navbar-brand" href="#"&gt;Django Tutorial&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+&lt;div class="container"&gt;
+    {% block content %}
+        {# Your content goes here #}
+    {% endblock content %}
+&lt;/div&gt;
+
+
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>
+    To add a simple footer to this page, we just need to make sure that the footer is placed after the main
+    content of the page so that it occupies the bottom position in the page.
+</p>
+<p>
+    To do so, we can add a footer tag like so:
+</p>
+<pre><code class="language-django">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"&gt;
+    &lt;title&gt;{% block title %}Base HTML{% endblock title %}&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"&gt;
+{#    &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/materia/bootstrap.min.css"&gt;#}
+    &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;nav class="navbar navbar-expand-sm navbar-dark bg-dark"&gt;
+    &lt;div class="container"&gt;
+        &lt;a class="navbar-brand" href="#"&gt;Django Tutorial&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+&lt;div class="container"&gt;
+    {% block content %}
+        {# Your content goes here #}
+    {% endblock content %}
+    &lt;hr&gt;
+&lt;/div&gt;
+&lt;footer class="py-2 bg-dark"&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="row text-white-50"&gt;
+            &lt;div class="col-md px-5"&gt;
+                &lt;h5&gt;About&lt;/h5&gt;
+                &lt;ul class="list-unstyled"&gt;
+                    &lt;li&gt;Team&lt;/li&gt;
+                    &lt;li&gt;Locations&lt;/li&gt;
+                    &lt;li&gt;Privacy&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;div class="col-md px-5"&gt;
+                &lt;h5&gt;Features&lt;/h5&gt;
+                &lt;ul class="list-unstyled"&gt;
+                    &lt;li&gt;Monitoring&lt;/li&gt;
+                    &lt;li&gt;Platform Agnostic&lt;/li&gt;
+                    &lt;li&gt;Performance&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;div class="col-md px-5"&gt;
+                &lt;h5&gt;Resources&lt;/h5&gt;
+                &lt;ul class="list-unstyled"&gt;
+                    &lt;li&gt;Documentation&lt;/li&gt;
+                    &lt;li&gt;Forums&lt;/li&gt;
+                    &lt;li&gt;Tutorials&lt;/li&gt;
+                    &lt;li&gt;Videos&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;div class="w-100"&gt;&lt;/div&gt;
+            &lt;div class="col-md text-muted text-center"&gt;
+                &copy; Akshay Gaur
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <p>
+        And now our page looks like this:
+    </p>
+    <img src="../img/dj-b-02.png" alt="Bootstrap footer image.">
+    <p>
+        And while we are here, let us add a Bootstrap jumbotron. Because why not?
+    </p>
+    <p>
+        This can be achieved by editing our "welcome.html" from our Django CBV tutorial to:
+    </p>
+    <pre><code class="language-django">
+{% extends 'base.html' %}
+
+{% block title %} Welcome! {% endblock title %}
+{% block content %}
+    &lt;div class="jumbotron mt-4"&gt;
+        &lt;h1 class="display-4"&gt;Welcome!!!&lt;/h1&gt;
+        &lt;p&gt;
+            Put your content between the header and the footer and you will be alright my friend! &lt;br&gt;
+            Jumbotron is a cool way to bring attention to the content that you want. And bootstrap just makes it so
+            easy!
+        &lt;/p&gt;
+        &lt;p class="mt-5"&gt;
+            &lt;a class="btn btn-primary" href="#" role="button"&gt;Check it out&lt;/a&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+
+{% endblock content %}
+    </code></pre>
+    <p>
+        And after all that hard work, our welcome page now looks like:
+    </p>
+    <img src="../img/dj-b-03.png" alt="Final welcome page">
+</main>
