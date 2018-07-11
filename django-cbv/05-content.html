@@ -12,26 +12,26 @@
         'templates' in our tutorial/students/ directory. Inside that directory, make a blank html page named 'welcome.html'.
         So, our folder structure should look like:
     </p>
-<pre><code class="language-treeview">tutorial//
-|-- assets//
-|-- manage.py*
-|-- students//
+<pre><code class="language-treeview">tutorial
+|-- assets/
+|-- manage.py
+|-- students
 |   |-- admin.py
 |   |-- apps.py
 |   |-- forms.py
 |   |-- __init__.py
-|   |-- migrations//
+|   |-- migrations/
 |   |-- models.py
-|   |-- templates//
-|   |   `-- welcome.html       
+|   |-- templates
+|   |   `-- welcome.html
 |   |-- tests.py
 |   `-- views.py
-`-- tutorial//</code></pre>
+`-- tutorial/</code></pre>
     <p>
         Now, in the welcome.html file, write out a skeleton of html5 page. Something like:
     </p>
               
-    <pre><code class="language-html">&lt;!doctype html&gt;
+    <pre><code class="html">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -40,7 +40,8 @@
 &lt;body&gt;
     Welcome!!!
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;
+</code></pre>
     <p>
         Now, that we have our basic webpage, we would like our application to serve it. The way a django application works
         is by defining views and then rendering those views when requested. So, we will also define a view and then tell
@@ -49,7 +50,7 @@
     <p>
         To define a view, we must go to our students/views.py file. In this file, we will define our most basic view:
     </p>
-    <pre><code class="language-python">from django.views.generic import TemplateView
+    <pre><code class="python">from django.views.generic import TemplateView
           
     class WelcomeView(TemplateView):
         """

@@ -4,25 +4,25 @@
         To start and application, fire up the terminal (make sure you are in the directory where manage.py resides) and type the
         following command:
     </p>
-    <pre><code class="language-bash">(venv) $ python manage.py startapp students</code></pre>
+    <pre><code class="shell">(venv)$ python manage.py startapp students</code></pre>
     <p>
         If you look at the folder structure again, you will find that a new folder was added:
     </p>
-    <pre><code class="language-treeview">tutorial//
-|-- manage.py*
-|-- students//
-|   |-- admin.py
-|   |-- apps.py
-|   |-- __init__.py
-|   |-- migrations//
-|   |-- models.py
-|   |-- tests.py
-|   `-- views.py
-`-- tutorial//
-|-- __init__.py
-|-- settings.py
-|-- urls.py
-`-- wsgi.py</code></pre>
+    <pre><code class="treeview">tutorial
+|-- manage.py
+|-- students
+|  |-- admin.py
+|  |-- apps.py
+|  |-- __init__.py
+|  |-- migrations/
+|  |-- models.py
+|  |-- tests.py
+|  `-- views.py
+`-- tutorial
+  |-- __init__.py
+  |-- settings.py
+  |-- urls.py
+  `-- wsgi.py</code></pre>
     <p>
         Don't worry about the migrations folder, we will get to it in just a minute.
     </p>
@@ -85,7 +85,7 @@
     <p>
         Open up the models.py model in students folder and define the department model:
     </p>
-    <pre class="line-numbers"><code class="language-python">from django.db import models
+    <pre><code class="python">from django.db import models
       
       
 class Department(models.Model):
@@ -126,7 +126,7 @@ class Department(models.Model):
             these commands will be translated to corresponding db commands (SQL commands).
         </p>
         <p>
-            Lines 10-12: We defined the actual attributes of this model. They will all be
+            <strong>Lines 10-12:</strong> We defined the actual attributes of this model. They will all be
             <a href="https://docs.djangoproject.com/en/2.0/ref/models/fields/#charfield">
             character fields </a> (a default type provided by django framework). We also defined the length of these fields.
         </p>
@@ -135,8 +135,8 @@ class Department(models.Model):
             in the d_code attribute.
         </p>
         <p>
-            Lines 14-20: We defined a string representation for the model whenever the system needs to represent an object
-            model as a string for myriad reasons.
+            <strong>Lines 14-20:</strong> We defined a string representation for the model whenever the system needs to represent an object
+            model as a string for myriad reasons. If you are using Python version 2.x, it is suggested to used  __unicode__ instead of __str__.
         </p>
         <p>
             So now that we have the model with us, how do we start saving it in the database?
@@ -150,7 +150,7 @@ class Department(models.Model):
             First, let us go to our settings.py file in our 'tutorial' folder and find 'DATABASES' entry. It would look
             something like this:
         </p>
-        <pre class="line-numbers"><code class="language-python">DATABASES = {
+        <pre><code class="python">DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -160,7 +160,7 @@ class Department(models.Model):
             What this means is that as default, django sets up a sqlite3 database in the base directory of the project and the name of
             the database is db.sqlite3. We are going to change it to postgres (or some other db, it is up to you).
         </p>
-        <pre class="line-numbers"><code class="language-python">DATABASES = {
+        <pre><code class="python">DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'tutorial_db',
@@ -174,7 +174,7 @@ class Department(models.Model):
             We are mostly done here. We just need to tell the project about this new 'students' application of ours. In the
             settings file that we are in, find 'INSTALLED_APPS" and add our application name to the existing list:
         </p>
-        <pre class="line-numbers"><code class="language-python">INSTALLED_APPS = [
+        <pre><code class="python">INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -190,11 +190,11 @@ class Department(models.Model):
         <p> 
             To do that, we run the following:
         </p>
-        <pre><code class="language-bash">(venv) $ python manage.py makemigrations students</code></pre>
+        <pre><code class="shell">(venv)$ python manage.py makemigrations students</code></pre>
         <p>
             This will create all the necessary db queries to setup our db. Now we will execute those queries using:
         </p>
-        <pre><code class="language-bash">(venv) $ python manage.py migrate</code></pre>
+        <pre><code class="shell">(venv)$ python manage.py migrate</code></pre>
         <p>
             You should see messages where it applies all the migrations in the db successfully.
         </p>

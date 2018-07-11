@@ -14,7 +14,7 @@
     </p>
     <h3> Setting it up. </h3>
 
-    <pre><code class="language-bash">$ virtualenv --python=python3 venv</code></pre>
+    <pre><code class="shell">$ virtualenv --python=python3 venv</code></pre>
 
     <p>
         This will create a directory named venv in the present directory. All the necessary files required for the virtual environment
@@ -22,13 +22,13 @@
         environment, all you need to do is:
     </p>
 
-    <pre><code class="language-bash">$ source ./venv/bin/activate</code></pre>
+    <pre><code class="shell">$ source ./venv/bin/activate</code></pre>
 
     <p>
         You should see a modified control prompt which would look like this:
     </p>
 
-    <pre><code class="language-bash">(venv)$</code></pre>
+    <pre><code class="shell">(venv)$</code></pre>
 
     <p>
         This confirms that our virtual environment is good and ready to go. Now, we can start installing the stuff that we need for
@@ -37,12 +37,12 @@
     <p> 
         First, we install django:
     </p>
-    <pre><code class="language-bash">(venv)$ pip install django</code></pre>
+    <pre><code class="shell">(venv)$ pip install django</code></pre>
     <p>
         This will install django for us. To test that, we can run django-admin --version. The result should be 2.0.6.
     </p>
 
-    <pre><code class="language-bash">(venv)$ django-admin --version
+    <pre><code class="shell">(venv)$ django-admin --version
 2.0.6</code></pre>
     <p>
         Now we are getting to the good stuff...
@@ -50,23 +50,23 @@
     <p> 
         First, let us create a new project using django-admin command:
     </p>
-    <pre><code class="language-bash">$ django-admin startproject tutorial</code></pre>
+    <pre><code class="shell">(venv)$ django-admin startproject tutorial</code></pre>
     <p>
         This will create a folder structure that is something like this:
     </p>
-    <pre><code class="language-treeview">tutorial//
-|-- manage.py*
-`-- tutorial//
-|-- __init__.py
-|-- settings.py
-|-- urls.py
-`-- wsgi.py</code></pre>
+    <pre><code class="treeview">tutorial
+|-- manage.py
+`-- tutorial
+  |-- __init__.py
+  |-- settings.py
+  |-- urls.py
+  `-- wsgi.py</code></pre>
 
     <p>
         At this point, the project is barebones. If you want to see how this barebones project looks like in the browser, you can
         run the following command at the terminal:
     </p>
-    <pre><code class="language-bash">$ django-admin manage.py runserver
+    <pre><code class="shell">(venv)$ django-admin manage.py runserver
 Performing system checks...
 
 System check identified no issues (0 silenced).

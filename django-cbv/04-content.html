@@ -4,7 +4,7 @@
         Now, we will create our other models along with department model. So, go back to our students/models.py file and add the
         following model classes:
     </p>
-<pre class="line-numbers"><code class="language-python">class Course(models.Model):
+<pre ><code class="python">class Course(models.Model):
     """
     This model will store the details about courses
     present in the sytem.
@@ -77,22 +77,22 @@ class Student(models.Model):
     <p>
         To define this, go to the end of your settings.py file and add the following:
     </p>
-    <pre><code class="language-python">MEDIA_URL = '/assets/'
+    <pre><code class="python">MEDIA_URL = '/assets/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '&lt;any&gt;', '&lt;path&gt;', '&lt;you&gt;', '&lt;want&gt;')</code></pre>
     <p>
         BASE_DIR will be defined in the beginning of your settings.py file and corresponds to:
     </p>
-<pre><code class="language-treeview">tutorial   &lt;-------------------BASE_DIR/
-|-- manage.py*
-|-- students/
+<pre><code class="treeview">tutorial   &lt;-------------------BASE_DIR
+|-- manage.py
+|-- students
 |   |-- admin.py
 |   |-- apps.py
 |   |-- __init__.py
-|   |-- migrations//
+|   |-- migrations/
 |   |-- models.py
 |   |-- tests.py
 |   `-- views.py
-`-- tutorial/
+`-- tutorial
     |-- __init__.py
     |-- settings.py
     |-- urls.py
@@ -100,16 +100,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '&lt;any&gt;', '&lt;path&gt;', '&lt;you&gt;'
         <p>
             I will set it as :
         </p>
-    <pre><code class="language-python">MEDIA_ROOT = os.path.join(BASE_DIR, 'assets', 'media')</code></pre>
+    <pre><code class="python">MEDIA_ROOT = os.path.join(BASE_DIR, 'assets', 'media')</code></pre>
     <p>
         This way, I can store all my assets such as images, javascript files, css files(will deal with js and css later)
         in one place. Now, at this point, the folders will not be created but when they are (we don't need to worry about
         creating folders, Django will take make them when required), the folder structure will look like:
     </p>
-    <pre><code class="language-treeview">tutorial//
-|-- assets//
+    <pre><code class="treeview">tutorial//
+|-- assets
 |   `-- media//
-|-- manage.py*
+|-- manage.py
 |-- students//
 |   |-- admin.py
 |   |-- apps.py
@@ -127,13 +127,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '&lt;any&gt;', '&lt;path&gt;', '&lt;you&gt;'
         At this point, because we added two new models, we need to prepare our migrations and execute them:
     </p>
               
-    <pre><code class="language-bash">(venv) $ python manage.py makemigrations students
+    <pre><code class="shell">(venv) $ python manage.py makemigrations students
 (venv) $ python manage.py migrage</code></pre>
     <p>
         We also need to register our models so that we can see them in the admin interface, so we will add them in our students/admin.py
         file:
     </p>
-    <pre><code class="language-python">from django.contrib import adminfrom django.contrib import admin
+    <pre><code class="python">from django.contrib import adminfrom django.contrib import admin
 from students.models import Department, Course, Student  # Import our models.
 
 # Register them.
@@ -164,7 +164,7 @@ admin.site.register(Student)</code></pre>
     <p>
         My folder structure looks like this after creating a student with a pic:
     </p>
-<pre><code class="language-treeview">tutorial//
+<pre><code class="treeview">tutorial//
 |-- assets//
 |   `-- media//
 |       `-- student_pics//

@@ -12,7 +12,7 @@
         At this point, since we don't have an admin account setup in the project, we will create one. To do that, just
         type the following in the terminal:
     </p>
-    <pre><code class="language-bash">(venv) $ python manage.py createsuperuser --username akshay --email gaur.akshay@gmail.com</code></pre>
+    <pre><code class="shell">(venv)$ python manage.py createsuperuser --username akshay --email gaur.akshay@gmail.com</code></pre>
     <p>
         You will be asked to provide the password for this admin account which will create the admin account.
     </p>
@@ -37,7 +37,7 @@
         To add our "Department" model so that we can access it in the admin model, we need to go to students/admin.py
         class and register it there.
     </p>
-    <pre><code class="language-python">from django.contrib import admin
+    <pre><code class="python">from django.contrib import admin
 from students.models import Department  # Import our model.
     
 # Register the model.
@@ -59,7 +59,7 @@ admin.site.register(Department)</code></pre>
         (d_name, d_code, d_chair). Since they don't look very good, we will change them. Just add the keyword "verbose_name"
         followed by the name that you would like to be displayed on the admin site like so:
     </p>
-    <pre><code class="language-python">d_name = models.CharField(max_length=200, verbose_name="Department Name")
+    <pre><code class="python">d_name = models.CharField(max_length=200, verbose_name="Department Name")
 d_code = models.CharField(max_length=5, primary_key=True, verbose_name="Department Code")
 d_chair = models.CharField(max_length=200, verbose_name="Department Chair")</code></pre>
     <p>

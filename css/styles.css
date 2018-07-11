@@ -117,6 +117,30 @@ h3 {
     padding-top: 1em;
 }
 
+td.hljs-ln-numbers {
+    text-align: center;
+    color: #ccc;
+    border-right: 1px solid #999;
+    vertical-align: top;
+    padding-right: 5px;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+td.hljs-ln-code {
+    padding-left: 10px;
+}
+
+code {
+    white-space: pre-wrap;
+    overflow: auto;
+}
+
 /* For mobile screens */
 @media screen and (max-width: 690px){
     
