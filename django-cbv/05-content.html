@@ -12,7 +12,7 @@
         'templates' in our tutorial/students/ directory. Inside that directory, make a blank html page named 'welcome.html'.
         So, our folder structure should look like:
     </p>
-<pre><code class="language-treeview">tutorial
+<pre><code class="treeview">tutorial
 |-- assets/
 |-- manage.py
 |-- students
@@ -52,19 +52,19 @@
     </p>
     <pre><code class="python">from django.views.generic import TemplateView
           
-    class WelcomeView(TemplateView):
-        """
-        This is our welcome screen. Utilizes a
-        template view.
-        """
-        template_name = 'welcome.html'</code></pre>
+class WelcomeView(TemplateView):
+    """
+    This is our welcome screen. Utilizes a
+    template view.
+    """
+    template_name = 'welcome.html'</code></pre>
               
     <p>
         As we will be serving web pages primarily, we want to define the urls that we will be serving our pages in. In
         the default setup that django framework provides us, which can be found in the tutorial/urls.py file, you will
         see that only one url is defined:
     </p>
-<pre><code class="language-python">from django.contrib import admin
+<pre><code class="python">from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
@@ -78,7 +78,7 @@ urlpatterns = [
     <p>
         Lets see what we need to do to change that. Let us define a new urlpattern that points to the root path:
     </p>
-<pre><code class="language-python">from django.contrib import admin
+<pre><code class="python">from django.contrib import admin
 from django.urls import path, include
 from students import views
 

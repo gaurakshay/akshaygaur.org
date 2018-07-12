@@ -42,7 +42,7 @@
         <p>
             An example usage of variables and tag in a typical django template would be:
         </p>
-<pre><code class="language-django">&lt;ul&gt;
+<pre><code class="django">&lt;ul&gt;
 {% for athlete in athlete_list %}
     &lt;li&gt;{{ athlete.name }}&lt;/li&gt;
 {% endfor %}
@@ -61,22 +61,22 @@
         Let us try to understand how template inheritance works using our tutorial projec
         that we set up. First, let us make a 'base.html' file in our templates folder:
     </p>
-<pre><code class="language-treeview">tutorial//
-|-- assets//
-|   `-- media//
-|       `-- student_pics//
+<pre><code class="treeview">tutorial
+|-- assets
+|   `-- media
+|       `-- student_pics
 |           |-- airplanes-children-toys-dolls-920860.jpg
 |           |-- akshay_gz8AM9g.jpg
 |           `-- akshay.jpg
-|-- manage.py*
-|-- students//
+|-- manage.py
+|-- students
 |   |-- admin.py
 |   |-- apps.py
 |   |-- forms.py
 |   |-- __init__.py
 |   |-- migrations//
 |   |-- models.py
-|   |-- templates//
+|   |-- templates
 |   |   |-- base.html  &lt;------------------------THIS ONE RIGHT HERE
 |   |   |-- dept-details.html
 |   |   |-- dept-list.html
@@ -87,7 +87,7 @@
 |   |-- tests.py
 |   |-- urls.py
 |   `-- views.py
-`-- tutorial//
+`-- tutorial
     |-- __init__.py
     |-- settings.py
     |-- urls.py
@@ -95,7 +95,7 @@
     <p>
         And put the following in it:
     </p>
-<pre class="line-numbers"><code class="language-django">&lt;!doctype html&gt;
+<pre class="line-numbers"><code class="django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -161,7 +161,7 @@
         In the file welcome.html in our templates folder, remove everything we had and 
         put the following:
     </p>
-<pre><code class="language-django">{% extends 'base.html' %}
+<pre><code class="django">{% extends 'base.html' %}
     
 {% block title %} Welcome! {% endblock title %}
 {% block content %}

@@ -17,7 +17,7 @@
     <p>
         But first, we need to define the view that will handle our deletion logic:
     </p>
-    <pre><code class="language-python"># import the generic views.
+    <pre><code class="python"># import the generic views.
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
@@ -42,7 +42,7 @@ class StudentDeleteView(DeleteView):
     <p>
         Now, we will register this view in our urls.py file: 
     </p>
-<pre><code class="language-python">from django.urls import path
+<pre><code class="python">from django.urls import path
 from students import views
 
 urlpatterns = [
@@ -58,7 +58,7 @@ urlpatterns = [
     <p>
         Next, we need to add the ability to delete the model instance in the details page of the instance:
     </p>
-    <pre><code class="language-django">{% extends 'base.html' %}
+    <pre><code class="django">{% extends 'base.html' %}
 
 {% block title %}
     Student Details
@@ -86,13 +86,13 @@ urlpatterns = [
     Finally, we need to write up our confirmation page for deletion of the model instance.
     For this, create a file named stud-delete.html in the templates folder:
 </p>
-<pre><code class="language-treeview">tutorial/
-|-- assets/
-|   `-- media/
+<pre><code class="treeview">tutorial
+|-- assets
+|   `-- media
 |       `-- student_pics/
-|-- students/
+|-- students
 |   |-- migrations/
-|   `-- templates/
+|   `-- templates
 |       |-- base.html
 |       |-- dept-details.html
 |       |-- dept-list.html
@@ -106,7 +106,7 @@ urlpatterns = [
         In stud-delete.html, let us create a basic form that will show a message for the user to confirm before
         deleting the model instance where we will use Django Template Language to make life easy for us:
     </p>
-    <pre><code class="language-django">{% extends 'base.html' %}
+    <pre><code class="django">{% extends 'base.html' %}
 
 {% block title %}
     Student Delete

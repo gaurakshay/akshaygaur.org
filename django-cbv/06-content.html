@@ -13,7 +13,7 @@
         Open up the base urls.py file where we put our first view and remove all that we added previously. Then, we will
         tell this file to include another urls.py file so that it looks like:
     </p>
-<pre><code class="language-python">from django.contrib import admin
+<pre><code class="python">from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
@@ -23,24 +23,24 @@ urlpatterns = [
     <p>
         Now, lets create a urls.py file in our students app. This file should be located at students/urls.py
     </p>
-<pre><code class="language-treeview">tutorial//
-|-- assets//
-|   `-- media//
-|       `-- student_pics//
+<pre><code class="treeview">tutorial
+|-- assets
+|   `-- media
+|       `-- student_pics
 |           `-- akshay.jpg
-|-- manage.py*
-|-- students//
+|-- manage.py
+|-- students
 |   |-- admin.py
 |   |-- apps.py
 |   |-- __init__.py
-|   |-- migrations//
+|   |-- migrations/
 |   |-- models.py
-|   |-- templates//
+|   |-- templates
 |   |   `-- welcome.html
 |   |-- tests.py
 |   |-- urls.py
 |   `-- views.py
-`-- tutorial//
+`-- tutorial
   |-- __init__.py
   |-- settings.py
   |-- urls.py
@@ -48,7 +48,7 @@ urlpatterns = [
     <p>
         To this file, add the following:
     </p>
-    <pre><code class="language-python">from django.urls import path
+    <pre><code class="python">from django.urls import path
 from students import views
 
 urlpatterns = [
@@ -63,7 +63,7 @@ urlpatterns = [
         with the model in some way or the other and we will learn about them one by one. To create a list view, first,
         open up the views.py file in students directory. And add the following lines:
     </p>
-    <pre><code class="language-python">from django.shortcuts import render
+    <pre><code class="python">from django.shortcuts import render
       
 # import the generic views.
 from django.views.generic import TemplateView, ListView
@@ -96,7 +96,7 @@ class DeptListView(ListView):
     <p>
         Create a skeleton like we did before and put the following:
     </p>
-<pre><code class="language-django">&lt;!doctype html&gt;
+<pre><code class="django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -120,7 +120,7 @@ class DeptListView(ListView):
     <p>
         To do that, lets edit the students/urls.py and append this to the urlpatterns list:
     </p>
-<pre><code class="language-python">from django.urls import path
+<pre><code class="python">from django.urls import path
 from students import views
 
 urlpatterns = [

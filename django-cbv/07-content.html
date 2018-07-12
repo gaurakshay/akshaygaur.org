@@ -10,7 +10,7 @@
         And let us reduce the amount of information that we are presenting in the details view, and add a new link to
         view the details of that particular department.
     </p>
-    <pre><code class="language-django">&lt;!doctype html&gt;
+    <pre><code class="django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -40,7 +40,7 @@
     <p> 
         To create a detail view, first, open up the views.py file in students directory. And add the following lines:
     </p>
-<pre><code class="language-python">from django.shortcuts import render
+<pre><code class="python">from django.shortcuts import render
       
 # import the generic views.
 from django.views.generic import TemplateView, ListView, DetailView
@@ -84,7 +84,7 @@ class DeptDetailView(DetailView):
     <p>
         Create a skeleton like we did before and put the following: 
     </p>
-<pre><code class="language-django">&lt;!doctype html&gt;
+<pre><code class="django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -106,7 +106,7 @@ class DeptDetailView(DetailView):
     <p>
         To do that, lets edit the students/urls.py and append this to the urlpatterns list: 
     </p>
-<pre><code class="language-python">from django.urls import path
+<pre><code class="python">from django.urls import path
 from students import views
 
 urlpatterns = [

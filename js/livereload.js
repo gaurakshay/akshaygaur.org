@@ -4,7 +4,7 @@ startStat="";
 req.onreadystatechange = function() {
     if(this.readyState == 4 && this.status == 200){
         newStat = req.responseText;
-        console.log(newStat);
+        // console.log(newStat);
         if(startStat != "" && startStat != newStat) {
             document.location.reload(true);
         }

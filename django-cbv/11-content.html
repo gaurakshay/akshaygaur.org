@@ -11,7 +11,7 @@
     <p>
         To do that, we open our views.py file in our project and add the following to it:
     </p>
-    <pre><code class="language-python"># import the generic views.
+    <pre><code class="python"># import the generic views.
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
 
 
@@ -30,7 +30,7 @@ class StudentUpdateView(UpdateView):
         Now, we need to define the url that will render this view for us and we will update
         our urls.py file for that:
     </p>
-    <pre><code class="language-python">from django.urls import path
+    <pre><code class="python">from django.urls import path
 from students import views
 
 urlpatterns = [
@@ -54,7 +54,7 @@ urlpatterns = [
         defined in our previous article. Our 'stud-edit.html' in our 'templates' folder was updated to look
         like this:
     </p>
-    <pre><code class="language-django">{% extends 'base.html' %}
+    <pre><code class="django">{% extends 'base.html' %}
 
 {% block title %} Add Student {% endblock title %}
 {% block content %}
@@ -77,7 +77,7 @@ urlpatterns = [
         the page title stays the same (which we set as "Add Student") and so does our heading for the page (which
         says "Student Add Screen"). So, to make it look better, we change our page to the following:
     </p>
-    <pre><code class="language-django">{% extends 'base.html' %}
+    <pre><code class="django">{% extends 'base.html' %}
 
 {% block title %}
     {%  if object %}

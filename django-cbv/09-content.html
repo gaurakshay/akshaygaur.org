@@ -23,20 +23,20 @@
         For this, we need to create a python file in the students directory named 'forms.py'. The directory after creating this file
         should look like:
     </p>
-<pre><code class="language-treeview">tutorial//
-|-- assets//
-|   `-- media//
-|       `-- student_pics//
+<pre><code class="treeview">tutorial
+|-- assets
+|   `-- media
+|       `-- student_pics
 |           `-- akshay.jpg
-|-- manage.py*
-|-- students//
+|-- manage.py
+|-- students
 |   |-- admin.py
 |   |-- apps.py
 |   |-- forms.py &lt;------------------THIS ONE RIGHT HERE
 |   |-- __init__.py
-|   |-- migrations//
+|   |-- migrations/
 |   |-- models.py
-|   |-- templates//
+|   |-- templates
 |   |   |-- dept-details.html
 |   |   |-- dept-list.html
 |   |   |-- stud-details.html
@@ -45,7 +45,7 @@
 |   |-- tests.py
 |   |-- urls.py
 |   `-- views.py
-`-- tutorial//
+`-- tutorial
   |-- __init__.py
   |-- settings.py
   |-- urls.py
@@ -53,7 +53,7 @@
     <p>
         Inside this file, add the following:
     </p>
-    <pre><code class="language-python">from django.forms import ModelForm
+    <pre><code class="python">from django.forms import ModelForm
         
 # Import models
 from students.models import Student
@@ -81,7 +81,7 @@ class StudentForm(ModelForm):
     <p> 
         To set up the url, we will go to the students/urls.py file and add the following:
     </p>
-<pre><code class="language-python">from django.urls import path
+<pre><code class="python">from django.urls import path
 from students import views
 
 urlpatterns = [
@@ -97,7 +97,7 @@ urlpatterns = [
         <b>3. Declaring the view </b>
         Go to students/views.py and add the following to declare the view for this view:
     </p>
-    <pre><code class="language-python"># import the generic views.
+    <pre><code class="python"># import the generic views.
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 
 # import models
@@ -127,7 +127,7 @@ class StudentAddView(CreateView):
     <p> 
         Create a file named 'stud-edit.html' in students/templates folder. Once created, add the following to the file: 
     </p>
-    <pre><code class="language-django">&lt;!doctype html&gt;
+    <pre><code class="django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -187,7 +187,7 @@ class StudentAddView(CreateView):
         To make sure that our site complies with Django's standards, we need to add {% csrf_token %} just after our &lt;form&gt;
         tag. 
     </p>
-    <pre><code class="language-django">&lt;!doctype html&gt;
+    <pre><code class="django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -252,7 +252,7 @@ class StudentAddView(CreateView):
             <p>
                 In our views.py, add the following to our existing code: 
             </p>
-            <pre><code class="language-python">#import reverse lazy
+            <pre><code class="python">#import reverse lazy
 from django.urls import reverse_lazy
 
 
@@ -292,7 +292,7 @@ class StudentAddView(CreateView):
             <p> 
                 Change the Student model in models.py file as below:
             </p>
-          <pre><code class="language-python"># Import reverse_lazy for get_absolute_url
+          <pre><code class="python"># Import reverse_lazy for get_absolute_url
 from django.urls import reverse_lazy
 
 
@@ -345,7 +345,7 @@ class Student(models.Model):
     <p> 
         Here we can implement some basic validation in the template of ours like so: 
     </p>
-    <pre><code class="language-django">&lt;!doctype html&gt;
+    <pre><code class="django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;

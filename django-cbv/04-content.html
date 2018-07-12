@@ -62,12 +62,12 @@ class Student(models.Model):
         the foreign key requires.
     </p>
     <p>
-        <strong>Line 38:</strong> This is an implementation of FileField where the image is uploaded to the "student_pics" folders.
+        <strong>Line 39:</strong> This is an implementation of FileField where the image is uploaded to the "student_pics" folders.
         Django requires installation of Pillow to work with images. So if not installed already, now would be a good
         time to do soi ($ pip install pillow).
     </p>
     <p>
-        <strong>Line 39:</strong> A many-to-many relationship is defined like this in Django.
+        <strong>Line 40:</strong> A many-to-many relationship is defined like this in Django.
     </p>
     <p>
         We also need to define where "student_pics" folder will reside. This is defined with the help of MEDIA_URL and
@@ -106,19 +106,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '&lt;any&gt;', '&lt;path&gt;', '&lt;you&gt;'
         in one place. Now, at this point, the folders will not be created but when they are (we don't need to worry about
         creating folders, Django will take make them when required), the folder structure will look like:
     </p>
-    <pre><code class="treeview">tutorial//
+    <pre><code class="treeview">tutorial
 |-- assets
-|   `-- media//
+|   `-- media/
 |-- manage.py
-|-- students//
+|-- students
 |   |-- admin.py
 |   |-- apps.py
 |   |-- __init__.py
-|   |-- migrations//
+|   |-- migrations/
 |   |-- models.py
 |   |-- tests.py
 |   `-- views.py
-`-- tutorial//
+`-- tutorial
     |-- __init__.py
     |-- settings.py
     |-- urls.py
@@ -164,21 +164,21 @@ admin.site.register(Student)</code></pre>
     <p>
         My folder structure looks like this after creating a student with a pic:
     </p>
-<pre><code class="treeview">tutorial//
-|-- assets//
-|   `-- media//
-|       `-- student_pics//
+<pre><code class="treeview">tutorial
+|-- assets
+|   `-- media
+|       `-- student_pics
 |           `-- akshay.jpg
-|-- manage.py*
-|-- students//
+|-- manage.py
+|-- students
 |   |-- admin.py
 |   |-- apps.py
 |   |-- __init__.py
-|   |-- migrations//
+|   |-- migrations/
 |   |-- models.py
 |   |-- tests.py
 |   `-- views.py
-`-- tutorial//
+`-- tutorial
     |-- __init__.py
     |-- settings.py
     |-- urls.py

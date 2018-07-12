@@ -8,7 +8,7 @@
         For that, we will use our student model where we stored student's pic as a model attribute. To start, let us first
         make a list view to show the list of students in our system. So open up your views.py and add the following:
     </p>
-    <pre><code class="language-python"># import models
+    <pre><code class="python"># import models
 from students.models import Department, Student
 
 
@@ -22,7 +22,7 @@ class StudentListView(ListView):
     <p>
         And, create the template named 'stud-list.html' in the templates folder: 
     </p>
-    <pre><code class="language-django">&lt;!doctype html&gt;
+    <pre><code class="django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -40,7 +40,7 @@ class StudentListView(ListView):
     <p>
         Add the url in student/urls.py file like so:
     </p>
-    <pre><code class="language-python">from django.urls import path
+    <pre><code class="python">from django.urls import path
 from students import views
 
 urlpatterns = [
@@ -67,7 +67,7 @@ urlpatterns = [
     <p>
         Let us first create the student's details view in students/views.py:
     </p>
-    <pre><code class="language-python">class StudentDetailView(DetailView):
+    <pre><code class="python">class StudentDetailView(DetailView):
     """
     This class utilizes the default class based view provided by Django framework to display the details of a student
     in the system
@@ -79,7 +79,7 @@ urlpatterns = [
     <p>
         Now, add the stud-details.html in the templates folder and type in it the following basic html:
     </p>
-    <pre><code class="language-django">&lt;!doctype html&gt;
+    <pre><code class="django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -101,7 +101,7 @@ urlpatterns = [
     <p>
         Finally, add the url to this view in the students/urls.py file:
     </p>
-    <pre><code class="language-python">from django.urls import path
+    <pre><code class="python">from django.urls import path
 from students import views
 
 urlpatterns = [
@@ -115,7 +115,7 @@ urlpatterns = [
     <p>
         Now, coming back to the templates/stud-list.html, we can finally add to it the link to details of the student:
     </p>
-<pre><code class="language-django">&lt;!doctype html&gt;
+<pre><code class="django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -160,11 +160,11 @@ urlpatterns = [
     <p>
         To fix this issue, replace
     </p>
-    <pre><code class="language-django">&lt;img src="{{ student.s_pic }}"&gt;</code></pre>
+    <pre><code class="django">&lt;img src="{{ student.s_pic }}"&gt;</code></pre>
     <p>
         with:
     </p>
-    <pre><code class="language-django">&lt;img src="{{ student.s_pic.url }}"&gt;</code></pre>
+    <pre><code class="django">&lt;img src="{{ student.s_pic.url }}"&gt;</code></pre>
     <p>
         in students/template/stud-details.html and try to reload the page:
     </p>
@@ -177,7 +177,7 @@ urlpatterns = [
     <p>
         This is because we are in a development environment and need absolute path to the image in order to process them
         correctly. To do this, go to the tutorial/urls.py file and add the following lines of code:</p>
-    <pre><code class="language-python">from django.contrib import admin
+    <pre><code class="python">from django.contrib import admin
 from django.urls import path, include
 # IMPORT THIS
 from django.conf import settings

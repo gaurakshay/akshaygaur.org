@@ -4,7 +4,7 @@
         Continuing on from making a simple header, we will now create a simple footer using Bootstrap.
         Our Django template file "base.html" looks like this:
     </p>
-    <pre><code class="language-django">&lt;!doctype html&gt;
+    <pre><code class="django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -37,7 +37,7 @@
 <p>
     To do so, we can add a footer tag like so:
 </p>
-<pre><code class="language-django">&lt;!doctype html&gt;
+<pre><code class="django">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -110,7 +110,7 @@
     <p>
         This can be achieved by editing our "welcome.html" from our Django CBV tutorial to:
     </p>
-    <pre><code class="language-django">
+    <pre><code class="django">
 {% extends 'base.html' %}
 
 {% block title %} Welcome! {% endblock title %}
