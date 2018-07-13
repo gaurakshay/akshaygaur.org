@@ -1,0 +1,18 @@
+/* Small devices */
+@media screen and (min-width: 600px) and (max-width: 899px){
+    header {
+        border: 0.2rem dashed lightseagreen;
+    }
+    
+    nav {
+        border: 0.2rem dashed tomato;
+    }
+    
+    main {
+        border: 0.2rem dashed steelblue;
+    }
+    
+    footer {
+        border: 0.2rem dashed rosybrown;
+    }
+}

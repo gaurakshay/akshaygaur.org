@@ -1,0 +1,18 @@
+/* Large devices */
+@media screen and (min-width: 900px){
+    header {
+        border: 0.4rem solid lightseagreen;
+    }
+    
+    nav {
+        border: 0.4rem solid tomato;
+    }
+    
+    main {
+        border: 0.4rem solid steelblue;
+    }
+    
+    footer {
+        border: 0.4rem solid rosybrown;
+    }
+}
