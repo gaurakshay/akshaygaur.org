@@ -1,3 +1,7 @@
-main {
+/* main {
     height: 75rem;
+} */
+
+body {
+    min-height: 98vh;
 }

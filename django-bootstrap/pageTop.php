@@ -29,7 +29,8 @@ if ($_SERVER['HTTPS'] != "on") {
 <body>
     <!-- Header Start-->
     <header class="header">
-        <h3> header </h3>
+    <img src="../img/Sketch006.png" alt="Nothing." style="width: 4rem;">
+        <h1> header </h1>
         <!-- <a href="http://www.akshaygaur.org"><h1>Akshay Gaur</h1></a> -->
     </header>
     <!-- Header End-->
